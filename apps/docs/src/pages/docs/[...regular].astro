@@ -1,0 +1,113 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import Toc from "@/helpers/Toc";
+import Base from "@/layouts/Base.astro";
+import { getDocsPage } from "@/lib/contentParser.astro";
+import {
+  generateBreadCrumbsSlug,
+  getDocsSinglePage,
+} from "@/lib/utils/pathParser";
+import CallToAction from "@/partials/CallToAction.astro";
+import { getEntry } from "astro:content";
+
+interface ChildItem {
+  root: string;
+  child?: ChildItem[];
+  pages: string[];
+}
+
+interface DataItem {
+  root: string;
+  child: ChildItem[];
+  pages: string[];
+}
+
+const callToAction = await getEntry("sections", "call-to-action");
+
+export async function getStaticPaths() {
+  const { allPages } = await getDocsPage("docs");
+  const removeIndexSlug = allPages.filter(
+    (item: any) => !item.slug.includes("-index"),
+  );
+  const paths = removeIndexSlug.map((page: any) => ({
+    params: {
+      regular: page.id.replace(/\.mdx?$/, ""),
+    },
+    props: { page },
+  }));
+  return paths;
+}
+
+const { page } = Astro.props;
+const { regular } = Astro.params;
+const pagesData = await getDocsPage("docs");
+const { Content } = await page.render();
+const path = generateBreadCrumbsSlug("src/content/docs", regular);
+const sidebarPath: DataItem[] = getDocsSinglePage("src/content/docs");
+// get headings for table of content
+const headings = await Astro.glob(`/src/content/docs/**/*.mdx`);
+const toc = headings
+  ?.find((item) => item?.url!.includes(regular))
+  ?.getHeadings();
+
+// removing undefined values
+const removeUndefined = (obj: any): any => {
+  if (Array.isArray(obj)) {
+    return obj.filter((item) => item !== undefined).map(removeUndefined);
+  } else if (obj !== null && typeof obj === "object") {
+    // Recurse into non-null objects
+    const newObj: any = {};
+    Object.entries(obj)
+      .filter(([_, value]) => value !== undefined)
+      .forEach(([key, value]) => {
+        newObj[key] = removeUndefined(value);
+      });
+    return newObj;
+  } else {
+    // Base case: return non-object values
+    return obj;
+  }
+};
+
+const { title, meta_title, description, image, search } = page.data;
+const sidebarData: DataItem[] = removeUndefined(sidebarPath);
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+  toc={true}
+>
+  <section>
+    <div class="container-fluid">
+      <div class="row md:justify-center lg:justify-start">
+        <Sidebar
+          sidebarData={sidebarData}
+          pageData={pagesData.docsPage}
+          regular={regular}
+        />
+        <div
+          class="lg:w-[calc(100%-380px)] lg:border-l lg:border-l-border lg:pl-0
+          2xl:w-[calc(100%-380px-350px)] 2xl:pr-0"
+        >
+          <Breadcrumbs
+            className="mt-6 pr-6 pl-12 md:pl-0 lg:pl-6"
+            path={path}
+          />
+          <hr class="my-6 border-border" />
+
+          <div class="content">
+            <Content />
+          </div>
+        </div>
+        {toc?.length! > 0 && <Toc client:load tocItems={toc} />}
+      </div>
+      <CallToAction callToAction={callToAction} />
+    </div>
+  </section>
+
+  <!-- <Code client:load /> -->
+</Base>

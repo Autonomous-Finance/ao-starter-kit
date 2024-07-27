@@ -1,0 +1,173 @@
+---
+import Accordion from "@/components/Accordion.astro";
+import Topics from "@/components/Topics.astro";
+import Base from "@/layouts/Base.astro";
+import { getDocsPage } from "@/lib/contentParser.astro";
+import CallToAction from "@/partials/CallToAction.astro";
+import type { Button } from "@/types";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+
+interface Search {
+  enable: boolean;
+  input_placeholder: string;
+  button_text: string;
+}
+interface FaqType {
+  enable: boolean;
+  title: string;
+  subtitle: string;
+  content: string;
+  button: Button;
+}
+interface Homepage {
+  banner: {
+    title: string;
+    subtitle: string;
+    content: string;
+    image: string;
+    search: Search;
+  };
+  topics: {
+    title: string;
+    subtitle: string;
+  };
+  faq: FaqType;
+  header_alt: boolean;
+}
+
+const homepage = await getEntry(`homepage`, "-index");
+const faq = await getEntry("landing-pages", "faq");
+const callToAction = await getEntry("sections", "call-to-action");
+const { docsPage, allPages } = await getDocsPage("docs");
+const { banner, topics, faq: faqData, header_alt }: Homepage = homepage?.data;
+const {
+  content,
+  title,
+  search: { enable, input_placeholder, button_text },
+  subtitle,
+  image,
+} = banner;
+---
+
+<Base header_alt={header_alt}>
+  <!-- Banner -->
+  <section
+    class="section-lg xl:bg-hero-pattern rounded-b-[2rem] bg-theme-light bg-right bg-no-repeat sm:rounded-b-[80px] md:rounded-b-[120px]"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="md:col-12 lg:col-7 xl:col-6">
+          <div
+            class="mb-6 w-fit rounded-lg bg-light/30 px-4 py-2 font-medium text-text sm:mb-8"
+          >
+            {subtitle}
+          </div>
+          <h1 class="mb-5 capitalize text-dark 2xl:pr-24">
+            {title}
+          </h1>
+          <p class="mb-10 font-secondary text-h6 text-text">
+            {content}
+          </p>
+          {
+            enable && (
+              <form
+                id="search-form"
+                class="flex w-full max-w-[450px] flex-col justify-between rounded-xl bg-white p-1 shadow-lg sm:flex-row sm:rounded-2xl md:max-w-[580px]"
+                data-search-trigger
+              >
+                <input
+                  type="search"
+                  class="w-full border-0 bg-transparent p-4 pl-6 text-center font-secondary text-sm placeholder:text-text/50 focus:border-0 focus:ring-0 sm:text-left md:text-base"
+                  readonly
+                  placeholder={input_placeholder}
+                />
+                <button
+                  class="btn btn-primary-dark whitespace-nowrap"
+                  id="submit-button"
+                >
+                  {button_text}
+                </button>
+              </form>
+            )
+          }
+        </div>
+        <!-- End Banner Content -->
+        <div class="hidden lg:col-5 xl:col-6 lg:block">
+          <Image
+            src={image}
+            alt="A bird sitting on a nest of eggs."
+            class="ml-auto block"
+            height={500}
+            width={500}
+          />
+        </div>
+        <!-- End Banner Image -->
+      </div>
+    </div>
+  </section>
+  <!-- /Banner -->
+
+  <!-- Topics -->
+  <section class="section pb-0">
+    <div
+      class="bg-theme-dark mx-auto w-full max-w-[1700px] rounded-[2rem] sm:rounded-[40px]"
+    >
+      <div class="container pt-16 pb-16">
+        <div class="row pb-8">
+          <div class="col-12">
+            <div
+              class="mb-8 w-fit rounded-lg bg-theme-light/20 px-4 py-2 font-medium text-white"
+            >
+              {topics.subtitle}
+            </div>
+            <h2 class="mb-5 capitalize text-white sm:mb-0">{topics.title}</h2>
+          </div>
+        </div>
+        <div class="has-colored-box row gy-4">
+          {
+            docsPage.map((topic) => (
+              <Topics topic={topic} getPages={allPages} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    {
+      faqData.enable && (
+        <section class="section pb-0">
+          <div class="container">
+            <div class="row gy-5">
+              <div class="lg:col-6">
+                <div class="badge-gray mb-6 w-fit rounded-lg px-4 py-2 font-medium text-text sm:mb-8">
+                  {faqData.subtitle}
+                </div>
+                <h2 class="mb-5 capitalize text-dark">{faqData.title}</h2>
+                <p class="font-secondary font-normal text-text lg:mb-10">
+                  {faqData.content}
+                </p>
+                {faqData.button.enable && (
+                  <a
+                    href={faqData.button.link}
+                    class="btn btn-primary-dark hidden lg:inline-block"
+                  >
+                    {faqData.button.label}
+                  </a>
+                )}
+              </div>
+              <div class="lg:col-6">
+                <Accordion faq={faq?.data} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )
+    }
+    <section class="section pb-0">
+      <div class="container">
+        <CallToAction callToAction={callToAction} />
+      </div>
+    </section>
+  </section>
+</Base>

@@ -1,0 +1,45 @@
+---
+import config from "@/config/config.json";
+import { Image } from "astro:assets";
+
+const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
+  Astro.props;
+const {
+  logo,
+
+  logo_width,
+  logo_height,
+  logo_text,
+  title,
+}: {
+  logo: string;
+  logo_width: any;
+  logo_height: any;
+  logo_text: string;
+  title: string;
+} = config.site;
+---
+
+<a href="/" class="navbar-brand inline-block">
+  {
+    src || srcDarkmode || logo ? (
+      <>
+        <Image
+          src={src ? src : logo}
+          width={logo_width.replace("px", "") * 2}
+          height={logo_height.replace("px", "") * 2}
+          alt={title}
+          style={{
+            height: logo_height.replace("px", "") + "px",
+            width: logo_width.replace("px", "") + "px",
+          }}
+          format="webp"
+        />
+      </>
+    ) : logo_text ? (
+      logo_text
+    ) : (
+      title
+    )
+  }
+</a>

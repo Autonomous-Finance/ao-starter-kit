@@ -1,0 +1,145 @@
+---
+import config from "@/config/config.json";
+import menu from "@/config/menu.json";
+import DynamicIcon from "@/helpers/DynamicIcon";
+import Logo from "@/components/Logo.astro";
+
+// import {languages} from
+export interface ChildNavigationLink {
+  name: string;
+  url: string;
+}
+
+export interface NavigationLink {
+  name: string;
+  url: string;
+}
+
+const { header_alt, toc } = Astro.props;
+const { main }: { main: NavigationLink[] } = menu;
+const { navigation_button } = config;
+const { regular } = Astro.params;
+---
+
+<header
+  class=`header header-sticky-top ${header_alt ? "header-alt" : ""} w-full`
+>
+  <nav class=`navbar   ${toc ? "container-fluid": "container"}`>
+    <Logo />
+    <!-- End logo -->
+    <div class="flex items-center">
+      {
+        (
+          <button
+            class="border-dark/20 mr-2 rounded-md border py-2 px-3 lg:hidden"
+            id="openModal"
+          >
+            <DynamicIcon icon="FaMagnifyingGlass" className="h-5 w-3" />
+          </button>
+        )
+      }
+      <button
+        class="navbar-toggler group relative ml-2"
+        aria-label="navbar toggler"
+      >
+        <div
+          class="relative flex h-[30px] w-[30px] transform items-center justify-center overflow-hidden rounded-full ring-0 transition-all duration-200"
+        >
+          <div
+            class="flex h-[15px] w-[18px] origin-center transform flex-col justify-between overflow-hidden transition-all duration-300 group-[.active]:h-[21px]"
+          >
+            <div
+              class="h-[2px] w-7 origin-left transform bg-theme-dark transition-all duration-300 group-[.active]:translate-x-10"
+            >
+            </div>
+            <div
+              class="h-[2px] w-7 transform rounded bg-theme-dark transition-all delay-75 duration-300 group-[.active]:translate-x-10"
+            >
+            </div>
+            <div
+              class="h-[2px] w-7 origin-left transform bg-theme-dark transition-all delay-150 duration-300 group-[.active]:translate-x-10"
+            >
+            </div>
+            <div
+              class="absolute top-2.5 flex w-0 -translate-x-10 transform items-center justify-between transition-all duration-500 group-[.active]:w-12 group-[.active]:translate-x-0"
+            >
+              <div
+                class="absolute h-[2px] w-4 rotate-0 transform bg-theme-dark transition-all delay-300 duration-500 group-[.active]:rotate-45"
+              >
+              </div>
+              <div
+                class="absolute h-[2px] w-4 -rotate-0 transform bg-theme-dark transition-all delay-300 duration-500 group-[.active]:-rotate-45"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+    <!-- End Navbar Toggler -->
+
+    <div class="navbar-wrapper">
+      <ul class="navbar-nav">
+        {
+          main.map((item) => (
+            <li class="nav-item group">
+              <a
+                href={item.url}
+                class={`nav-link ${
+                  item.url === `/${regular}` || item.url.includes(regular!)
+                    ? "active"
+                    : ""
+                }`}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <!-- End Navbar Nav -->
+
+      <div
+        class="order-2 mx-auto mb-[0.75rem] flex flex-col items-center lg:mx-0 lg:mb-0 lg:flex-row lg:gap-7"
+      >
+        {
+          navigation_button.enable && (
+            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 pt-[0.7rem] lg:gap-x-5 lg:pt-0">
+              {navigation_button.buttons.map((item) => (
+                <a
+                  href={item.link}
+                  class={`btn btn-md ${
+                    item.fill ? "btn-primary" : "btn-outline-primary"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </div>
+    <!-- End Navbar Wrapper -->
+  </nav>
+</header>
+
+<script>
+  // Get references to the button and the div
+  document.addEventListener("astro:page-load", () => {
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarMenu = document.querySelector(".navbar-wrapper");
+    navbarToggler?.addEventListener("click", (e) => {
+      navbarToggler.classList.toggle("active");
+      navbarMenu!.classList.toggle("active");
+    });
+
+    const openModalButton = document.getElementById("openModal");
+    const modal = document.getElementById("modal");
+    const search_box = document.getElementById("search-box");
+    openModalButton!.addEventListener("click", function () {
+      modal!.classList.remove("hidden");
+      search_box!.focus();
+    });
+  });
+</script>

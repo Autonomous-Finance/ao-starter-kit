@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import { execSync } from "child_process";
+
+export const getSinglePage = async (collection: any, lang?: string) => {
+  const allPage = await getCollection(collection);
+  const removeIndex = allPage.filter((data: any) => data.id.match(/^(?!-)/));
+  const removeDrafts = removeIndex.filter((data: any) => !data.data.draft);
+  const addDate = removeDrafts.map((data: any) => {
+    const date = execSync(
+      `git log --pretty=format:\"%ad\" -1 -- ${`src/content/${collection}/${data.id}`}`,
+      {
+        encoding: "utf-8",
+      },
+    );
+    return {
+      ...data,
+      date: data.date ? data.date : date,
+    };
+  });
+  return addDate;
+};
+
+export const getDocsPage = async (collection: any) => {
+  const allPages = await getSinglePage(collection);
+  const allData = await getCollection(collection);
+  const docsPage = allPages
+    .filter((item: any) => item.data.type === "docs")
+    .sort((a: any, b: any) => {
+      return a.data.weight - b.data.weight;
+    });
+  const removeIndex = allPages.filter((data: any) => data.id.match(/^(?!-)/));
+  const removeDrafts = removeIndex.filter((data: any) => !data.data.draft);
+  return { docsPage, allPages: removeDrafts, allData };
+};
+---

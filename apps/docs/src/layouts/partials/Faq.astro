@@ -1,0 +1,25 @@
+---
+import Accordion from "@/components/Accordion.astro";
+const { faq } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="lg:col-6 text-center">
+        <div
+          class="bg-light/30 mx-auto mb-8 w-fit rounded-lg px-4 py-2 font-medium text-text"
+        >
+          {faq.subtitle}
+        </div>
+        <h2 class="mb-5 capitalize text-dark">{faq.title}</h2>
+        <p class="mb-10 font-secondary font-normal text-text">
+          {faq.description}
+        </p>
+      </div>
+      <!-- End Title -->
+      <div class="lg:col-10"><Accordion faq={faq} className="col-12" /></div>
+      <!-- End Faq Items -->
+    </div>
+  </div>
+</section>

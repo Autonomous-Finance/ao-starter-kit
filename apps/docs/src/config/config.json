@@ -1,0 +1,40 @@
+{
+  "site": {
+    "title": "Docbox",
+    "base_url": "https://docbox-astro.vercel.app",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo-dark.png",
+    "footer_logo": "/images/logo-light.png",
+    "logo_width": "160",
+    "logo_height": "40",
+    "logo_text": "Docbox"
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "©Copyright 2023 COMPANY | Theme by [Themefisher](https://themefisher.com)"
+  },
+
+  "metadata": {
+    "meta_author": "Themefisher",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "docbox astro themes"
+  },
+  "navigation_button": {
+    "enable": true,
+    "buttons": [
+      {
+        "label": "Changelog",
+        "link": "/changelog",
+        "fill": false
+      },
+      {
+        "label": "Contact us",
+        "link": "/contact",
+        "fill": true
+      }
+    ]
+  }
+}

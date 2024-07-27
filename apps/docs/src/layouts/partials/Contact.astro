@@ -1,0 +1,125 @@
+---
+import Social from "@/components/Social.astro";
+import social from "@/config/social.json";
+import DynamicIcon from "@/helpers/DynamicIcon";
+const { contact } = Astro.props;
+
+const { email, phone, location } = contact.contact_info;
+---
+
+<section
+  class="section-sm md:section xl:bg-hero-pattern mb-20 rounded-b-[2rem] bg-theme-light bg-right bg-no-repeat sm:rounded-b-[60px] md:mb-24 md:rounded-b-[120px]"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 class="mb-5 capitalize text-dark">{contact.title}</h1>
+      </div>
+      <!-- End Title -->
+    </div>
+    <!-- End Title Row -->
+    <div class="row gy-5 items-center justify-center pt-10">
+      <div class="lg:col-6 2xl:col-5">
+        <div
+          class="rounded-xl bg-white px-6 py-8 sm:rounded-2xl md:px-8 md:py-10"
+        >
+          <form action="" class="md:gy-[2.5rem] row gy-4">
+            <div class="col-12">
+              <label for="name" class="form-label">First Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="Theresa Webb"
+              />
+            </div>
+            <div class="col-12">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder={"theresawebb@gmail.com"}
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="subject" class="form-label">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="form-input"
+                placeholder="Theresa Webb"
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                rows="5"
+                cols="20"
+                id="message"
+                name="message"
+                class="form-input"
+                placeholder="Write here..."
+                required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary-dark mt-4">
+                Send message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Forms -->
+      <div class="lg:col-6 2xl:col-4">
+        <div class="lg:pl-14">
+          <h2 class="h5 md:h4 mb-4 !font-semibold">In the bay area?</h2>
+          <p
+            class="md:h5 mb-4 !font-normal leading-6 !text-dark/50 md:leading-9"
+          >
+            {location}
+          </p>
+          <h2 class="h5 md:h4 mb-4 mt-8 !font-semibold">Support</h2>
+          <ul>
+            <li class="md:h5 !font-normal leading-6 !text-dark/50 md:leading-9">
+              <a
+                href=`mailto:${email.contact}`
+                class="mb-2 block break-all transition-colors duration-300 hover:text-dark/80"
+              >
+                <DynamicIcon
+                  icon="BsSend"
+                  className="inline text-lg mr-2"
+                  client:load
+                />
+                {email.contact}
+              </a>
+            </li>
+            <li class="md:h5 !font-normal leading-6 !text-dark/50 md:leading-9">
+              <a
+                href=`tel:${phone.contact}`
+                class="mb-2 block break-all transition-colors duration-300 hover:text-dark/80"
+              >
+                <DynamicIcon
+                  icon="FaPhoneFlip"
+                  className="inline text-lg mr-2"
+                  client:load
+                />
+                {phone.contact}
+              </a>
+            </li>
+          </ul>
+
+          <h2 class="h5 md:h4 mb-4 mt-8 !font-semibold">Follow Us</h2>
+          <Social source={social.main} className="social-icons contact" />
+        </div>
+      </div>
+      <!-- End Contact Info -->
+    </div>
+    <!-- End Content Info Row -->
+  </div>
+</section>

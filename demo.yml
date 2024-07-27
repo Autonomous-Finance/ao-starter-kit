@@ -1,0 +1,281 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/ovi/dev/ao/ao-starter-kit
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 69
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 19
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 93
+    content: "\e[H\e[2J"
+  - delay: 1007
+    content: "\e[90m┌\e[39m  \e[46m\e[30m create-ao-dapp \e[39m\e[49m\r\n"
+  - delay: 12
+    content: "\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  Where should we create your project?\r\n\e[36m│\e[39m  \e[7m.\e[27m\e[2m/sparkling-solid\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 1679
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  .\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 228
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 1286
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./g\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 665
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 196
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./o\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 205
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./on\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 79
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./one\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 162
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./one-\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 151
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./one-g\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 142
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./one-ga\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 86
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./one-gam\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 124
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ./one-game\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 214
+    content: "\e[999D\e[4A\e[1B\e[J\e[32m◇\e[39m  Where should we create your project?\r\n\e[90m│\e[39m  \e[2m./one-game\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  Select a package manager\r\n\e[36m│\e[39m  \e[32m●\e[39m bun\r\n\e[36m│\e[39m  \e[2m○\e[22m \e[2mpnpm\e[22m\r\n\e[36m│\e[39m  \e[2m○\e[22m \e[2myarn\e[22m\r\n\e[36m│\e[39m  \e[2m○\e[22m \e[2mnpm\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 1340
+    content: "\e[999D\e[7A\e[1B\e[J\e[32m◇\e[39m  Select a package manager\r\n\e[90m│\e[39m  \e[2mbun\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  What should we name the backend process?\r\n\e[36m│\e[39m  \e[7mm\e[27m\e[2my-process\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 1178
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  g\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 143
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  ga\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 99
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  gam\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 121
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  game\e[7m\e[8m_\e[28m\e[27m\e[2B"
+  - delay: 320
+    content: "\e[999D\e[4A\e[1B\e[J\e[32m◇\e[39m  What should we name the backend process?\r\n\e[90m│\e[39m  \e[2mgame\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  Pick a process type within \"./one-game\"\r\n\e[36m│\e[39m  \e[32m●\e[39m Lua process\r\n\e[36m│\e[39m  \e[2m○\e[22m \e[2mTeal Typed Lua process\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 2269
+    content: "\e[999D\e[5A\e[1B\e[J\e[32m◇\e[39m  Pick a process type within \"./one-game\"\r\n\e[90m│\e[39m  \e[2mLua process\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  Select the features you want to include\r\n\e[36m│\e[39m  \e[32m◼\e[39m aoform \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[32m◼\e[39m \e[2mSquishy\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mAO Process Testing\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 854
+    content: "\e[999D\e[8A\e[2B\e[J\e[36m│\e[39m  \e[32m◼\e[39m \e[2maoform\e[22m\r\n\e[36m│\e[39m  \e[32m◼\e[39m Squishy \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mAO Process Testing\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 173
+    content: "\e[999D\e[8A\e[3B\e[J\e[36m│\e[39m  \e[32m◼\e[39m \e[2mSquishy\e[22m\r\n\e[36m│\e[39m  \e[36m◻\e[39m AO Process Testing \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 516
+    content: "\e[999D\e[8A\e[3B\e[J\e[36m│\e[39m  \e[32m◼\e[39m Squishy \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mAO Process Testing\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 239
+    content: "\e[999D\e[8A\e[2B\e[J\e[36m│\e[39m  \e[32m◼\e[39m aoform \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[32m◼\e[39m \e[2mSquishy\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mAO Process Testing\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 244
+    content: "\e[999D\e[8A\e[2B\e[J\e[36m│\e[39m  \e[32m◼\e[39m \e[2maoform\e[22m\r\n\e[36m│\e[39m  \e[32m◼\e[39m Squishy \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mAO Process Testing\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 211
+    content: "\e[999D\e[8A\e[3B\e[J\e[36m│\e[39m  \e[32m◼\e[39m \e[2mSquishy\e[22m\r\n\e[36m│\e[39m  \e[36m◻\e[39m AO Process Testing \e[2m(recommended)\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mIrys Permaweb Deployment\e[22m\r\n\e[36m│\e[39m  \e[2m◻\e[22m \e[2mGitHub Actions\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 598
+    content: "\e[999D\e[8A\e[4B\e[2K\e[G\e[36m│\e[39m  \e[32m◼\e[39m AO Process Testing \e[2m(recommended)\e[22m\e[4B"
+  - delay: 1268
+    content: "\e[999D\e[8A\e[1B\e[J\e[32m◇\e[39m  Select the features you want to include\r\n\e[90m│\e[39m  \e[2maoform\e[22m\e[2m, \e[22m\e[2mSquishy\e[22m\e[2m, \e[22m\e[2mAO Process Testing\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  Pick a frontend framework within \"./one-game\"\r\n\e[36m│\e[39m  \e[32m●\e[39m React Vite\r\n\e[36m└\e[39m\r\n"
+  - delay: 1040
+    content: "\e[999D\e[4A\e[1B\e[J\e[32m◇\e[39m  Pick a frontend framework within \"./one-game\"\r\n\e[90m│\e[39m  \e[2mReact Vite\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[36m◆\e[39m  Initialize a git repository?\r\n\e[36m│\e[39m  \e[32m●\e[39m Yes \e[2m/\e[22m \e[2m○\e[22m \e[2mNo\e[22m\r\n\e[36m└\e[39m\r\n"
+  - delay: 1626
+    content: "\e[999D\e[4A\e[2B\e[2K\e[G\e[36m│\e[39m  \e[2m○\e[22m \e[2mYes\e[22m \e[2m/\e[22m \e[32m●\e[39m No\e[2B"
+  - delay: 714
+    content: "\e[999D\e[4A\e[1B\e[J\e[32m◇\e[39m  Initialize a git repository?\r\n\e[90m│\e[39m  \e[2mNo\e[22m\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n"
+  - delay: 82
+    content: "\e[999D\e[J\e[35m◒\e[39m  Cloning template repository"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◐\e[39m  Cloning template repository"
+  - delay: 83
+    content: "\e[999D\e[J\e[35m◓\e[39m  Cloning template repository"
+  - delay: 67
+    content: "Cloning into './one-game-temp'...\r\n"
+  - delay: 11
+    content: "\e[999D\e[J\e[35m◑\e[39m  Cloning template repository"
+  - delay: 82
+    content: "\e[999D\e[J\e[35m◒\e[39m  Cloning template repository"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◐\e[39m  Cloning template repository"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◓\e[39m  Cloning template repository"
+  - delay: 83
+    content: "\e[999D\e[J\e[35m◑\e[39m  Cloning template repository"
+  - delay: 80
+    content: "\e[999D\e[J\e[35m◒\e[39m  Cloning template repository."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◐\e[39m  Cloning template repository."
+  - delay: 78
+    content: "\e[999D\e[J\e[35m◓\e[39m  Cloning template repository."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◑\e[39m  Cloning template repository."
+  - delay: 82
+    content: "\e[999D\e[J\e[35m◒\e[39m  Cloning template repository."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◐\e[39m  Cloning template repository."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◓\e[39m  Cloning template repository."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◑\e[39m  Cloning template repository."
+  - delay: 82
+    content: "\e[999D\e[J\e[35m◒\e[39m  Cloning template repository.."
+  - delay: 79
+    content: "\e[999D\e[J\e[35m◐\e[39m  Cloning template repository.."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◓\e[39m  Cloning template repository.."
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◑\e[39m  Cloning template repository.."
+  - delay: 80
+    content: "\e[999D\e[J\e[35m◒\e[39m  Cloning template repository.."
+  - delay: 18
+    content: "\e[999D\e[J\e[32m◇\e[39m  Finished cloning base template.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n"
+  - delay: 20
+    content: "bun install v1.1.12 (43f0913c)\r\n"
+  - delay: 62
+    content: "\e[999D\e[J\e[35m◒\e[39m  Installing dependencies"
+  - delay: 9
+    content: "Resolving dependencies\r\nResolved, downloaded and extracted [0]\r\nwarn: incorrect peer dependency \"typescript@5.5.4\"\r\n"
+  - delay: 72
+    content: "\e[999D\e[J\e[35m◐\e[39m  Installing dependencies"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◓\e[39m  Installing dependencies"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◑\e[39m  Installing dependencies"
+  - delay: 82
+    content: "\e[999D\e[J\e[35m◒\e[39m  Installing dependencies"
+  - delay: 79
+    content: "\e[999D\e[J\e[35m◐\e[39m  Installing dependencies"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◓\e[39m  Installing dependencies"
+  - delay: 81
+    content: "\e[999D\e[J\e[35m◑\e[39m  Installing dependencies"
+  - delay: 86
+    content: "\e[999D\e[J\e[35m◒\e[39m  Installing dependencies."
+  - delay: 57
+    content: "Saved lockfile\r\n\e[999D\e[J\e[32m◇\e[39m  Finished installing dependencies.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[999D\e[J\e[32m◇\e[39m  Finished creating process scripts dir.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n"
+  - delay: 7
+    content: "bun add v1.1.12 (43f0913c)\r\nResolving dependencies\r\n"
+  - delay: 73
+    content: "\e[999D\e[J\e[35m◒\e[39m  Adding aoform"
+  - delay: 82
+    content: "\e[999D\e[J\e[35m◐\e[39m  Adding aoform"
+  - delay: 80
+    content: "\e[999D\e[J\e[35m◓\e[39m  Adding aoform"
+  - delay: 84
+    content: "\e[999D\e[J\e[35m◑\e[39m  Adding aoform"
+  - delay: 76
+    content: "\e[999D\e[J\e[35m◒\e[39m  Adding aoform"
+  - delay: 88
+    content: "\e[999D\e[J\e[35m◐\e[39m  Adding aoform"
+  - delay: 77
+    content: "\e[999D\e[J\e[35m◓\e[39m  Adding aoform"
+  - delay: 78
+    content: "\e[999D\e[J\e[35m◑\e[39m  Adding aoform"
+  - delay: 53
+    content: "Resolved, downloaded and extracted [2]\r\n"
+  - delay: 27
+    content: "\e[999D\e[J\e[35m◒\e[39m  Adding aoform."
+  - delay: 44
+    content: "Saved lockfile\r\n\e[999D\e[J\e[32m◇\e[39m  Added aoform.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n"
+  - delay: 6
+    content: "\e[999D\e[J\e[32m◇\e[39m  Added testing suite.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[999D\e[J\e[32m◇\e[39m  Added build script.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n"
+  - delay: 14
+    content: "\e[999D\e[J\e[32m◇\e[39m  Finished removing temp dir.\r\n\e[?25h\e[?25l\e[90m│\e[39m\r\n\e[999D\e[J\e[32m◇\e[39m  Finished generating package.json scripts.\r\n\e[?25h\e[90m│\e[39m\r\n\e[32m◇\e[39m  \e[0m\e[0m \e[90m──────────────────────────────╮\e[39m\r\n\e[90m│\e[39m  \e[2m\e[22m                               \e[90m│\e[39m\r\n\e[90m│\e[39m  \e[2mProject created at \e[4m\e[36m./one-game\e[39m\e[24m\e[22m  \e[90m│\e[39m\r\n\e[90m│\e[39m  \e[2m\e[22m                               \e[90m│\e[39m\r\n\e[90m├─────────────────────────────────╯\e[39m\r\n\e[90m│\e[39m\r\n\e[90m└\e[39m  Problems? \e[4m\e[36mhttps://example.com/issues\e[39m\e[24m\r\n\r\nAlexandrus-MacBook-Pro:ao-starter-kit ovi$ "
+  - delay: 1400
+    content: "\e[H\e[2J"

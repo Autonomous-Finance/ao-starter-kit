@@ -1,0 +1,133 @@
+# AO Process Testing [This section provides an overview of how to test AO processes.]
+
+In order to test AO processes, you need to have a basic understanding of the following:
+
+- **busted** - Busted is a unit testing framework for Lua. You can learn more about Busted from the [official documentation](https://lunarmodules.github.io/busted/)
+- **Ao Process Testing Suite** - AO processes are tested using the AO Testing Suite. You can learn more about the AO Testing Suite from the [official documentation](https://github.com/Autonomous-Finance/ao-process-testing)
+
+## Process Testing Directory Structure
+
+If you generate a new process using the AO Starter Kit, the directory structure of the process will look somewhat like this:
+
+```
+process-name/             # Your process's root directory.
+├── scripts/              # Utility scripts for the process.
+│   ├── build.sh          # Build script for the process.
+│   ├── deploy.sh         # Deploy script for the process.
+│   └── test.sh           # Test script for the process. // [!code hl] // [!code focus]
+└── src/                  # Source code for the process.
+    ├── test/             # Test directory for the process. // [!code hl] // [!code focus]
+    │   ├── mocked-env    # Mocked env files to test the process. // [!code hl] // [!code focus]
+    │   ├── setup.lua     # AO Testing Suite setup file. // [!code hl] // [!code focus]
+    │   └── process_test.lua # Test script for the process. // [!code hl] // [!code focus]
+    ├── process_lib.lua   # Library for the process.
+    ├── process.lua       # Entry point for the process.
+    └── reset_modules.lua # Reset preloaded modules.
+```
+
+We will now discuss the contents of the `test` directory in detail.
+
+## Test Directory
+The `test` directory contains the following files:
+
+- **mocked-env** - This directory contains the mocked environment files that are used to test the process. The mocked environment files are used to mock the environment variables that are used in the process. The mocked environment files are used to test the process in different environments.
+- **setup.lua** - This file is used to set up the AO Testing Suite. The setup file is used to set up the AO Testing Suite before running the tests. The setup file is used to set up the environment variables that are used in the process.
+- **process_test.lua** - This file contains the actual test script and cases for the process.
+
+## Writing tests
+
+Now that you have a basic understanding of the directory structure of the process, let's write some tests for the process.
+
+### Writing a test case
+
+To write a test case for the process, you need to create a new test case in the `process_test.lua` file. The test case should be written using the Busted syntax.
+
+:::tip
+AO Starter Kit generates a sample test case for the process. You can modify the sample test case to write your own test cases.
+:::
+
+```lua [process-name/src/test/process_test.lua]
+---@diagnostic disable: duplicate-set-field
+require("test.setup")()
+
+_G.IsInUnitTest    = true -- set this per test file to keep ao.send() from doing anything
+_G.VerboseTests    = 2    -- how much logging to see (0 - none at all, 1 - important ones, 2 - everything)
+-- optional logging function that allows for different verbosity levels
+_G.printVerb       = function(level)
+    level = level or 2
+    return function(...) -- define here as global so we can use it in application code too
+        if _G.VerboseTests >= level then print(table.unpack({ ... })) end
+    end
+end
+
+
+-- Require the process library and the process file
+local process      = require "process_lib" -- [!code hl] -- [!code focus]
+
+-- Define initial state
+_G.Version = "1.0.0" -- [!code hl] -- [!code focus]
+_G.Balances = _G.Balances or { ["0x123"] = 1000 } -- [!code hl] -- [!code focus]
+_G.TotalSupply = _G.TotalSupply or 1000 -- [!code hl] -- [!code focus]
+_G.Name = "test token" -- [!code hl] -- [!code focus]
+
+-- This function resets the global variables to their initial state
+local resetGlobals = function() -- [!code hl] -- [!code focus]
+  _G.Version = "1.0.0" -- [!code hl] -- [!code focus]
+  _G.Balances = _G.Balances or { ["0x123"] = 1000 } -- [!code hl] -- [!code focus]
+  _G.TotalSupply = _G.TotalSupply or 1000 -- [!code hl] -- [!code focus]
+  _G.Name = "test token" -- [!code hl] -- [!code focus]
+end -- [!code hl] -- [!code focus]
+
+describe("token process", function() -- [!code hl] -- [!code focus]
+    setup(function() -- [!code hl] -- [!code focus]
+        -- Mock the sendReply function -- [!code hl] -- [!code focus]
+        process.sendReply = function(message) -- [!code hl] -- [!code focus]
+            return message -- [!code hl] -- [!code focus]
+        end -- [!code hl] -- [!code focus]
+    end) -- [!code hl] -- [!code focus]
+
+    describe("getBalance", function() -- [!code hl] -- [!code focus]
+        it("should return correct Balance", function() -- [!code hl] -- [!code focus]
+            local message = { -- [!code hl] -- [!code focus]
+                From = "0x123", -- [!code hl] -- [!code focus]
+                Action = "Balance", -- [!code hl] -- [!code focus]
+                Tags = {} -- [!code hl] -- [!code focus]
+            } -- [!code hl] -- [!code focus]
+
+            local response = process.getBalance(message) -- [!code hl] -- [!code focus]
+            assert.are.same(1000, response.Balance) -- [!code hl] -- [!code focus]
+
+            -- reset globals
+            resetGlobals() -- [!code hl] -- [!code focus]
+        end) -- [!code hl] -- [!code focus]
+    end) -- [!code hl] -- [!code focus]
+end) -- [!code hl] -- [!code focus]
+```
+
+
+### Running the tests
+:::warning[Busted is required]
+In order to write tests for AO processes, you need to have a basic understanding of Busted. You can learn more about Busted from the [official documentation](https://lunarmodules.github.io/busted/).
+
+Installing busted can be done using luarocks by running the following command:
+
+```bash [Terminal]
+luarocks install busted
+```
+:::
+
+Ao Starter Kit provides a test script that can be used to run the tests for the process. The test script is located in the `./ao/process-name/scripts` directory of the process.
+
+To run the tests for the process, you need to run the test script using the following command from the project root:
+
+```bash [Terminal]
+cd ao/process-name && ./scripts/test.sh
+```
+
+:::tip[Handy Tip]
+Ao Starter Kit provides a shortcut to run the tests for the process. You can run the tests for the process using the following command from the project root:
+
+```bash [Terminal]
+npm run myprocess:test
+```
+:::

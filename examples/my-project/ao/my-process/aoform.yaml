@@ -1,0 +1,12 @@
+## AoForm Configuration
+## This file is used to configure the AoForm package
+## For more information, visit
+
+- name: my-process
+  file: build/process.lua
+  prerun: ./src/reset_modules.lua
+  scheduler: _GQ33BkPtZrqxA84vM8Zk-N2aO0toNNu_C-l-rawrBA
+  module: GYrbbe0VbHim_7Hi6zrOpHQXrSQz07XNtwCnfbFo2I0
+  tags:
+    - name: Name
+      value: my-process

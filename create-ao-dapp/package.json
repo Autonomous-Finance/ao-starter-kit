@@ -1,0 +1,28 @@
+{
+  "name": "create-ao-dapp",
+  "type": "module",
+  "version": "0.0.1",
+  "bin": {
+    "create-ao-dapp": "./_lib/bin.js"
+  },
+  "main": "./_lib/index.js",
+  "exports": {
+    ".": "./_lib/index.js"
+  },
+  "dependencies": {
+    "@clack/core": "^0.3.4",
+    "@clack/prompts": "^0.7.0",
+    "cac": "^6.7.14",
+    "detect-package-manager": "^3.0.2",
+    "picocolors": "^1.0.0",
+    "yaml": "^2.5.0",
+    "zx": "^8.1.4"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.0"
+  },
+  "repository": "Autonomous-Finance/ao-starter-kit"
+}

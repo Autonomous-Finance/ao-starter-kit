@@ -1,0 +1,297 @@
+# Process Design [This section provides an overview of the process design and best practices for writing AO processes.]
+
+In this section, we will discuss the design principles and best practices for writing AO processes. AO processes are written in Lua, a lightweight, high-level, multi-paradigm programming language. Lua is designed to be embedded in other applications, making it an ideal choice for writing AO processes.
+
+An over simplified AO token process could look like this, however, try and follow along with the code below. It's not really easy to comprehend and follow, but we will break it down and explain how things can be improved in the following sections.
+
+```lua [process.lua]
+local ao = require('ao')
+
+Version = "1.0.0"
+
+-- token should be idempotent and not change previous state updates
+Balances = Balances or { [ao.id] = 1000 }
+TotalSupply = TotalSupply or 1000
+Name = "test token"
+
+Handlers.add('info', Handlers.utils.hasMatchingTag('Action', 'Info'), function(msg)
+  ao.send({
+    Target = msg.From,
+    Tags = [
+        Name = Name,
+        TotalSuppy = TotalSupply
+    ]
+  })
+end)
+
+Handlers.add('balance', Handlers.utils.hasMatchingTag('Action', 'Balance'), function(msg)
+  local bal = 0
+
+  -- If not Recipient is provided, then return the Senders balance
+  if (msg.Tags.Recipient) then
+    if (Balances[msg.Tags.Recipient]) then
+      bal = Balances[msg.Tags.Recipient]
+    end
+  elseif Balances[msg.From] then
+    bal = Balances[msg.From]
+  end
+
+  ao.send({
+    Target = msg.From,
+    Tags = [
+        Balance = bal,
+        Account = msg.Tags.Recipient or msg.From,
+    ]
+    Data = bal
+  })
+end)
+
+Handlers.add('mint', Handlers.utils.hasMatchingTag('Action', 'Mint'), function(msg)
+  assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+  assert(0 < tonumber(msg.Quantity), 'Quantity must be greater than zero!')
+
+  if not Balances[ao.id] then Balances[ao.id] = 0 end
+
+  -- Add tokens to the token pool, according to Quantity
+  Balances[msg.From] = Balances[msg.From] + tonumber(msg.Quantity)
+  TotalSupply = TotalSupply + tonumber(msg.Quantity)
+
+  ao.send({
+    Target = msg.From,
+    Data = Colors.gray .. "Successfully minted " .. Colors.blue .. msg.Quantity .. Colors.reset
+  })
+end)
+
+Handlers.add('burn', Handlers.utils.hasMatchingTag('Action', 'Burn'), function(msg)
+  assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+  assert(tonumber(msg.Quantity) <= tonumber(Balances[msg.From]), 'Quantity must be less than or equal to the current balance!')
+
+  Balances[msg.From] = Balances[msg.From] - tonumber(msg.Quantity)
+  TotalSupply = TotalSupply - tonumber(msg.Quantity)
+
+  ao.send({
+    Target = msg.From,
+    Data = Colors.gray .. "Successfully burned " .. Colors.blue .. msg.Quantity .. Colors.reset
+  })
+end)
+```
+
+
+## Process Design Principles
+
+When designing AO processes, it is essential to follow certain design principles to ensure that the processes are efficient, maintainable, and scalable. Here are some key design principles to keep in mind:
+
+### 1. Modularity
+
+Modularity is the practice of breaking down a system into smaller, independent modules that can be developed, tested, and maintained separately. In the context of AO processes, it is essential to break down the process logic into smaller, reusable components that can be easily combined to create complex processes.
+
+What we can do is to break down the process into smaller modules, such as `balance`, `transfer`, `mint`, `burn`, etc. This will make the code more organized and easier to maintain and test.
+
+:::tip[Handy Tip]
+That's why in ao-starter-kit the `process.lua` file is broken down into `process_lib.lua` and the entry point file only contains the `Handlers` and the global variables.
+:::
+
+For displaying porposes we will only break things into `process_lib.lua` and `process.lua`.
+
+::::code-group
+
+```lua [process.lua]
+local process_lib = require('process_lib') -- [!code hl] -- [!code focus]
+
+Version = "1.0.0"
+
+-- token should be idempotent and not change previous state updates
+Balances = Balances or { [ao.id] = 1000 }
+TotalSupply = TotalSupply or 1000
+Name = "test token"
+
+Handlers.add('info', 
+    Handlers.utils.hasMatchingTag('Action', 'Info'),
+    process_lib.getInfo -- [!code hl] -- [!code focus]
+)
+
+Handlers.add('balance', 
+    Handlers.utils.hasMatchingTag('Action', 'Balance'),
+    process_lib.getBalance -- [!code hl] -- [!code focus]
+)
+
+Handlers.add('mint', 
+    Handlers.utils.hasMatchingTag('Action', 'Mint'),
+    process_lib.mint -- [!code hl] -- [!code focus]
+)
+
+Handlers.add('burn', 
+    Handlers.utils.hasMatchingTag('Action', 'Burn'),
+    process_lib.burn -- [!code hl] -- [!code focus]
+)
+```
+
+```lua [process_lib.lua]
+local ao = require('ao')
+local process_lib = {}
+
+function process_lib.getInfo(msg)
+    ao.send({
+        Target = msg.From,
+        Tags = {
+            Name = Name,
+            TotalSuppy = TotalSupply
+        }
+    })
+end
+
+function process_lib.getBalance(msg)
+    local bal = 0
+
+    -- If not Recipient is provided, then return the Senders balance
+    if (msg.Tags.Recipient) then
+        if (Balances[msg.Tags.Recipient]) then
+            bal = Balances[msg.Tags.Recipient]
+        end
+    elseif Balances[msg.From] then
+        bal = Balances[msg.From]
+    end
+
+    ao.send({
+        Target = msg.From,
+        Tags = {
+            Balance = bal,
+            Account = msg.Tags.Recipient or msg.From,
+        },
+        Data = bal
+    })
+end
+
+function process_lib.mint(msg)
+    assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+    assert(0 < tonumber(msg.Quantity), 'Quantity must be greater than zero!')
+
+    if not Balances[ao.id] then Balances[ao.id] = 0 end
+
+    -- Add tokens to the token pool, according to Quantity
+    Balances[msg.From] = Balances[msg.From] + tonumber(msg.Quantity)
+    TotalSupply = TotalSupply + tonumber(msg.Quantity)
+
+    ao.send({
+        Target = msg.From,
+        Data = Colors.gray .. "Successfully minted " .. Colors.blue .. msg.Quantity .. Colors.reset
+    })
+end
+
+function process_lib.burn(msg)
+    assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+    assert(tonumber(msg.Quantity) <= tonumber(Balances[msg.From]), 'Quantity must be less than or equal to the current balance!')
+
+    Balances[msg.From] = Balances[msg.From] - tonumber(msg.Quantity)
+    TotalSupply = TotalSupply - tonumber(msg.Quantity)
+
+    ao.send({
+        Target = msg.From,
+        Data = Colors.gray .. "Successfully burned " .. Colors.blue .. msg.Quantity .. Colors.reset
+    })
+end
+
+return process_lib
+```
+::::
+
+### 2. Separation of Concerns
+
+Separation of concerns is the practice of dividing a system into distinct sections, each responsible for a specific aspect of the system's functionality. In the context of AO processes, it is essential to separate the process logic from other concerns, such as input/output handling, error handling, and logging. This makes the code more organized and easier to maintain, test, and debug.
+
+Continuing with the previous example, we can separate the process logic from the input/output handling by creating separate function to handle replying things to the user.
+
+:::tip[Handy Tip]
+ To enable testing and also having a better flow to respond to user messages and sending replies, we can create a `sendReply` function that will handle the sending of messages to the user.
+:::
+
+```lua [process_lib.lua]
+local ao = require('ao')
+local process_lib = {}
+
+function process_lib.getInfo(msg)
+    process_lib.sendReply(msg, { -- [!code hl] -- [!code focus]
+        Name = Name, -- [!code hl] -- [!code focus]
+        TotalSuppy = TotalSupply -- [!code hl] -- [!code focus]
+    }, "") -- [!code hl] -- [!code focus]
+
+    return {
+        Name = Name,
+        TotalSuppy = TotalSupply
+    }
+end
+
+function process_lib.getBalance(msg)
+    local bal = 0
+
+    -- If not Recipient is provided, then return the Senders balance
+    if (msg.Tags.Recipient) then
+        if (Balances[msg.Tags.Recipient]) then
+            bal = Balances[msg.Tags.Recipient]
+        end
+    elseif Balances[msg.From] then
+        bal = Balances[msg.From]
+    end
+
+    process_lib.sendReply(msg, { -- [!code hl]
+        Balance = bal, -- [!code hl]
+        Account = msg.Tags.Recipient or msg.From, -- [!code hl]
+    }, bal) -- [!code hl]
+
+    return {
+        Balance = bal,
+        Account = msg.Tags.Recipient or msg.From
+    }
+end
+
+function process_lib.mint(msg)
+    assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+    assert(0 < tonumber(msg.Quantity), 'Quantity must be greater than zero!')
+
+    if not Balances[ao.id] then Balances[ao.id] = 0 end
+
+    -- Add tokens to the token pool, according to Quantity
+    Balances[msg.From] = Balances[msg.From] + tonumber(msg.Quantity)
+    TotalSupply = TotalSupply + tonumber(msg.Quantity)
+
+    process_lib.sendReply(msg, {}, Colors.gray .. "Successfully minted " .. Colors.blue .. msg.Quantity .. Colors.reset) -- [!code hl]
+
+    return {
+        Balance = Balances[msg.From],
+    } -- [!code hl]
+end
+
+function process_lib.burn(msg)
+    assert(type(msg.Quantity) == 'string', 'Quantity is required!')
+    assert(tonumber(msg.Quantity) <= tonumber(Balances[msg.From]), 'Quantity must be less than or equal to the current balance!')
+
+    Balances[msg.From] = Balances[msg.From] - tonumber(msg.Quantity)
+    TotalSupply = TotalSupply - tonumber(msg.Quantity)
+
+    process_lib.sendReply(msg, {}, Colors.gray .. "Successfully burned " .. Colors.blue .. msg.Quantity .. Colors.reset) -- [!code hl]
+
+    return {
+        Balance = Balances[msg.From],
+    } -- [!code hl]
+end
+
+function process_lib.sendReply(msg, tags, data) -- [!code hl] -- [!code focus]
+    ao.send({ -- [!code hl] -- [!code focus]
+        Target = msg.From, -- [!code hl] -- [!code focus]
+        ["Response-For"] = msg.Action, -- [!code hl] -- [!code focus]
+        Tags = tags, -- [!code hl] -- [!code focus]
+        Data = data -- [!code hl] -- [!code focus]
+    }) -- [!code hl] -- [!code focus]
+end
+
+return process_lib
+```
+
+
+`sendReply` is basically just a wrapper around the `ao.send` function, but it makes the code more readable and easier to maintain. It also allows us to easily test the process logic without having to worry about the input/output handling.
+
+:::tip[Handy Tip]
+It also introduces a new tag `["Response-For"]` which will be used to identify the action that the response is for. This will help in identifying the action that the response is for in the frontend.
+:::
+
+In the next section, we will introduce [Ao Process Testing](https://github.com/Autonomous-Finance/ao-process-testing) and discuss how to write unit tests for AO processes to ensure that they are working as expected.

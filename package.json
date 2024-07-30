@@ -3,16 +3,25 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "create-ao-dapp:start": "cd packages/create-ao-dapp && bun start"
+    "build": "bun run create-ao-dapp:build",
+    "create-ao-dapp:build": "rimraf create-ao-dapp/_lib && tsc -p create-ao-dapp/tsconfig.build.json",
+    "docs:dev": "cd docs && bun run dev",
+    "docs:build": "cd docs && bun run build",
+    "docs:preview": "cd docs && bun run preview",
+    "format": "biome format . --write",
+    "lint": "biome lint . --apply-unsafe",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@biomejs/biome": "1.8.3",
+    "@types/bun": "latest",
+    "rimraf": "^6.0.1"
   },
   "peerDependencies": {
     "typescript": "^5.5.0"
   },
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "docs",
+    "create-ao-dapp"
   ]
 }

@@ -1,0 +1,40 @@
+# Developing AO Processes [This section provides an overview of the architecture of AO processes and how they are developed.]
+
+In order to develop AO processes and start using AO Starter Kit, you need to have a basic understanding of the following:
+
+- **Lua programming language** - AO processes are written in Lua. If you are not familiar with Lua, you can learn the basics from the [official Lua documentation](https://www.lua.org/manual/5.1/).
+- **ao + aos** - AO processes are executed by the AO. You need to have a basic understanding of how to use the `ao`. You can learn more about `ao` from the [official documentation](https://cookbook_ao.g8way.io/welcome/index.html)
+
+## Process Directory Structure
+A recommended project structure for developing AO processes is as follows:
+
+```
+project-name/             # Your project's root directory.
+├── ao/                   # The root directory of your ao processes.
+│   └── process-name/          # Process Directory. // [!code hl] // [!code focus]
+│       ├── scripts/           # Utility scripts for the process. // [!code hl] // [!code focus]
+|       |   ├── build.sh       # Build script for the process. // [!code hl] // [!code focus]
+│       │   ├── deploy.sh      # Deploy script for the process. // [!code hl] // [!code focus]
+|       |   └── test.sh        # Test script for the process. // [!code hl] // [!code focus]
+│       ├── src/               # Source code for the process. // [!code hl] // [!code focus]
+│       │   ├── test/                   # Entry point for the process. // [!code hl] // [!code focus]
+│       │   │   ├── mocked-env          # Mocked env files to test the process. // [!code hl] // [!code focus]
+|       |   |   ├── setup.lua           # AO Testing Suite setup file. // [!code hl] // [!code focus]
+│       │   │   └── process_test.lua    # Test script for the process. // [!code hl] // [!code focus]
+│       |   ├── process_lib.lua         # Library for the process. // [!code hl] // [!code focus]
+│       |   ├── process.lua             # Entry point for the process. // [!code hl] // [!code focus]
+│       │   └── reset_modules.lua       # Reset preloaded modules // [!code hl] // [!code focus]
+│       ├── aoform.yaml        # Configuration for ao-form deployment. // [!code hl] // [!code focus]
+│       └── squishy            # Squishy configuration for build. // [!code hl] // [!code focus]
+├── apps/             # The root directory of your frontend applications.
+│   └── frontend/     # React Vite App connected to ao process.
+├── utils             # Directory for utility functions.
+│   └── inject-process.ts # Script to inject process Ids from ao to frontend 
+├── node_modules/
+├── .gitignore
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+Don't be overwhelmed by the structure. We will go through each of the directories and files in detail in the following sections.

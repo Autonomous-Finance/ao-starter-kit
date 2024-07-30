@@ -1,0 +1,26 @@
+{
+  "name": "my-project",
+  "type": "module",
+  "scripts": {
+    "my-process:deploy": "cd ./ao/my-process && ./scripts/deploy.sh",
+    "my-process:test": "cd ./ao/my-process && ./scripts/test.sh",
+    "my-process:build": "cd ./ao/my-process && ./scripts/build.sh",
+    "my-process:inject": "STATE_FILE=./ao/my-process/state-aoform.yaml node ./utils/inject-process.ts",
+    "frontend:dev": "cd ./apps/frontend && npm run dev",
+    "frontend:build": "cd ./apps/frontend && npm run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "ao/*"
+  ],
+  "dependencies": {
+    "aoform": "github:Autonomous-Finance/aoform#4cbb877ca646e8823fd7ce4fdae0f9c38aef4830",
+    "yaml": "^2.4.5"
+  }
+}

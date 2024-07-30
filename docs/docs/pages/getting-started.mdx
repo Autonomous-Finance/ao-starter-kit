@@ -1,0 +1,107 @@
+# Getting Started
+
+To get started with the ao-starter-kit, you can run the following command:
+
+:::code-group
+```bash [bun]
+bun create ao-starter-kit
+```
+
+```bash [pnpm]
+pnpm create ao-starter-kit
+```
+
+```bash [yarn]
+yarn create ao-starter-kit
+```
+
+```bash [npm]
+npm init ao-starter-kit
+```
+:::
+
+
+## Project Setup
+
+Running the above command will prompt you to complete multiple steps to set up your project. The steps include:
+
+::::steps
+### Enter the name of your project
+
+This will be used as the root directory for your project, relative to the current directory. (eg: my-project)
+ 
+### What should we name the backend process?
+ 
+You can name your backend process anything you like. The name you provide will be used to create the process 
+directory and files. (eg: myprocess)
+
+:::warning
+Naming your process is important, as it will be used to create the process directory and files. Only valid lua identifier names are allowed.
+:::
+ 
+### Pick a process type within myprocess
+
+You can choose from the following process types:
+- `lua`: A simple Lua process.
+- `teal`: Lua process using the [Teal language](https://github.com/teal-language/tl).
+
+### Select the features you want to include
+
+You can choose from the following features:
+- `testing`: Include AO Process Testing suite for your process. [AO Process Testing](https://github.com/Autonomous-Finance/ao-process-testing)
+- `squishy`: Tool for combining multiple files into a single one. [Squish](https://github.com/LuaDist/squish)
+- `aoform`: Include AO Form for deploying your process. [AOForm](https://github.com/Autonomous-Finance/aoform)
+
+### Pick a frontend framework within my-project
+
+You can choose from the following frontend frameworks:
+- `vite-react`: A React application using Vite.
+
+::::
+
+## Project Structure
+
+By selecting all the options, you will have a project structure similar to the following:
+
+```
+project-name/             # Your project's root directory.
+├── ao/                   # The root directory of your ao processes. // [!code hl] // [!code focus]
+│   └── process-name/          # Process Directory. // [!code hl] // [!code focus]
+│       ├── scripts/           # Utility scripts for the process. // [!code hl] // [!code focus]
+│       ├── src/               # Source code for the process. // [!code hl] // [!code focus]
+│       │   ├── test/                   # Entry point for the process. // [!code hl] // [!code focus]
+│       │   │   └── process_test.lua    # Test script for the process. // [!code hl] // [!code focus]
+│       │   └── process.lua             # Entry point for the process. // [!code hl] // [!code focus]
+│       ├── aoform.yaml        # Configuration for ao-form deployment. // [!code hl] // [!code focus]
+│       └── squishy            # Squishy configuration for build. // [!code hl] // [!code focus]
+├── apps/             # The root directory of your frontend applications. // [!code hl] // [!code focus]
+│   └── frontend/     # React Vite App connected to ao process. // [!code hl] // [!code focus]
+├── utils             # Directory for utility functions. // [!code hl] // [!code focus]
+│   └── inject-process.ts # Script to inject process Ids from ao to frontend // [!code hl] // [!code focus]
+├── node_modules/
+├── .gitignore
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+
+This structure includes the following directories:
+
+- `ao/`: The root directory of your ao processes.
+- `apps/`: The root directory of your frontend applications.
+- `utils/`: Directory for utility functions.
+
+## Preconfigured Scripts
+
+The `package.json` file in the root directory of your project includes the following preconfigured scripts:
+
+- `myprocess:deploy`: Deploys the process using aoform.
+- `myprocess:test`: Runs the test script for the process.
+- `myprocess:build`: Builds the process using squishy.
+- `frontend:dev`: Starts the development server for the frontend application.
+- `frontend:build`: Builds the frontend application.
+
+
+## Next Steps
+
+You can now start developing your ao processes and frontend applications. For more information on how to use the ao-starter-kit, follow along with the rest of the documentation. If you have any questions or need help, feel free to reach out to us on dedicated channels.

@@ -1,1 +1,5 @@
 node_modules
+.DS_Store
+tsconfig.tsbuildinfo
+tsconfig.*.tsbuildinfo
+vocs.config.ts.timestamp-*

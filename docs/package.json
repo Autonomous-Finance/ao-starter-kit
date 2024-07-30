@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vocs dev",
     "build": "vocs build",
-    "preview": "vocs preview"
+    "start": "vocs preview"
   },
   "dependencies": {
     "@types/react": "latest",

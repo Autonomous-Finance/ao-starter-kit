@@ -1,3 +1,42 @@
 # Building the process
 
-This section will guide you through the process of building the process. The process is built using the `build` script in the `process` directory. The `build` script is a simple shell script that uses the `docker` command to build the process. The `build` script takes the following arguments:
+This section will guide you through the process of building the process. The process is built using the `build` script in the `process` directory. The `build` script is a simple shell script that uses the `docker` command to build the process.
+
+:::info 
+Building processes is done using Squish via Docker. Ensure you have Docker installed on your machine.
+:::
+
+Learn more about [Squish](https://github.com/LuaDist/squish).
+
+## Configuring Squish
+
+Squish is a tool for combining multiple files into a single one. It is used to build the process into a single file. The configuration for Squish is stored in the `squishy` file in the process directory.
+
+The basic configuration for Squish is as follows:
+
+```lua [./ao/my-process/squishy]
+Main "src/process.lua"
+
+Module "process_lib" "./src/process_lib.lua"
+
+Option "minify-level" "none"
+Output 'build/process.lua'
+```
+
+The configuration specifies the entry point for the process, the modules to include, the minify level, and the output file.
+
+## Building the Process
+
+To build the process, run the following command in the process directory:
+
+```bash [Terminal]
+cd ao/process-name && ./scripts/build.sh
+```
+
+:::tip[Handy Tip]
+Ao Starter Kit provides a script to build the process from the root of the project. You can run the following command to build the process:
+
+```bash [Terminal]
+npm run myprocess:build
+```
+:::

@@ -1,0 +1,49 @@
+# Process deployment [using aoform]
+
+This section will guide you through the process of deploying the process using `aoform`. `aoform` is a tool for deploying AO processes to the AO Network. The configuration for `aoform` is stored in the `aoform.yaml` file in the process directory.
+
+:::info
+Deploying processes is done using `aoform`. Ensure you have `aoform` installed on your project.
+
+Learn more about [AOForm](https://github.com/Autonomous-Finance/aoform)
+:::
+
+## Configuring AOForm
+
+The `aoform.yaml` file in the process directory contains the configuration for deploying the process using `aoform`. The basic configuration for `aoform` is as follows:
+
+```yaml [./ao/my-process/aoform.yaml]
+## AoForm Configuration
+## This file is used to configure the AoForm package
+## For more information, visit
+
+- name: my-process
+  file: build/process.lua
+  prerun: ./src/reset_modules.lua
+  scheduler: _GQ33BkPtZrqxA84vM8Zk-N2aO0toNNu_C-l-rawrBA
+  module: GYrbbe0VbHim_7Hi6zrOpHQXrSQz07XNtwCnfbFo2I0
+  tags:
+    - name: Name
+      value: my-process
+```
+
+The configuration specifies the name of the process, the entry point for the process, the prerun script, the scheduler, the module, and the tags for the process.
+
+## Deploying the Process
+
+To deploy the process, run the following command in the process directory:
+
+```bash [Terminal]
+# Export the wallet JSON
+export WALLET_JSON="$(cat ~/.aos.json)"
+
+# Deploy the process
+cd ao/process-name && npx aoform deploy
+```
+
+:::tip[Handy Tip]
+Ao Starter Kit provides a script to deploy the process from the root of the project. You can run the following command to deploy the process:
+
+```bash [Terminal]
+npm run myprocess:deploy
+```

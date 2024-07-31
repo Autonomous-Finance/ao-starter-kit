@@ -58,7 +58,7 @@ export default defineConfig({
       items: [
         {
           text: "Changelog",
-          link: `${REPO_URL}/create-ao-dapp/CHANGELOG.md`,
+          link: `${REPO_URL}/blob/main/create-ao-dapp/CHANGELOG.md`,
         },
         {
           text: "Contributing",

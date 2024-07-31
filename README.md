@@ -1,5 +1,5 @@
 # ao-starter-kit
-The ao-starter-kit provides a comprehensive boilerplate for setting up an AO process, including testing, modules, and amalgamation alongside a React application. This starter kit aims to simplify the development and deployment of AO processes by providing pre-configured setups and example processes.
+The ao-starter-kit provides a comprehensive boilerplate for setting up an AO process, including testing, modules,  and amalgamation alongside a React application. This starter kit aims to simplify the development and deployment of AO processes by providing pre-configured setups and example processes.
 
 ## Directory Structure
 - Backend Processes: Located in the `./ao` directory, this includes all the backend processes necessary for the applications.

@@ -37,6 +37,7 @@ function App() {
 					{COUNTER}
 				</a>
 			</p>
+			<p>Template generated using <a href="https://github.com/Autonomous-Finance/ao-starter-kit">ao-starter-kit</a>. Built with ❤️ by Autonomous Research</p>
 		</>
 	);
 }

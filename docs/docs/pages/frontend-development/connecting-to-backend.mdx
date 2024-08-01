@@ -1,0 +1,187 @@
+# Connecting to Backend [In this section, we will learn how to connect the frontend to the backend processes.]
+
+## Arweave Wallet Kit
+
+- [Arweave Wallet Kit](https://github.com/labscommunity/arweave-wallet-kit)
+
+React Hooks and Components for better interaction with Arweave wallets. Modular, can support any Arweave-based wallet.
+
+By default, Ao Starter Kit comes with Arweave Wallet Kit pre-installed. You can use it to interact with Arweave wallets in your frontend.
+
+Configuration of the Arweave Wallet Kit is present in `apps/frontend/src/main.tsx`. You can modify the configuration as per your requirements.
+
+```tsx [apps/frontend/src/main.tsx]
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ArweaveWalletKit } from "arweave-wallet-kit"; // [!code hl] // [!code focus]
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+
+// Create a React Query client 
+const queryClient = new QueryClient();
+
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+	<React.StrictMode>
+		<ArweaveWalletKit // [!code hl] // [!code focus]
+			config={{// [!code hl] // [!code focus]
+				permissions: ["SIGN_TRANSACTION", "ACCESS_ADDRESS"], // [!code hl] // [!code focus]
+				ensurePermissions: true, // [!code hl] // [!code focus]
+			}} // [!code hl] // [!code focus]
+			theme={{ // [!code hl] // [!code focus]
+				displayTheme: "light", // [!code hl] // [!code focus]
+			}} // [!code hl] // [!code focus]
+		> // [!code hl] // [!code focus]
+			<QueryClientProvider client={queryClient}>
+				<App />
+			</QueryClientProvider>
+		</ArweaveWalletKit> // [!code hl] // [!code focus]
+	</React.StrictMode>,
+);
+```
+
+## TanStack Query
+
+[TanStack Query](https://tanstack.com/query/latest) is a powerful and flexible data fetching library for React. It is highly recommended to use TanStack Query for data fetching in your frontend. This will enable caching, pagination, and other features out of the box.
+
+By default, Ao Starter Kit comes with TanStack Query pre-installed. You can use it to fetch data from the backend processes.
+
+Configuration of the QueryClient is present in `apps/frontend/src/main.tsx`. You can modify the configuration as per your requirements.
+
+```tsx [apps/frontend/src/main.tsx]
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // [!code hl] // [!code focus]
+import { ArweaveWalletKit } from "arweave-wallet-kit";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+
+// Create a React Query client // [!code hl] // [!code focus]
+const queryClient = new QueryClient(); // [!code hl] // [!code focus]
+
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+	<React.StrictMode>
+		<ArweaveWalletKit
+			config={{
+				permissions: ["SIGN_TRANSACTION", "ACCESS_ADDRESS"],
+				ensurePermissions: true,
+			}}
+			theme={{
+				displayTheme: "light",
+			}}
+		>
+			<QueryClientProvider client={queryClient}> // [!code hl] // [!code focus]
+				<App />
+			</QueryClientProvider> // [!code hl] // [!code focus]
+		</ArweaveWalletKit>
+	</React.StrictMode>,
+);
+```
+
+## Interacting with Backend Processes
+
+:::tip[Handy Tip]
+The backend processes are injected into the frontend as constants. You can access these processes in the frontend by importing them from the `constants` directory.
+:::
+
+By default the Ao Starter Kit comes with a sample `counter` component that demonstrates how to use the backend process in the frontend. You can use this as a reference to build your own components.
+
+- The backend process address is present in `apps/frontend/src/constants/counter_process.ts`. You can import this process in your components and use it as per your requirements.
+
+- The counter component is present in `apps/frontend/src/components/counter.tsx`. You can check out this component to understand how to use the backend process in the frontend.
+
+## Reading Data from Backend Process
+
+- It imports the backend process from the `constants` directory.
+- It uses the `useQuery` hook from TanStack Query to fetch the counter value from the backend process.
+
+```tsx [apps/frontend/src/components/counter.tsx]
+import { COUNTER } from "../constants/counter_process";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+const {
+		data: counter,
+		error,
+		isLoading,
+		isFetching,
+	} = useQuery({
+		queryKey: ["counter"],
+		queryFn: async () => {
+			const dryrunResult = await dryrun({
+				process: COUNTER,
+				tags: [
+					{
+						name: "Action",
+						value: "Info",
+					},
+				],
+			});
+
+			if (dryrunResult.Messages[0].Data) {
+				return JSON.parse(dryrunResult.Messages[0].Data);
+			}
+
+			return undefined;
+		},
+	});
+```
+
+Using react-query hooks, you can fetch data from the backend processes and update the UI based on the fetched data. The `queryFn` function is calling the `dryrun` function from the `@permaweb/aoconnect` library to fetch the counter value from the backend process and then returns the counter value.
+
+:::tip[Handy Tip]
+Some cool features of TanStack Query:
+- **Caching**: Automatically cache data and keep it up to date.
+- **isLoading**: A boolean that is `true` when the query is in a loading state.
+- **isFetching**: A boolean that is `true` when the query is fetching data.
+- **error**: An error object if the query failed.
+:::
+
+## Sending Data to Backend Process
+
+You can always send messages using `useMutation` hook provided by TanStack Query. The `useMutation` hook is used to send messages to the backend processes. You can use this hook to send messages to the backend processes and update the UI based on the response.
+
+An example is the Increase button in the `counter` component. When the Increase button is clicked, it sends a message to the backend process to increase the counter value.
+
+```tsx [apps/frontend/src/components/counter.tsx]
+const increaseCounter = useMutation({
+		mutationKey: ["IncreaseCounter"],
+		mutationFn: async () => {
+			const messageId = await message({
+				process: COUNTER,
+				tags: [
+					{
+						name: "Action",
+						value: "IncreaseCounter",
+					},
+				],
+				data: "",
+				signer: createDataItemSigner(window.arweaveWallet),
+			});
+
+			const messageResult = await result({
+				process: COUNTER,
+				message: messageId,
+			});
+
+			if (messageResult.Messages[0].Data) {
+				return JSON.parse(messageResult.Messages[0].Data);
+			}
+
+			return undefined;
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries();
+		},
+	});
+```
+
+The `mutationFn` function is calling the `message` function from the `@permaweb/aoconnect` library to send a message to the backend process to increase the counter value. The `onSuccess` function is used to invalidate the query cache so that the UI can be updated with the new counter value.
+
+:::tip[Handy Tip]
+Some cool features of TanStack Query:
+- **mutationFn**: A function that sends a message to the backend process.
+- **onSuccess**: A function that is called when the mutation is successful.
+- **invalidateQueries**: A function that invalidates the query cache and re-fetches the data.
+:::

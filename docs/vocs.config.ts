@@ -50,6 +50,28 @@ export default defineConfig({
         },
       ],
     },
+    {
+      text: "Frontend Development",
+      collapsed: false,
+      items: [
+        {
+          text: "Architecture",
+          link: "/frontend-development/architecture",
+        },
+        {
+          text: "Connecting to the Backend",
+          link: "/frontend-development/connecting-to-backend",
+        },
+        {
+          text: "Building the Frontend",
+          link: "/frontend-development/building",
+        },
+        {
+          text: "Permaweb Deployment",
+          link: "/frontend-development/permaweb-deployment",
+        },
+      ],
+    },
   ],
   topNav: [
     { text: "Documentation", link: "/introduction" },

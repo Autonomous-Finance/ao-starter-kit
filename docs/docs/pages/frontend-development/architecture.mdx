@@ -1,0 +1,46 @@
+# Frontend Development
+
+The provided frontend is a Vite React application. It is a single-page application (SPA) that provides a user interface for the backend services. The frontend is built using the following technologies:
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+Extra libraries used in the frontend that we recommend you use:
+- [Permaweb AoConnect](https://www.npmjs.com/package/@permaweb/aoconnect)
+- [Arweave Wallet Kit](https://github.com/labscommunity/arweave-wallet-kit)
+- [TanStack Query](https://tanstack.com/query/latest)
+
+:::tip[Handy Tip]
+TanStack Query is a powerful and flexible data fetching library for React. It is highly recommended to use TanStack Query for data fetching in your frontend. This will enable caching, pagination, and other features out of the box.
+:::
+
+## Directory Structure
+
+The frontend codebase is present in the `apps/frontend` directory. The frontend codebase is structured as follows:
+
+```
+apps/frontend/         # Your frontend application.
+├──public/             # Your project's public assets.
+├──src/                # Your project's source code.
+│  ├── components/    # React components.
+│  │  └── counter.tsx # Example of a React component.
+│  ├── constants/         # Constants used in the frontend. This will include injected backend process.
+|  |   └── counter_process.ts # Example of a backend process.
+|  ├── App.css       # CSS file for the App component.
+│  ├── App.tsx       # The main React component.
+│  ├── index.css     # CSS file for the index.html file.
+│  ├── main.tsx     # The main entry point for the React application.
+|  └── vite-env.d.ts    # Vite environment types.
+├── .eslintrc.cjs
+├── .gitignore
+├── index.html        # The main HTML file.
+├── package.json
+├── README.md
+├── vite.config.ts   # Vite configuration file.
+└── tsconfig.json
+```
+
+:::info
+The frontend codebase comes with a sample `counter` component that demonstrates how to use the backend process in the frontend. You can use this as a reference to build your own components.
+:::

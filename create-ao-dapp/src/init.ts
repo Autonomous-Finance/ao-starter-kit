@@ -6,11 +6,7 @@ import { fileURLToPath } from "node:url";
 import pc from "picocolors";
 import AoFormGenerator from "./utils/aoform.js";
 import { generateScripts } from "./utils/package.js";
-import {
-  detectPackageManager,
-  kebabcase,
-  pkgManagerInstallCommand
-} from "./utils/utils.js";
+import { detectPackageManager, kebabcase, pkgManagerInstallCommand } from "./utils/utils.js";
 
 export type InitParameters = { name: string };
 
@@ -42,7 +38,7 @@ export async function init() {
           maxItems: 5,
           options: [
             { value: "lua", label: "Lua process" },
-            { value: "teal", label: "Teal Typed Lua process (coming soon)" },
+            { value: "teal", label: "Teal Typed Lua process (coming soon)", disabled: true },
           ],
         }),
       tools: () =>

@@ -1,0 +1,31 @@
+# Building the process using amalg.lua
+
+This section will guide you through the process of building the process. The process is built using the `build` script in the `process` directory. The `build` script is a simple shell script that uses the `amalg.lua` script to build the process.
+
+:::info 
+Deploying a Lua application that is split among multiple modules is a challenge. A tool that can package a Lua script and its modules into a single file is a valuable help. This is such a tool.
+:::
+
+Learn more about [amalg.lua](https://github.com/siffiejoe/lua-amalg/).
+
+## Configuring build script
+
+Create AO dApp provides a script to build the process using `amalg.lua`. The configuration for `amalg.lua` is stored in the `scripts/build.sh` file in the process directory.
+
+The configuration specifies the entry point for the process, the modules to include, the minify level, and the output file.
+
+## Building the Process
+
+To build the process, run the following command in the process directory:
+
+```bash [Terminal]
+cd ao/process-name && ./scripts/build.sh
+```
+
+:::tip[Handy Tip]
+Create Ao dApp provides a script to build the process from the root of the project. You can run the following command to build the process:
+
+```bash [Terminal]
+npm run myprocess:build
+```
+:::

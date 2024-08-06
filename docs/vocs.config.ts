@@ -10,7 +10,7 @@ export default defineConfig({
       dark: "white",
     },
   },
-  title: "AO Starter Kit",
+  title: "Create AO dApp",
   sidebar: [
     {
       text: "Introduction",
@@ -41,8 +41,18 @@ export default defineConfig({
           link: "/process-development/testing",
         },
         {
-          text: "Building with Squish",
-          link: "/process-development/building",
+          text: "Building AO Processes",
+          collapsed: false,
+          items: [
+            {
+              text: "Building with amalg.lua",
+              link: "/process-development/building-with-amalg",
+            },
+            {
+              text: "Building with Squish",
+              link: "/process-development/building-with-squish",
+            },
+          ]
         },
         {
           text: "Deployment",

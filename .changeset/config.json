@@ -2,9 +2,9 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
-  "linked": [["create-ao-dapp", "docs"]],
-  "access": "restricted",
+  "fixed": [["create-ao-dapp", "docs"]],
+  "linked": [],
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []

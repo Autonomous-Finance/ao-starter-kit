@@ -6,20 +6,25 @@ Deploying the frontend to the Permaweb requires the following steps:
 
 - Own a arns domain.
 - Have a wallet with enough AR to deploy the frontend.
-- Have a funded Irys node to deploy the frontend.
+- Have a funded ArDrive account to deploy the frontend.
 
 ## arNS Domain
 You can purchase an arNS domain from the [arns website](https://arns.app/).
 
-## Irys Node
+## ArDrive Account
 
-You can learn more about how Irys works and how to set up an Irys node in the [Irys documentation](https://arweave-tools.irys.xyz/overview/about).
+You can learn more about how to create an ArDrive account from the [ArDrive documentation](https://docs.ardrive.io/).
 
 ## Deploying the Frontend
 
-In order to deploy the frontend to the Permaweb, you need to provide the following environment variables:
+After building your static frontend, you can deploy it to permaweb by using the ArDrive App.
 
-- `DEPLOY_KEY`: The key to deploy the frontend. This is the wallet key that owns the arNS domain and has enough AR in the Irys node.
+Learn more about deploying to the Permaweb from the [ArDrive documentation](https://docs.ardrive.io/docs/misc/deploy/deploy.html).
+
+
+{/* In order to deploy the frontend to the Permaweb, you need to provide the following environment variables:
+
+- `DEPLOY_KEY`: The key to deploy the frontend. This is the wallet key that owns the arNS domain and has enough AR.
 - `ANT_PROCESS`: The ANT process that the frontend will connect to (This is provided by the arNS domain).
 - `DEPLOY_WALLET`: The wallet address of the DEPLOY_KEY
 
@@ -28,9 +33,7 @@ To deploy the frontend to the Permaweb, you need to run the following command:
 ```bash [Terminal]
 cd apps/frontend && node ./scripts/permaweb-deploy.js
 ```
-
-This command will pack the frontend and deploy it to the Permaweb using the Irys node.
-
+ */}
 You can now access the frontend using the arNS domain that you own.
 
 :::tip[Handy Tip]

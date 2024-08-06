@@ -7,7 +7,7 @@ In order to test AO processes, you need to have a basic understanding of the fol
 
 ## Process Testing Directory Structure
 
-If you generate a new process using the AO Starter Kit, the directory structure of the process will look somewhat like this:
+If you generate a new process using the Create Ao dApp, the directory structure of the process will look somewhat like this:
 
 ```
 process-name/             # Your process's root directory.
@@ -43,7 +43,7 @@ Now that you have a basic understanding of the directory structure of the proces
 To write a test case for the process, you need to create a new test case in the `process_test.lua` file. The test case should be written using the Busted syntax.
 
 :::tip
-AO Starter Kit generates a sample test case for the process. You can modify the sample test case to write your own test cases.
+Create Ao dApp generates a sample test case for the process. You can modify the sample test case to write your own test cases.
 :::
 
 ```lua [process-name/src/test/process_test.lua]
@@ -116,7 +116,7 @@ luarocks install busted
 ```
 :::
 
-Ao Starter Kit provides a test script that can be used to run the tests for the process. The test script is located in the `./ao/process-name/scripts` directory of the process.
+Create Ao dApp provides a test script that can be used to run the tests for the process. The test script is located in the `./ao/process-name/scripts` directory of the process.
 
 To run the tests for the process, you need to run the test script using the following command from the project root:
 
@@ -125,7 +125,7 @@ cd ao/process-name && ./scripts/test.sh
 ```
 
 :::tip[Handy Tip]
-Ao Starter Kit provides a shortcut to run the tests for the process. You can run the tests for the process using the following command from the project root:
+Create Ao dApp provides a shortcut to run the tests for the process. You can run the tests for the process using the following command from the project root:
 
 ```bash [Terminal]
 npm run myprocess:test

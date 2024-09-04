@@ -1,4 +1,4 @@
-local process = require "process_lib"
+local process = require "lib/process_lib"
 
 Version       = "0.0.1"
 

@@ -6,7 +6,11 @@ import { fileURLToPath } from "node:url";
 import pc from "picocolors";
 import AoFormGenerator from "./utils/aoform.js";
 import { generateScripts } from "./utils/package.js";
-import { detectPackageManager, kebabcase, pkgManagerInstallCommand } from "./utils/utils.js";
+import {
+  detectPackageManager,
+  kebabcase,
+  pkgManagerInstallCommand,
+} from "./utils/utils.js";
 
 export type InitParameters = { name: string };
 
@@ -38,32 +42,45 @@ export async function init() {
           maxItems: 5,
           options: [
             { value: "lua", label: "Lua process" },
-            { value: "teal", label: "Teal Typed Lua process (coming soon)", disabled: true },
+            {
+              value: "teal",
+              label: "Teal Typed Lua process (coming soon)",
+              disabled: true,
+            },
           ],
         }),
       tools: () =>
         p.multiselect({
           message: "Select the features you want to include",
-          initialValues: ["testing", "aoform", "squishy"],
+          initialValues: ["testing", "permaweb-deploy"],
           options: [
             {
               value: "testing",
               label: "AO Process Testing",
               hint: "recommended",
             },
-            { value: "squishy", label: "Squishy", hint: "recommended" },
-            { value: "aoform", label: "aoform", hint: "recommended" },
-            /* 							{
-              value: "irys-permaweb-deploy",
-              label: "Irys Permaweb Deployment",
+            {
+              value: "permaweb-deploy",
+              label: "Permaweb Deployment",
             },
-            { value: "gh-action", label: "GitHub Actions" }, */
+            /*{ value: "gh-action", label: "GitHub Actions" }, */
           ],
           required: false,
         }),
+      amalgamation: () =>
+        p.select({
+          message: "Select the amalgamation strategy",
+          initialValue: "amalg.lua",
+          options: [
+            { value: "amalg.lua", label: "amalg.lua", hint: "recommended" },
+            { value: "squishy", label: "squishy" },
+          ],
+        }),
       frontend: ({ results }) =>
         p.select({
-          message: `Pick a frontend framework within "${kebabcase(results.projectName ?? "")}"`,
+          message: `Pick a frontend framework within "${kebabcase(
+            results.projectName ?? ""
+          )}"`,
           initialValue: "vite-react",
           options: [{ value: "vite-react", label: "React Vite" }],
         }),
@@ -73,7 +90,7 @@ export async function init() {
         p.cancel("Operation cancelled.");
         process.exit(0);
       },
-    },
+    }
   );
 
   // Change projectName and processName to kebab-case
@@ -91,7 +108,7 @@ export async function init() {
     templatesDir,
     "ao",
     project.type === "lua" ? "lua" : "teal",
-    project.tools.includes("squishy") ? "squishy" : "basic",
+    "base"
   );
 
   // Copy process template contents
@@ -100,18 +117,19 @@ export async function init() {
   // Copy frontend template contents
   fs.copySync(
     resolve(templatesDir, "apps", project.frontend as string),
-    resolve(destDir, "apps", "frontend"),
+    resolve(destDir, "apps", "frontend")
   );
 
   // Inject build script into the process dir
   const buildSpinner = p.spinner();
   buildSpinner.start("Adding build script...");
 
-  const buildScriptPath = project.tools.includes("squishy") ? "build-squishy.sh" : "build-basic.sh";
+  const buildScriptPath =
+    project.amalgamation === "squishy" ? "build-squishy.sh" : "build-amalg.sh";
 
   fs.copySync(
     resolve(templatesDir, "scripts", buildScriptPath),
-    resolve(destDir, "ao", processName, "scripts", "build.sh"),
+    resolve(destDir, "ao", processName, "scripts", "build.sh")
   );
 
   buildSpinner.stop("Added build script.");
@@ -125,46 +143,45 @@ export async function init() {
     // Testing suite template is stored in /templates/ao/{type}/test-suite
     fs.copySync(
       resolve(templatesDir, "ao", project.type as string, "test-suite"),
-      resolve(destDir, "ao", processName, "src", "test"),
+      resolve(destDir, "ao", processName, "src", "test")
     );
 
     // Add test.sh script
     fs.copySync(
       resolve(templatesDir, "scripts", "test.sh"),
-      resolve(destDir, "ao", processName, "scripts", "test.sh"),
+      resolve(destDir, "ao", processName, "scripts", "test.sh")
     );
 
     spinner.stop("Added testing suite.");
   }
 
   // Inject AOFORM into the project
-  if (project.tools.includes("aoform")) {
-    const spinner = p.spinner();
-    spinner.start("Adding aoform...");
+  const spinner = p.spinner();
+  spinner.start("Adding aoform...");
 
-    const aoFormGenerator = new AoFormGenerator({
-      projectPath: `./${projectName}`,
-      processName: processName,
-      packageManager: "bun",
-    });
+  const aoFormGenerator = new AoFormGenerator({
+    projectPath: `./${projectName}`,
+    processName: processName,
+    packageManager: detectPackageManager(),
+  });
 
-    await aoFormGenerator.installAoForm();
+  spinner.message("Generating aoform.yaml...");
 
-    spinner.message("Generating aoform.yaml...");
+  await aoFormGenerator.generateAoFormYaml();
 
-    await aoFormGenerator.generateAoFormYaml();
+  spinner.message("Adding deploy script...");
 
-    spinner.message("Adding deploy script...");
+  await aoFormGenerator.addDeployScript();
 
-    await aoFormGenerator.addDeployScript();
-
-    spinner.stop("Added aoform.");
-  }
+  spinner.stop("Added aoform.");
 
   // Replace dotfiles
   for (const file of fs.readdirSync(destDir)) {
     if (!file.startsWith("_")) continue;
-    fs.renameSync(resolve(destDir, file), resolve(destDir, `.${file.slice(1)}`));
+    fs.renameSync(
+      resolve(destDir, file),
+      resolve(destDir, `.${file.slice(1)}`)
+    );
   }
 
   // Replace package.json properties
@@ -172,7 +189,7 @@ export async function init() {
   pkgJson.scripts = generateScripts({
     scripts: pkgJson.scripts,
     processName,
-    aoform: project.tools.includes("aoform"),
+    aoform: true,
     testing: project.tools.includes("testing"),
     packageManager: detectPackageManager(),
   });
@@ -186,7 +203,9 @@ export async function init() {
 
   p.log.message("Next steps:");
   p.log.step(`1. ${pc.blue(`cd ./${projectName}`)} - Navigate to project`);
-  p.log.step(`2. ${pc.blue(pkgManagerInstallCommand(pkgManager))} - Install dependencies`);
+  p.log.step(
+    `2. ${pc.blue(pkgManagerInstallCommand(pkgManager))} - Install dependencies`
+  );
 
   p.outro("Happy developing! 🚀");
 }

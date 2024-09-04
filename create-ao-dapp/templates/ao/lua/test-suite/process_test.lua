@@ -11,7 +11,7 @@ _G.printVerb       = function(level)
     end
 end
 
-local process      = require "process_lib"
+local process      = require "lib/process_lib"
 
 -- Define initial state
 _G.Version         = "0.0.1"

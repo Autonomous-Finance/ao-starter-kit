@@ -42,6 +42,7 @@ export function generateScripts({
   // Generate frontend scripts
   scripts["frontend:dev"] = `cd ./apps/frontend && ${packageManager} run dev`;
   scripts["frontend:build"] = `cd ./apps/frontend && ${packageManager} run build`;
+  scripts["frontend:deploy"] = `cd ./apps/frontend && ${packageManager} run deploy`;
 
   return scripts;
 }

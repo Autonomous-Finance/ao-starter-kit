@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# Check if build directory exists or create it
-if [ ! -d "build" ]; then
-    mkdir build
-fi
+# Recreate build directories
+rm -rf ./build
+mkdir -p ./build
 
 # Check if docker is installed
 if ! command -v docker &> /dev/null; then

@@ -1,18 +1,15 @@
 {
   "name": "ao-starter-kit",
   "type": "module",
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "aoform": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "workspaces": [
-    "apps/*",
-    "ao/*"
-  ],
+  "workspaces": ["apps/*", "ao/*"],
   "dependencies": {
     "yaml": "^2.4.5"
   }

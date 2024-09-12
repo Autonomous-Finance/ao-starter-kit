@@ -1,1 +1,0 @@
-export const COUNTER = "Tp1oR7k4O0HYOOzZ9TvCDlwbHfICsUgI1qh7K9uk3pQ";

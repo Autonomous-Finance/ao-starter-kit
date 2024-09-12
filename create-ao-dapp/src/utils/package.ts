@@ -37,7 +37,7 @@ export function generateScripts({
 
   // Generate inject:processes script
   scripts[`${processName}:inject`] =
-    `STATE_FILE=./ao/${processName}/state-aoform.yaml node ./utils/inject-process.ts`;
+    `STATE_FILE=./ao/${processName}/state-processes.yaml node ./utils/inject-process.js`;
 
   // Generate frontend scripts
   scripts["frontend:dev"] = `cd ./apps/frontend && ${packageManager} run dev`;

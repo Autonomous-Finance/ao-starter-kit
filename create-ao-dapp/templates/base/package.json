@@ -4,13 +4,11 @@
   "scripts": {},
   "devDependencies": {
     "@types/bun": "latest",
-    "aoform": "latest"
+    "aoform": "latest",
+    "yaml": "^2.4.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "workspaces": ["apps/*", "ao/*"],
-  "dependencies": {
-    "yaml": "^2.4.5"
-  }
+  "workspaces": ["apps/*", "ao/*"]
 }

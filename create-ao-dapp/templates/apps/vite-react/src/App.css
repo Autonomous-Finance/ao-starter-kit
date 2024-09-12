@@ -47,3 +47,22 @@
 .read-the-docs {
   color: #888;
 }
+
+#books-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#books-table th {
+  background-color: #333;
+  padding: 1em;
+}
+
+#books-table td {
+  padding: 1em;
+}
+
+input {
+  padding: 0.5em;
+  font-size: 1em;
+}

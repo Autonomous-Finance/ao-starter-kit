@@ -47,7 +47,7 @@ export default class AoFormGenerator {
 # For more information, visit https://github.com/Autonomous-Finance/aoform`;
 
     return await writeFile(
-      `${this.projectPath}/ao/${this.processName}/aoform.yaml`,
+      `${this.projectPath}/ao/${this.processName}/processes.yaml`,
       String(doc)
     );
   }
@@ -55,7 +55,7 @@ export default class AoFormGenerator {
   async addDeployScript() {
     const deployScript = `#!/bin/bash
 	
-aoform apply -f ./ao/${this.processName}/aoform.yaml`;
+aoform apply -f processes.yaml`;
 
     await writeFile(
       `${this.projectPath}/ao/${this.processName}/scripts/deploy.sh`,

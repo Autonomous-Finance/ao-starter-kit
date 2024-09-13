@@ -20,10 +20,7 @@
   "peerDependencies": {
     "typescript": "^5.5.0"
   },
-  "workspaces": [
-    "docs",
-    "create-ao-dapp"
-  ],
+  "workspaces": ["docs", "create-ao-dapp"],
   "dependencies": {
     "@changesets/cli": "^2.27.7"
   }

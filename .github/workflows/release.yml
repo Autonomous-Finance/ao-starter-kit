@@ -15,27 +15,28 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.x
+      #- name: Setup Node.js 20.x
+      #  uses: actions/setup-node@v3
+      #  with:
+      #    node-version: 20.x
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-            version: 9
+      #- name: Setup pnpm
+      #  uses: oven-sh/setup-bun@v2
+
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install Dependencies
-        run: pnpm install
+        run: bun install
       
       - name: Build
-        run: pnpm run create-ao-dapp:build
+        run: bun run create-ao-dapp:build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-            publish: pnpm run release
+            publish: bun run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,3 @@
+packages:
+  - "create-ao-dapp"
+  - "apps/*"

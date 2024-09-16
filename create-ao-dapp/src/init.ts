@@ -44,8 +44,7 @@ export async function init() {
             { value: "lua", label: "Lua process" },
             {
               value: "teal",
-              label: "Teal Typed Lua process (coming soon)",
-              disabled: true,
+              label: "Teal Typed Lua process",
             },
           ],
         }),
@@ -102,6 +101,9 @@ export async function init() {
 
   // Copy base template contents
   fs.copySync(resolve(templatesDir, "base"), destDir);
+
+  // Remove utils/inject-process.ts from the project
+  fs.removeSync(resolve(destDir, "utils", "inject-process.ts"));
 
   // Process template base /templates/ao/{type}/{squishy/basic}
   const processTemplateBase = resolve(

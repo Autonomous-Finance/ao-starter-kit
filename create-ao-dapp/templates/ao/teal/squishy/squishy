@@ -1,0 +1,8 @@
+Main "src/process.lua"
+
+Module "process_lib" "./src/lib/process_lib.lua"
+Module "utils/db" "./src/utils/db.lua"
+Module "lib/db" "./src/lib/db.lua"
+
+Option "minify-level" "none"
+Output 'build/process.lua'

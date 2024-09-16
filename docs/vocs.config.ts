@@ -11,6 +11,7 @@ export default defineConfig({
     },
   },
   title: "Create AO dApp",
+  logoUrl: "/ao_create_dapp.svg",
   sidebar: [
     {
       text: "Introduction",

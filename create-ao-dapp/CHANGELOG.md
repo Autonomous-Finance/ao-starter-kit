@@ -1,5 +1,12 @@
 # create-ao-dapp
 
+## 0.1.8
+
+### Patch Changes
+
+- 4382a1e: added teal template
+- 8e8b312: Update base template with sqlite and frontend template with basic CRUD
+
 ## 0.1.1
 
 ### Patch Changes

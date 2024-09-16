@@ -1,5 +1,11 @@
 # docs
 
+## 0.1.8
+
+### Patch Changes
+
+- 4382a1e: added teal template
+
 ## 0.1.1
 
 ### Patch Changes

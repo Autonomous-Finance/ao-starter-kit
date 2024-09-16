@@ -24,6 +24,7 @@
   },
   "workspaces": ["docs", "create-ao-dapp"],
   "dependencies": {
-    "@changesets/cli": "^2.27.7"
+    "@changesets/cli": "^2.27.7",
+    "@types/fs-extra": "^11.0.4"
   }
 }

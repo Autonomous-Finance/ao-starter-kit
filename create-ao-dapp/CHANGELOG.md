@@ -1,5 +1,11 @@
 # create-ao-dapp
 
+## 0.1.9
+
+### Patch Changes
+
+- 19dd86b: Add multiple templates and refactor create init
+
 ## 0.1.8
 
 ### Patch Changes

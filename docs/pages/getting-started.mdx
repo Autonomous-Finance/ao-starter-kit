@@ -2,24 +2,9 @@
 
 To get started with the create-ao-dapp, you can run the following command:
 
-:::code-group
-```bash [bun]
-bun create ao-dapp
+```bash [Terminal]
+npx create-ao-dapp@latest
 ```
-
-```bash [pnpm]
-pnpm create ao-dapp
-```
-
-```bash [yarn]
-yarn create ao-dapp
-```
-
-```bash [npm]
-npm init ao-dapp
-```
-:::
-
 
 ## Project Setup
 
@@ -39,25 +24,19 @@ directory and files. (eg: myprocess)
 Naming your process is important, as it will be used to create the process directory and files. Only valid lua identifier names are allowed.
 :::
  
-### Pick a process type within myprocess
+### Pick a starter template within
 
-You can choose from the following process types:
-- `lua`: A simple Lua process.
-- `teal`: Lua process using the [Teal language](https://github.com/teal-language/tl).
+You can choose from the following starter templates:
+- `lua`: A simple Lua Counter process.
+- `lua-sqlite`: Lua Books Manager process using SQLite.
+- `teal`: Lua Counter process using the [Teal language](https://github.com/teal-language/tl).
+- `teal-sqlite`: Teal Books Manager process using SQLite.
 
 ### Select the features you want to include
 
 You can choose from the following features:
 - `testing`: Include AO Process Testing suite for your process. [AO Process Testing](https://github.com/Autonomous-Finance/ao-process-testing)
-- `squishy`: Tool for combining multiple files into a single one. [Squish](https://github.com/LuaDist/squish)
-- `aoform`: Include AO Form for deploying your process. [AOForm](https://github.com/Autonomous-Finance/aoform)
-
-### Pick a frontend framework within my-project
-
-You can choose from the following frontend frameworks:
-- `vite-react`: A React application using Vite.
-
-::::
+- `permaweb-deploy`: Include Permaweb deployment for your process. [Permaweb Deployment](https://github.com/permaweb/permaweb-deploy)
 
 ## Project Structure
 
@@ -72,12 +51,11 @@ project-name/             # Your project's root directory.
 │       │   ├── test/                   # Entry point for the process. // [!code hl] // [!code focus]
 │       │   │   └── process_test.lua    # Test script for the process. // [!code hl] // [!code focus]
 │       │   └── process.lua             # Entry point for the process. // [!code hl] // [!code focus]
-│       ├── aoform.yaml        # Configuration for ao-form deployment. // [!code hl] // [!code focus]
-│       └── squishy            # Squishy configuration for build. // [!code hl] // [!code focus]
+│       └── aoform.yaml        # Configuration for ao-form deployment. // [!code hl] // [!code focus]
 ├── apps/             # The root directory of your frontend applications. // [!code hl] // [!code focus]
 │   └── frontend/     # React Vite App connected to ao process. // [!code hl] // [!code focus]
 ├── utils             # Directory for utility functions. // [!code hl] // [!code focus]
-│   └── inject-process.ts # Script to inject process Ids from ao to frontend // [!code hl] // [!code focus]
+│   └── inject-process.js # Script to inject process Ids from ao to frontend // [!code hl] // [!code focus]
 ├── node_modules/
 ├── .gitignore
 ├── package.json
@@ -98,6 +76,7 @@ The `package.json` file in the root directory of your project includes the follo
 - `myprocess:deploy`: Deploys the process using aoform.
 - `myprocess:test`: Runs the test script for the process.
 - `myprocess:build`: Builds the process using squishy.
+- `myprocess:inject`: Injects the deployed processes Ids from ao to the frontend.
 - `frontend:dev`: Starts the development server for the frontend application.
 - `frontend:build`: Builds the frontend application.
 

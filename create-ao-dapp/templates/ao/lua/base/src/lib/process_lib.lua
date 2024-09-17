@@ -1,7 +1,5 @@
-local ao   = require "ao"
-local db   = require "lib.db"
-local json = require "json"
-local mod  = {}
+local ao  = require "ao"
+local mod = {}
 
 function mod.getInfo(msg)
     mod.sendMessage({
@@ -9,77 +7,47 @@ function mod.getInfo(msg)
         Tags = {
             ["Response-For"] = msg.Action,
             Action = "Info",
-            Version = tostring(Version)
+            Version = tostring(Version),
+            Counter = tostring(Counter)
         },
-        Data = tostring(Version)
+        Data = tostring(Counter)
     })
 
     return Version
 end
 
--- Get Books function
-function mod.getBooks(msg)
-    local books = db.getBooks()
+-- Increase Counter function
+function mod.increaseCounter(msg)
+    Counter = Counter + 1
 
     mod.sendMessage({
         Target = msg.From,
         Tags = {
             ["Response-For"] = msg.Action,
-            Action = "Get-Books"
+            Action = "Increase",
+            Counter = tostring(Counter)
         },
-        Data = json.encode(books)
+        Data = tostring(Counter)
     })
+
+    return Counter
 end
 
--- Add Book function
-function mod.addBook(msg)
-    local book = json.decode(msg.Data)
-
-    db.addBook(book)
+-- Reset Counter function
+function mod.resetCounter(msg)
+    Counter = 0
 
     mod.sendMessage({
         Target = msg.From,
         Tags = {
             ["Response-For"] = msg.Action,
-            Action = "Add-Book"
+            Action = "Reset",
+            Counter = tostring(Counter)
         },
-        Data = json.encode(book)
+        Data = tostring(Counter)
     })
-end
 
--- Update Book function
-function mod.updateBook(msg)
-    local book = json.decode(msg.Data)
-
-    db.updateBook(book)
-
-    mod.sendMessage({
-        Target = msg.From,
-        Tags = {
-            ["Response-For"] = msg.Action,
-            Action = "Update-Book"
-        },
-        Data = json.encode(book)
-    })
-end
-
--- Delete Book function
-function mod.deleteBook(msg)
-    -- Check is msg.From is process owner
-    assert(msg.From == Owner, "Only the process owner can delete a book")
-
-    local book = json.decode(msg.Data)
-
-    db.deleteBook(book.Id)
-
-    mod.sendMessage({
-        Target = msg.From,
-        Tags = {
-            ["Response-For"] = msg.Action,
-            Action = "Delete-Book"
-        },
-        Data = json.encode(book)
-    })
+    return Counter
 end
 
 -- This function is here to allow the tests to mock the ao.send function

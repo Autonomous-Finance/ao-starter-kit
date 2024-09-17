@@ -1,0 +1,52 @@
+# Teal Typed with SQLite template
+
+This template demonstrates how to build a Teal-typed Lua process that interacts with SQLite, along with a React frontend for user interaction. Teal is a typed dialect of Lua that compiles to Lua, offering static typing and other language features while maintaining full compatibility with standard Lua.
+
+![lua sqlite frontend](/lua-sqlite.png)
+
+## Features
+
+- Lua Books Manager Process to exemplify basic CRUD operations with SQLite.
+- React + Vite Frontend to interact with the process.
+
+## How to build, deploy and run
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Build the Lua process
+
+```bash
+npm run process-name:build
+```
+
+### Deploy the Lua process
+
+:::warning
+You need to make the `./ao/process-name/scripts/deploy.sh` executable before running the deploy command.
+:::
+
+```bash
+chmod +x ./ao/process-name/scripts/deploy.sh
+
+npm run process-name:deploy
+```
+
+### Inject the process id into the frontend app
+
+```bash
+npm run process-name:inject
+```
+
+### Run the frontend app
+
+```bash
+npm run frontend:dev
+```
+
+:::tip
+You can also deploy the frontend to permaweb using the steps on the [Permaweb Deployment](/frontend-development/permaweb-deployment)
+:::

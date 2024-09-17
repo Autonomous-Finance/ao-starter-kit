@@ -13,6 +13,7 @@ export default defineConfig({
     },
   },
   rootDir: "docs",
+  basePath: "/",
   title: "Create AO dApp",
   ogImageUrl: "https://create-ao-dapp.ar.io/og.png",
   sidebar: [
@@ -23,6 +24,28 @@ export default defineConfig({
     {
       text: "Getting Started",
       link: "/getting-started",
+    },
+    {
+      text: "Available Templates",
+      collapsed: false,
+      items: [
+        {
+          text: "Basic Lua template",
+          link: "/templates/lua",
+        },
+        {
+          text: "Lua + SQLite template",
+          link: "/templates/lua-sqlite",
+        },
+        {
+          text: "Teal Typed Lua template",
+          link: "/templates/teal",
+        },
+        {
+          text: "Teal + SQLite template",
+          link: "/templates/teal-sqlite",
+        },
+      ],
     },
     {
       text: "AO Process Development",

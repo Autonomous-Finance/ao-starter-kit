@@ -37,14 +37,22 @@ export async function init() {
         }),
       type: ({ results }) =>
         p.select({
-          message: `Pick a process type within "${results.processName}"`,
+          message: `Pick a starter template within "${results.processName}"`,
           initialValue: "lua",
           maxItems: 5,
           options: [
-            { value: "lua", label: "Lua process" },
+            { value: "lua", label: "Basic Lua template (Counter)" },
+            {
+              value: "lua-sqlite",
+              label: "Lua + SQLite template (Books Manager)",
+            },
             {
               value: "teal",
-              label: "Teal Typed Lua process",
+              label: "Teal Typed Lua template (Counter)",
+            },
+            {
+              value: "teal-sqlite",
+              label: "Teal + SQLite (Books Manager)",
             },
           ],
         }),
@@ -75,14 +83,6 @@ export async function init() {
             { value: "squishy", label: "squishy" },
           ],
         }),
-      frontend: ({ results }) =>
-        p.select({
-          message: `Pick a frontend framework within "${kebabcase(
-            results.projectName ?? ""
-          )}"`,
-          initialValue: "vite-react",
-          options: [{ value: "vite-react", label: "React Vite" }],
-        }),
     },
     {
       onCancel: () => {
@@ -109,7 +109,7 @@ export async function init() {
   const processTemplateBase = resolve(
     templatesDir,
     "ao",
-    project.type === "lua" ? "lua" : "teal",
+    project.type as string,
     "base"
   );
 
@@ -117,8 +117,12 @@ export async function init() {
   fs.copySync(processTemplateBase, resolve(destDir, "ao", processName));
 
   // Copy frontend template contents
+  const frontendTemplate = ["lua", "teal"].includes(project.type as string)
+    ? "lua"
+    : "lua-sqlite";
+
   fs.copySync(
-    resolve(templatesDir, "apps", project.frontend as string),
+    resolve(templatesDir, "apps", frontendTemplate),
     resolve(destDir, "apps", "frontend")
   );
 
@@ -126,13 +130,24 @@ export async function init() {
   const buildSpinner = p.spinner();
   buildSpinner.start("Adding build script...");
 
-  const buildScriptPath =
-    project.amalgamation === "squishy" ? "build-squishy.sh" : "build-amalg.sh";
+  if (project.amalgamation === "squishy") {
+    fs.copySync(
+      resolve(templatesDir, "scripts", "build-squishy.sh"),
+      resolve(destDir, "ao", processName, "scripts", "build.sh")
+    );
+  } else {
+    const buildScriptPath = resolve(
+      templatesDir,
+      "scripts",
+      "build-amalg",
+      `${project.type}.sh`
+    );
 
-  fs.copySync(
-    resolve(templatesDir, "scripts", buildScriptPath),
-    resolve(destDir, "ao", processName, "scripts", "build.sh")
-  );
+    fs.copySync(
+      buildScriptPath,
+      resolve(destDir, "ao", processName, "scripts", "build.sh")
+    );
+  }
 
   buildSpinner.stop("Added build script.");
 

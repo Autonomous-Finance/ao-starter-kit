@@ -1,0 +1,54 @@
+# Basic Lua template
+
+This template provides a basic setup for developing Lua-based applications on the AO platform. It features a simple Lua Counter process that demonstrates how to create and interact with Lua processes within the AO ecosystem. The template includes both the backend Lua process and a React + Vite frontend, allowing developers to quickly start building and testing AO applications with a user-friendly interface.
+
+![lua frontend](/lua.png)
+
+## Features
+This starter template with a simple Lua Counter process. 
+It includes a basic Lua process that increments a counter and returns the current count.
+
+- Lua Counter Process
+- React + Vite Frontend to interact with the process.
+
+## How to build, deploy and run
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Build the Lua process
+
+```bash
+npm run process-name:build
+```
+
+### Deploy the Lua process
+
+:::warning
+You need to make the `./ao/process-name/scripts/deploy.sh` executable before running the deploy command.
+:::
+
+```bash
+chmod +x ./ao/process-name/scripts/deploy.sh
+
+npm run process-name:deploy
+```
+
+### Inject the process id into the frontend app
+
+```bash
+npm run process-name:inject
+```
+
+### Run the frontend app
+
+```bash
+npm run frontend:dev
+```
+
+:::tip
+You can also deploy the frontend to permaweb using the steps on the [Permaweb Deployment](/frontend-development/permaweb-deployment)
+:::

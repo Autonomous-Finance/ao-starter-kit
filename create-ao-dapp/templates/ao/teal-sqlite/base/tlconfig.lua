@@ -1,6 +1,6 @@
 return {
     source_dir = "src",
-    include_dir = { "src/counter/typedefs", "src/", "packages/" },
+    include_dir = { "src/books/typedefs", "src/", "packages/" },
     include = {
         "**/**.tl",
     },

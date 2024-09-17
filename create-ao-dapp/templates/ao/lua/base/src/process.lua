@@ -1,15 +1,7 @@
-local sqlite3 = require('lsqlite3')
-
 local process = require "lib.process_lib"
-local db      = require "lib.db"
 
 Version       = "0.0.1"
-DB            = DB or sqlite3.open_memory()
-Configured    = Configured or false
-
-if not Configured then
-    db.Seed()
-end
+Counter       = Counter or 0
 
 -- Handler to get Info
 Handlers.add("info",
@@ -17,26 +9,14 @@ Handlers.add("info",
     process.getInfo
 )
 
--- Handler to get all Books
-Handlers.add("getBooks",
-    Handlers.utils.hasMatchingTag("Action", "Get-Books"),
-    process.getBooks
+-- Handler to increase Counter
+Handlers.add("increase",
+    Handlers.utils.hasMatchingTag("Action", "IncreaseCounter"),
+    process.increaseCounter
 )
 
--- Handler to add a Book
-Handlers.add("addBook",
-    Handlers.utils.hasMatchingTag("Action", "Add-Book"),
-    process.addBook
-)
-
--- Handler to update a Book
-Handlers.add("updateBook",
-    Handlers.utils.hasMatchingTag("Action", "Update-Book"),
-    process.updateBook
-)
-
--- Handler to delete a Book
-Handlers.add("deleteBook",
-    Handlers.utils.hasMatchingTag("Action", "Delete-Book"),
-    process.deleteBook
+-- Handler to reset Counter
+Handlers.add("reset",
+    Handlers.utils.hasMatchingTag("Action", "ResetCounter"),
+    process.resetCounter
 )

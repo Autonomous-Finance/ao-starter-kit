@@ -1,0 +1,52 @@
+# Teal Typed Template
+
+This template provides a starting point for building applications with Teal, a typed dialect of Lua. Teal combines the simplicity and performance of Lua with static typing, offering improved code safety and tooling support. It compiles directly to Lua, allowing seamless integration with existing Lua codebases and libraries. This template includes a basic Teal process demonstrating counter functionality, showcasing how to leverage Teal's features in an AO environment.
+
+
+![lua frontend](/lua.png)
+
+## Features
+This starter template comes with a simple Teal Counter process.
+It includes a basic Teal process that increments a counter and returns the current count.
+
+## How to build, deploy and run
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Build the Lua process
+
+```bash
+npm run process-name:build
+```
+
+### Deploy the Lua process
+
+:::warning
+You need to make the `./ao/process-name/scripts/deploy.sh` executable before running the deploy command.
+:::
+
+```bash
+chmod +x ./ao/process-name/scripts/deploy.sh
+
+npm run process-name:deploy
+```
+
+### Inject the process id into the frontend app
+
+```bash
+npm run process-name:inject
+```
+
+### Run the frontend app
+
+```bash
+npm run frontend:dev
+```
+
+:::tip
+You can also deploy the frontend to permaweb using the steps on the [Permaweb Deployment](/frontend-development/permaweb-deployment)
+:::

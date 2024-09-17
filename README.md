@@ -1,3 +1,9 @@
+# create-ao-dapp
+
+```bash
+npx create-ao-dapp@latest
+```
+
 # ao-starter-kit
 The ao-starter-kit provides a comprehensive boilerplate for setting up an AO process, including testing, modules,  and amalgamation alongside a React application. This starter kit aims to simplify the development and deployment of AO processes by providing pre-configured setups and example processes.
 

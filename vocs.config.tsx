@@ -14,6 +14,7 @@ export default defineConfig({
   },
   rootDir: "docs",
   title: "Create AO dApp",
+  ogImageUrl: "https://create-ao-dapp.ar.io/og.png",
   sidebar: [
     {
       text: "Introduction",

@@ -1,6 +1,7 @@
 {
   "name": "ao-starter-kit",
   "type": "module",
+  "private": true,
   "version": "0.0.1",
   "scripts": {
     "build": "bun run create-ao-dapp:build",

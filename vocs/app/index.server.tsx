@@ -3,7 +3,7 @@ import './styles/index.css.js'
 import type { ReactElement } from 'react'
 import { renderToString } from 'react-dom/server'
 import { Helmet } from 'react-helmet'
-import { Route, type RouteObject, Routes } from 'react-router-dom'
+import { HashRouter, Route, type RouteObject, Routes } from 'react-router-dom'
 import {
   type StaticHandlerContext,
   StaticRouter,
@@ -18,12 +18,12 @@ import { routes } from './routes.js'
 import { createFetchRequest } from './utils/createFetchRequest.js'
 
 export async function prerender(location: string) {
+  const pathname = location.startsWith('/') ? location : `/${location}`
+
   const unwrappedRoutes = (
     await Promise.all(
       routes.map(async (route) => {
-        const location_ = location === '/' ? '/' : location.replace(/\/$/, '')
-        const path = route.path.replace(/\.html$/, '')
-        if (path !== location_ && path !== '*') return null
+        if (route.path !== pathname && route.path !== '*') return null
         const element = route.lazy ? (await route.lazy()).element : route.element
         return {
           path: route.path,
@@ -53,23 +53,22 @@ export async function prerender(location: string) {
 
 export async function render(req: Request) {
   const { config } = await resolveVocsConfig()
-  const { basePath } = config
-
-  const { query, dataRoutes } = createStaticHandler(routes, { basename: basePath })
-  const fetchRequest = createFetchRequest(req)
-  const context = (await query(fetchRequest)) as StaticHandlerContext
-
-  if (context instanceof Response) throw context
-
-  const router = createStaticRouter(dataRoutes, context)
 
   const body = renderToString(
     <ConfigProvider config={config}>
-      <StaticRouterProvider router={router} context={context} />
-    </ConfigProvider>,
+      <div id="app">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          width: '100vw',
+        }}>Loading...</div>
+      </div>
+    </ConfigProvider>
   )
 
-  return { head: await head({ path: context.location.pathname }), body }
+  return { head: await head({ path: '/' }), body }
 }
 
 async function head({ path }: { path: string }) {

@@ -1,25 +1,39 @@
 import './styles/index.css.js'
 
 import { hydrateRoot } from 'react-dom/client'
-import { RouterProvider, createHashRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom'
 import { ConfigProvider, getConfig } from './hooks/useConfig.js'
 import { routes } from './routes.js'
 import { hydrateLazyRoutes } from './utils/hydrateLazyRoutes.js'
 import { removeTempStyles } from './utils/removeTempStyles.js'
+import { useEffect, useState } from 'react'
 
-hydrate()
+//hydrate()
 
-async function hydrate() {
-  const basePath = getConfig().basePath
+function App() {
+  const [router, setRouter] = useState<ReturnType<typeof createHashRouter> | null>(null)
 
-  await hydrateLazyRoutes(routes, basePath)
-  removeTempStyles()
+  useEffect(() => {
+    async function init() {
+      const basePath = getConfig().basePath
+      await hydrateLazyRoutes(routes, basePath)
+      removeTempStyles()
+      const newRouter = createHashRouter(routes, { basename: basePath })
+      setRouter(newRouter)
+    }
+    init()
+  }, [])
 
-  const router = createHashRouter(routes, { basename: basePath })
-  hydrateRoot(
-    document.getElementById('app')!,
+  if (!router) {
+    return <div>Loading...</div>
+  }
+
+  return (
     <ConfigProvider>
       <RouterProvider router={router} />
-    </ConfigProvider>,
+    </ConfigProvider>
   )
 }
+
+
+hydrateRoot(document.getElementById('app')!, <App />)

@@ -33,6 +33,7 @@ global record ao
     Tags: { string: string }
     Data: string
     Owner: string
+    Cron: boolean
   end
   
   global record TokenNotice

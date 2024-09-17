@@ -1,7 +1,6 @@
 {
   "name": "ao-starter-kit",
   "type": "module",
-  "private": true,
   "version": "0.0.1",
   "scripts": {
     "build": "bun run create-ao-dapp:build",
@@ -25,7 +24,7 @@
     "@types/react-dom": "^18.2.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vocs": "^1.0.0-alpha.15"
+    "vocs": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5.5.0"

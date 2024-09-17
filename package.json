@@ -5,9 +5,10 @@
   "scripts": {
     "build": "bun run create-ao-dapp:build",
     "create-ao-dapp:build": "rimraf create-ao-dapp/_lib && tsc -p create-ao-dapp/tsconfig.build.json",
-    "docs:dev": "cd docs && bun run dev",
-    "docs:build": "cd docs && bun run build",
-    "docs:preview": "cd docs && bun run preview",
+    "docs:dev": "node --import tsx/esm ./vocs/cli/index.ts dev",
+    "docs:build": "NODE_ENV=production node --import tsx/esm ./vocs/cli/index.ts build",
+    "docs:search-index": "NODE_ENV=production node --import tsx/esm ./vocs/cli/index.ts search-index",
+    "docs:preview": "node --import tsx/esm ./vocs/cli/index.ts preview",
     "format": "biome format . --write",
     "lint": "biome lint . --apply-unsafe",
     "typecheck": "tsc --noEmit",
@@ -17,7 +18,13 @@
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@types/bun": "latest",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "tsx": "^4.6.1",
+    "@types/react": "^18.2.28",
+    "@types/react-dom": "^18.2.13",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vocs": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5.5.0"

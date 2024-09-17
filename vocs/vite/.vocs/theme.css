@@ -1,0 +1,12 @@
+:root { --vocs-color_backgroundAccent: black; }
+:root.dark { --vocs-color_backgroundAccent: white; }
+:root { --vocs-color_backgroundAccentHover: #000000; }
+:root.dark { --vocs-color_backgroundAccentHover: #f2f2f2; }
+:root { --vocs-color_backgroundAccentText: white; }
+:root.dark { --vocs-color_backgroundAccentText: black; }
+:root { --vocs-color_borderAccent: #000000; }
+:root.dark { --vocs-color_borderAccent: #ffffff; }
+:root { --vocs-color_textAccent: black; }
+:root.dark { --vocs-color_textAccent: white; }
+:root { --vocs-color_textAccentHover: #000000; }
+:root.dark { --vocs-color_textAccentHover: #e5e5e5; }

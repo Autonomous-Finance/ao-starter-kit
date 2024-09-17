@@ -1,0 +1,9 @@
+import{a8 as t,j as e}from"./vendor-BILq7OoT.js";const i={title:"Create Ao dApp",description:"undefined"};function s(a){const n={a:"a",div:"div",h1:"h1",h2:"h2",header:"header",li:"li",p:"p",strong:"strong",ul:"ul",...t(),...a.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.header,{children:e.jsxs(n.h1,{id:"create-ao-dapp",children:["Create Ao dApp",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#create-ao-dapp",children:e.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsx(n.p,{children:"The create-ao-dapp provides a comprehensive boilerplate for setting up an AO process, including testing, modules, and amalgamation alongside a React application. This starter kit aims to simplify the development and deployment of AO processes by providing pre-configured setups and example processes."}),`
+`,e.jsxs(n.h2,{id:"features",children:["Features",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#features",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(n.ul,{children:[`
+`,e.jsxs(n.li,{children:[e.jsx(n.strong,{children:"Modular"}),": The create-ao-dapp is designed to be modular, allowing you to easily add and remove modules as needed."]}),`
+`,e.jsxs(n.li,{children:[e.jsx(n.strong,{children:"Testing"}),": The create-ao-dapp includes a comprehensive testing suite, allowing you to test your AO processes with ease."]}),`
+`,e.jsxs(n.li,{children:[e.jsx(n.strong,{children:"Amalgamation"}),": The create-ao-dapp includes an amalgamation tool, allowing you to easily combine multiple AO processes into a single process."]}),`
+`,e.jsxs(n.li,{children:[e.jsx(n.strong,{children:"Permaweb Deployment"}),": The create-ao-dapp includes a deployment script that allows you to deploy your AO processes to the Permaweb with ease."]}),`
+`]})]})}function r(a={}){const{wrapper:n}={...t(),...a.components};return n?e.jsx(n,{...a,children:e.jsx(s,{...a})}):s(a)}export{r as default,i as frontmatter};

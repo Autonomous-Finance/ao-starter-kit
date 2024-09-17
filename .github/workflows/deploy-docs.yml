@@ -11,14 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+            version: 9
 
       - name: Install dependencies
-        run: bun install
+        run: pnpm install
 
-      - run: bun run docs:build
-      - run: bunx permaweb-deploy --ant-process ${{ env.ANT_PROCESS }} --deploy-folder ./docs/docs/dist
+      - run: pnpm docs:build
+      - run: pnpm dlx permaweb-deploy --ant-process ${{ env.ANT_PROCESS }} --deploy-folder ./docs/docs/dist
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           ANT_PROCESS: "4eMZpmmAGu05o2eW1yPHqIrVYAUbqEpLoAJ0V3F10-o"

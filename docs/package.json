@@ -9,10 +9,11 @@
     "start": "vocs preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.1",
     "@types/react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "typescript": "latest",
-    "vocs": "latest"
+    "vocs": "workspace:*"
   }
 }

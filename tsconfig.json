@@ -8,5 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+     // JSON
+     "resolveJsonModule": true
   },
 }

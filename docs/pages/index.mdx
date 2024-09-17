@@ -6,21 +6,33 @@ import { HomePage } from "vocs/components";
 import { Hero } from "../components/Hero";
 import { Downloads } from "../components/Downloads";
 
-<HomePage.Root>
+<HomePage.Root style={{
+  maxWidth:"60%"
+}}>
+  <div style={{
+    fontSize: "1.75rem",
+  }}>
+  Effortlessly launch your fullstack permadApp with one command and unlock limitless potential of AO and Arweave
+  </div>
   <Hero />
-  <HomePage.InstallPackage name="ao-dapp" type="init" />
-  <HomePage.Description>
-    The create-ao-dapp provides a comprehensive boilerplate for setting up an AO
-    process, including testing, modules, and amalgamation alongside a React
-    application.
-  </HomePage.Description>
-  <HomePage.Buttons>
-    <HomePage.Button href="/getting-started" variant="accent">
-      Get started
-    </HomePage.Button>
-    <HomePage.Button href="https://github.com/Autonomous-Finance/create-ao-dapp">
-      GitHub
-    </HomePage.Button>
-  </HomePage.Buttons>
+<HomePage.Description>
+  Create-ao-dapp provides a robust boilerplate that integrates React, Typed Lua
+  (Teal) for type-safe development, and a pre-configured CRUD template with
+  SQL—all the essentials for testing, modules, and deployment.
+</HomePage.Description>
+
+```bash [Get Started]
+npx create-ao-dapp@latest
+```
+
   <Downloads />
+
+  <HomePage.Buttons>
+  <HomePage.Button href="/getting-started" variant="accent">
+    Documentation
+  </HomePage.Button>
+  <HomePage.Button href="https://github.com/Autonomous-Finance/ao-starter-kit">
+    GitHub
+  </HomePage.Button>
+</HomePage.Buttons>
 </HomePage.Root>

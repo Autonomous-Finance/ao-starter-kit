@@ -308,7 +308,7 @@ function deserializeFunctions(value) {
     return value;
   }
 }
-const config = deserializeFunctions({ "blogDir": "./pages/blog", "rootDir": "docs", "title": "Create AO dApp", "titleTemplate": "%s – Create AO dApp", "theme": { "accentColor": { "backgroundAccent": { "dark": "white", "light": "black" }, "backgroundAccentHover": { "dark": "#f2f2f2", "light": "#000000" }, "backgroundAccentText": { "dark": "black", "light": "white" }, "borderAccent": { "dark": "#ffffff", "light": "#000000" }, "textAccent": { "dark": "white", "light": "black" }, "textAccentHover": { "dark": "#e5e5e5", "light": "#000000" } } }, "sidebar": [{ "text": "Introduction", "link": "/introduction" }, { "text": "Getting Started", "link": "/getting-started" }, { "text": "AO Process Development", "collapsed": false, "items": [{ "text": "Architecture", "link": "/process-development/architecture" }, { "text": "Writing AO Processes", "link": "/process-development/process-design" }, { "text": "AO Process Testing", "link": "/process-development/testing" }, { "text": "Building AO Processes", "collapsed": false, "items": [{ "text": "Building with amalg.lua", "link": "/process-development/building-with-amalg" }, { "text": "Building with Squish", "link": "/process-development/building-with-squish" }] }, { "text": "Deployment", "link": "/process-development/deployment" }] }, { "text": "Frontend Development", "collapsed": false, "items": [{ "text": "Architecture", "link": "/frontend-development/architecture" }, { "text": "Connecting to the Backend", "link": "/frontend-development/connecting-to-backend" }, { "text": "Building the Frontend", "link": "/frontend-development/building" }, { "text": "Permaweb Deployment", "link": "/frontend-development/permaweb-deployment" }] }], "topNav": [{ "text": "Documentation", "link": "/introduction", "id": 0, "items": [] }, { "text": "v0.1.8", "items": [{ "text": "Changelog", "link": "https://github.com/Autonomous-Finance/ao-starter-kit/blob/main/create-ao-dapp/CHANGELOG.md", "id": 2, "items": [] }, { "text": "Contributing", "link": "https://github.com/Autonomous-Finance/ao-starter-kit/blob/main/.github/CONTRIBUTING.md", "id": 3, "items": [] }], "id": 1 }, { "text": "Examples", "link": "https://github.com/Autonomous-Finance/ao-starter-kit/tree/main/examples/", "id": 4, "items": [] }, { "text": "GitHub", "link": "https://github.com/Autonomous-Finance/ao-starter-kit", "id": 5, "items": [] }], "basePath": "", "font": {}, "markdown": { "code": { "themes": { "dark": "github-dark-dimmed", "light": "github-light" } } }, "socials": [], "vite": {} });
+const config = deserializeFunctions({ "blogDir": "./pages/blog", "ogImageUrl": "https://create-ao-dapp.ar.io/og.png", "rootDir": "docs", "title": "Create AO dApp", "titleTemplate": "%s – Create AO dApp", "theme": { "accentColor": { "backgroundAccent": { "dark": "white", "light": "black" }, "backgroundAccentHover": { "dark": "#f2f2f2", "light": "#000000" }, "backgroundAccentText": { "dark": "black", "light": "white" }, "borderAccent": { "dark": "#ffffff", "light": "#000000" }, "textAccent": { "dark": "white", "light": "black" }, "textAccentHover": { "dark": "#e5e5e5", "light": "#000000" } } }, "basePath": "", "sidebar": [{ "text": "Introduction", "link": "/introduction" }, { "text": "Getting Started", "link": "/getting-started" }, { "text": "Available Templates", "collapsed": false, "items": [{ "text": "Basic Lua template", "link": "/templates/lua" }, { "text": "Lua + SQLite template", "link": "/templates/lua-sqlite" }, { "text": "Teal Typed Lua template", "link": "/templates/teal" }, { "text": "Teal + SQLite template", "link": "/templates/teal-sqlite" }] }, { "text": "AO Process Development", "collapsed": false, "items": [{ "text": "Architecture", "link": "/process-development/architecture" }, { "text": "Writing AO Processes", "link": "/process-development/process-design" }, { "text": "AO Process Testing", "link": "/process-development/testing" }, { "text": "Building AO Processes", "collapsed": false, "items": [{ "text": "Building with amalg.lua", "link": "/process-development/building-with-amalg" }, { "text": "Building with Squish", "link": "/process-development/building-with-squish" }] }, { "text": "Deployment", "link": "/process-development/deployment" }] }, { "text": "Frontend Development", "collapsed": false, "items": [{ "text": "Architecture", "link": "/frontend-development/architecture" }, { "text": "Connecting to the Backend", "link": "/frontend-development/connecting-to-backend" }, { "text": "Building the Frontend", "link": "/frontend-development/building" }, { "text": "Permaweb Deployment", "link": "/frontend-development/permaweb-deployment" }] }], "topNav": [{ "text": "Documentation", "link": "/introduction", "id": 0, "items": [] }, { "text": "v0.1.9", "items": [{ "text": "Changelog", "link": "https://github.com/Autonomous-Finance/ao-starter-kit/blob/main/create-ao-dapp/CHANGELOG.md", "id": 2, "items": [] }, { "text": "Contributing", "link": "https://github.com/Autonomous-Finance/ao-starter-kit/blob/main/.github/CONTRIBUTING.md", "id": 3, "items": [] }], "id": 1 }, { "text": "Examples", "link": "https://github.com/Autonomous-Finance/ao-starter-kit/tree/main/examples/", "id": 4, "items": [] }, { "text": "GitHub", "link": "https://github.com/Autonomous-Finance/ao-starter-kit", "id": 5, "items": [] }], "font": {}, "markdown": { "code": { "themes": { "dark": "github-dark-dimmed", "light": "github-light" } } }, "socials": [], "vite": {} });
 const ConfigContext = createContext(config);
 const configHash = "";
 function getConfig() {
@@ -337,14 +337,14 @@ function ConfigProvider({
 function useConfig() {
   return useContext(ConfigContext);
 }
-const routes$1 = [{ lazy: () => import("./assets/getting-started-B2eMa91I.js"), path: "/getting-started", type: "mdx", filePath: "getting-started.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/getting-started-B2eMa91I.js"), path: "/getting-started.html", type: "mdx", filePath: "getting-started.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/index-DlwjYmmY.js"), path: "/", type: "mdx", filePath: "index.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/introduction-CBB7e9YA.js"), path: "/introduction", type: "mdx", filePath: "introduction.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/introduction-CBB7e9YA.js"), path: "/introduction.html", type: "mdx", filePath: "introduction.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/project-structure-Ctfz1XSh.js"), path: "/project-structure", type: "mdx", filePath: "project-structure.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/project-structure-Ctfz1XSh.js"), path: "/project-structure.html", type: "mdx", filePath: "project-structure.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/architecture-pKiUaa1H.js"), path: "/frontend-development/architecture", type: "mdx", filePath: "frontend-development/architecture.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/architecture-pKiUaa1H.js"), path: "/frontend-development/architecture.html", type: "mdx", filePath: "frontend-development/architecture.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/building-1GJ0J4Fp.js"), path: "/frontend-development/building", type: "mdx", filePath: "frontend-development/building.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/building-1GJ0J4Fp.js"), path: "/frontend-development/building.html", type: "mdx", filePath: "frontend-development/building.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/connecting-to-backend-zz3aYOxV.js"), path: "/frontend-development/connecting-to-backend", type: "mdx", filePath: "frontend-development/connecting-to-backend.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/connecting-to-backend-zz3aYOxV.js"), path: "/frontend-development/connecting-to-backend.html", type: "mdx", filePath: "frontend-development/connecting-to-backend.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/permaweb-deployment-B4tqJx0H.js"), path: "/frontend-development/permaweb-deployment", type: "mdx", filePath: "frontend-development/permaweb-deployment.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/permaweb-deployment-B4tqJx0H.js"), path: "/frontend-development/permaweb-deployment.html", type: "mdx", filePath: "frontend-development/permaweb-deployment.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/architecture-DFT4qRli.js"), path: "/process-development/architecture", type: "mdx", filePath: "process-development/architecture.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/architecture-DFT4qRli.js"), path: "/process-development/architecture.html", type: "mdx", filePath: "process-development/architecture.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/building-with-amalg-C0LdtnU3.js"), path: "/process-development/building-with-amalg", type: "mdx", filePath: "process-development/building-with-amalg.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/building-with-amalg-C0LdtnU3.js"), path: "/process-development/building-with-amalg.html", type: "mdx", filePath: "process-development/building-with-amalg.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/building-with-squish-BVU_b7yJ.js"), path: "/process-development/building-with-squish", type: "mdx", filePath: "process-development/building-with-squish.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/building-with-squish-BVU_b7yJ.js"), path: "/process-development/building-with-squish.html", type: "mdx", filePath: "process-development/building-with-squish.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/deployment-B09mGs5e.js"), path: "/process-development/deployment", type: "mdx", filePath: "process-development/deployment.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/deployment-B09mGs5e.js"), path: "/process-development/deployment.html", type: "mdx", filePath: "process-development/deployment.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/process-design-8r6obHCK.js"), path: "/process-development/process-design", type: "mdx", filePath: "process-development/process-design.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/process-design-8r6obHCK.js"), path: "/process-development/process-design.html", type: "mdx", filePath: "process-development/process-design.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/testing-MfckEd-V.js"), path: "/process-development/testing", type: "mdx", filePath: "process-development/testing.mdx", lastUpdatedAt: void 0 }, { lazy: () => import("./assets/testing-MfckEd-V.js"), path: "/process-development/testing.html", type: "mdx", filePath: "process-development/testing.mdx", lastUpdatedAt: void 0 }];
+const routes$1 = [{ lazy: () => import("./assets/getting-started-DXSE3yT8.js"), path: "/getting-started", type: "mdx", filePath: "getting-started.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/getting-started-DXSE3yT8.js"), path: "/getting-started.html", type: "mdx", filePath: "getting-started.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/index-CmtkyhAR.js"), path: "/", type: "mdx", filePath: "index.mdx", lastUpdatedAt: 1726561638e3 }, { lazy: () => import("./assets/introduction-CBB7e9YA.js"), path: "/introduction", type: "mdx", filePath: "introduction.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/introduction-CBB7e9YA.js"), path: "/introduction.html", type: "mdx", filePath: "introduction.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/project-structure-Ctfz1XSh.js"), path: "/project-structure", type: "mdx", filePath: "project-structure.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/project-structure-Ctfz1XSh.js"), path: "/project-structure.html", type: "mdx", filePath: "project-structure.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/architecture-pKiUaa1H.js"), path: "/frontend-development/architecture", type: "mdx", filePath: "frontend-development/architecture.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/architecture-pKiUaa1H.js"), path: "/frontend-development/architecture.html", type: "mdx", filePath: "frontend-development/architecture.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/building-1GJ0J4Fp.js"), path: "/frontend-development/building", type: "mdx", filePath: "frontend-development/building.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/building-1GJ0J4Fp.js"), path: "/frontend-development/building.html", type: "mdx", filePath: "frontend-development/building.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/connecting-to-backend-zz3aYOxV.js"), path: "/frontend-development/connecting-to-backend", type: "mdx", filePath: "frontend-development/connecting-to-backend.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/connecting-to-backend-zz3aYOxV.js"), path: "/frontend-development/connecting-to-backend.html", type: "mdx", filePath: "frontend-development/connecting-to-backend.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/permaweb-deployment-B4tqJx0H.js"), path: "/frontend-development/permaweb-deployment", type: "mdx", filePath: "frontend-development/permaweb-deployment.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/permaweb-deployment-B4tqJx0H.js"), path: "/frontend-development/permaweb-deployment.html", type: "mdx", filePath: "frontend-development/permaweb-deployment.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/architecture-DFT4qRli.js"), path: "/process-development/architecture", type: "mdx", filePath: "process-development/architecture.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/architecture-DFT4qRli.js"), path: "/process-development/architecture.html", type: "mdx", filePath: "process-development/architecture.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/building-with-amalg-C0LdtnU3.js"), path: "/process-development/building-with-amalg", type: "mdx", filePath: "process-development/building-with-amalg.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/building-with-amalg-C0LdtnU3.js"), path: "/process-development/building-with-amalg.html", type: "mdx", filePath: "process-development/building-with-amalg.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/building-with-squish-BVU_b7yJ.js"), path: "/process-development/building-with-squish", type: "mdx", filePath: "process-development/building-with-squish.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/building-with-squish-BVU_b7yJ.js"), path: "/process-development/building-with-squish.html", type: "mdx", filePath: "process-development/building-with-squish.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/deployment-B09mGs5e.js"), path: "/process-development/deployment", type: "mdx", filePath: "process-development/deployment.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/deployment-B09mGs5e.js"), path: "/process-development/deployment.html", type: "mdx", filePath: "process-development/deployment.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/process-design-8r6obHCK.js"), path: "/process-development/process-design", type: "mdx", filePath: "process-development/process-design.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/process-design-8r6obHCK.js"), path: "/process-development/process-design.html", type: "mdx", filePath: "process-development/process-design.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/testing-MfckEd-V.js"), path: "/process-development/testing", type: "mdx", filePath: "process-development/testing.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/testing-MfckEd-V.js"), path: "/process-development/testing.html", type: "mdx", filePath: "process-development/testing.mdx", lastUpdatedAt: 1726554608e3 }, { lazy: () => import("./assets/lua-sqlite-D0J-z4vY.js"), path: "/templates/lua-sqlite", type: "mdx", filePath: "templates/lua-sqlite.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/lua-sqlite-D0J-z4vY.js"), path: "/templates/lua-sqlite.html", type: "mdx", filePath: "templates/lua-sqlite.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/lua-DVIRieNf.js"), path: "/templates/lua", type: "mdx", filePath: "templates/lua.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/lua-DVIRieNf.js"), path: "/templates/lua.html", type: "mdx", filePath: "templates/lua.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/teal-sqlite-DnB0b1dC.js"), path: "/templates/teal-sqlite", type: "mdx", filePath: "templates/teal-sqlite.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/teal-sqlite-DnB0b1dC.js"), path: "/templates/teal-sqlite.html", type: "mdx", filePath: "templates/teal-sqlite.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/teal-h3Hp4Duf.js"), path: "/templates/teal", type: "mdx", filePath: "templates/teal.mdx", lastUpdatedAt: 1726584049e3 }, { lazy: () => import("./assets/teal-h3Hp4Duf.js"), path: "/templates/teal.html", type: "mdx", filePath: "templates/teal.mdx", lastUpdatedAt: 1726584049e3 }];
 var contentVars = { horizontalPadding: "var(--vocs-content_horizontalPadding)", verticalPadding: "var(--vocs-content_verticalPadding)", width: "var(--vocs-content_width)" };
 var defaultFontFamily = { "default": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif", mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace' };
 var fontFamilyVars = { "default": "var(--vocs-fontFamily_default)", mono: "var(--vocs-fontFamily_mono)" };
 var primitiveColorVars = { white: "var(--vocs-color_white)", black: "var(--vocs-color_black)", background: "var(--vocs-color_background)", background2: "var(--vocs-color_background2)", background3: "var(--vocs-color_background3)", background4: "var(--vocs-color_background4)", background5: "var(--vocs-color_background5)", backgroundAccent: "var(--vocs-color_backgroundAccent)", backgroundAccentHover: "var(--vocs-color_backgroundAccentHover)", backgroundAccentText: "var(--vocs-color_backgroundAccentText)", backgroundBlueTint: "var(--vocs-color_backgroundBlueTint)", backgroundDark: "var(--vocs-color_backgroundDark)", backgroundGreenTint: "var(--vocs-color_backgroundGreenTint)", backgroundGreenTint2: "var(--vocs-color_backgroundGreenTint2)", backgroundIrisTint: "var(--vocs-color_backgroundIrisTint)", backgroundRedTint: "var(--vocs-color_backgroundRedTint)", backgroundRedTint2: "var(--vocs-color_backgroundRedTint2)", backgroundYellowTint: "var(--vocs-color_backgroundYellowTint)", border: "var(--vocs-color_border)", border2: "var(--vocs-color_border2)", borderAccent: "var(--vocs-color_borderAccent)", borderBlue: "var(--vocs-color_borderBlue)", borderGreen: "var(--vocs-color_borderGreen)", borderIris: "var(--vocs-color_borderIris)", borderRed: "var(--vocs-color_borderRed)", borderYellow: "var(--vocs-color_borderYellow)", heading: "var(--vocs-color_heading)", inverted: "var(--vocs-color_inverted)", shadow: "var(--vocs-color_shadow)", shadow2: "var(--vocs-color_shadow2)", text: "var(--vocs-color_text)", text2: "var(--vocs-color_text2)", text3: "var(--vocs-color_text3)", text4: "var(--vocs-color_text4)", textAccent: "var(--vocs-color_textAccent)", textAccentHover: "var(--vocs-color_textAccentHover)", textBlue: "var(--vocs-color_textBlue)", textBlueHover: "var(--vocs-color_textBlueHover)", textGreen: "var(--vocs-color_textGreen)", textGreenHover: "var(--vocs-color_textGreenHover)", textIris: "var(--vocs-color_textIris)", textIrisHover: "var(--vocs-color_textIrisHover)", textRed: "var(--vocs-color_textRed)", textRedHover: "var(--vocs-color_textRedHover)", textYellow: "var(--vocs-color_textYellow)", textYellowHover: "var(--vocs-color_textYellowHover)", title: "var(--vocs-color_title)" };
 var spaceVars = { "0": "var(--vocs-space_0)", "1": "var(--vocs-space_1)", "2": "var(--vocs-space_2)", "3": "var(--vocs-space_3)", "4": "var(--vocs-space_4)", "6": "var(--vocs-space_6)", "8": "var(--vocs-space_8)", "12": "var(--vocs-space_12)", "14": "var(--vocs-space_14)", "16": "var(--vocs-space_16)", "18": "var(--vocs-space_18)", "20": "var(--vocs-space_20)", "22": "var(--vocs-space_22)", "24": "var(--vocs-space_24)", "28": "var(--vocs-space_28)", "32": "var(--vocs-space_32)", "36": "var(--vocs-space_36)", "40": "var(--vocs-space_40)", "44": "var(--vocs-space_44)", "48": "var(--vocs-space_48)", "56": "var(--vocs-space_56)", "64": "var(--vocs-space_64)", "72": "var(--vocs-space_72)", "80": "var(--vocs-space_80)" };
 var iconUrl$1 = "var(--vocs_ExternalLink_iconUrl)";
-var root$$ = "vocs_ExternalLink";
+var root$_ = "vocs_ExternalLink";
 const ExternalLink = forwardRef(
   ({ className, children, hideExternalIcon, href, ...props }, ref) => {
     const { basePath } = useConfig();
@@ -355,7 +355,7 @@ const ExternalLink = forwardRef(
         ref,
         className: clsx(
           className,
-          hideExternalIcon || typeof children !== "string" ? void 0 : root$$
+          hideExternalIcon || typeof children !== "string" ? void 0 : root$_
         ),
         href,
         target: "_blank",
@@ -370,7 +370,7 @@ const ExternalLink = forwardRef(
   }
 );
 var accent_underlined = "vocs_Link_accent_underlined";
-var root$_ = "vocs_Link";
+var root$Z = "vocs_Link";
 var styleless = "vocs_Link_styleless";
 function mergeRefs(...refs) {
   return (val) => {
@@ -408,7 +408,7 @@ const Link$1 = forwardRef((props, ref) => {
         ref,
         className: clsx(
           props.className,
-          root$_,
+          root$Z,
           variant === "accent underlined" && accent_underlined,
           variant === "styleless" && styleless
         ),
@@ -424,7 +424,7 @@ const Link$1 = forwardRef((props, ref) => {
       ref,
       className: clsx(
         props.className,
-        root$_,
+        root$Z,
         variant === "accent underlined" && accent_underlined,
         variant === "styleless" && styleless
       ),
@@ -433,29 +433,29 @@ const Link$1 = forwardRef((props, ref) => {
   );
 });
 var divider$4 = "vocs_NotFound_divider";
-var root$Z = "vocs_NotFound";
-var root$Y = "vocs_H1";
-var root$X = "vocs_Heading";
+var root$Y = "vocs_NotFound";
+var root$X = "vocs_H1";
+var root$W = "vocs_Heading";
 var slugTarget = "vocs_Heading_slugTarget";
 function Heading({
   level: level2,
   ...props
 }) {
   const Component = `h${level2}`;
-  return /* @__PURE__ */ jsxs(Component, { ...props, id: void 0, className: clsx(props.className, root$X), children: [
+  return /* @__PURE__ */ jsxs(Component, { ...props, id: void 0, className: clsx(props.className, root$W), children: [
     /* @__PURE__ */ jsx("div", { id: props.id, className: slugTarget }),
     props.children
   ] });
 }
 function H1(props) {
-  return /* @__PURE__ */ jsx(Heading, { ...props, className: clsx(props.className, root$Y), level: 1 });
+  return /* @__PURE__ */ jsx(Heading, { ...props, className: clsx(props.className, root$X), level: 1 });
 }
-var root$W = "vocs_Paragraph";
+var root$V = "vocs_Paragraph";
 function Paragraph(props) {
-  return /* @__PURE__ */ jsx("p", { ...props, className: clsx(props.className, root$W) });
+  return /* @__PURE__ */ jsx("p", { ...props, className: clsx(props.className, root$V) });
 }
 function NotFound() {
-  return /* @__PURE__ */ jsxs("div", { className: root$Z, children: [
+  return /* @__PURE__ */ jsxs("div", { className: root$Y, children: [
     /* @__PURE__ */ jsx(H1, { children: "Page Not Found" }),
     /* @__PURE__ */ jsx("div", { style: { height: spaceVars["24"] } }),
     /* @__PURE__ */ jsx("hr", { className: divider$4 }),
@@ -471,7 +471,7 @@ var bannerTextColor = "var(--vocs_Banner_bannerTextColor)";
 var closeButton = "vocs_Banner_closeButton";
 var content$7 = "vocs_Banner_content";
 var inner = "vocs_Banner_inner";
-var root$V = "vocs_Banner";
+var root$U = "vocs_Banner";
 function deserializeElement(element, key) {
   if (typeof element !== "object") return element;
   if (element === null) return element;
@@ -492,7 +492,7 @@ function Banner({ hide }) {
   return /* @__PURE__ */ jsx(
     "div",
     {
-      className: clsx$1(root$V),
+      className: clsx$1(root$U),
       style: assignInlineVars({
         [bannerBackgroundColor]: banner == null ? void 0 : banner.backgroundColor,
         [bannerTextColor]: banner == null ? void 0 : banner.textColor
@@ -504,12 +504,12 @@ function Banner({ hide }) {
     }
   );
 }
-var root$U = "vocs_Content";
+var root$T = "vocs_Content";
 function Content$2({
   children,
   className
 }) {
-  return /* @__PURE__ */ jsx("article", { className: clsx(className, root$U), children });
+  return /* @__PURE__ */ jsx("article", { className: clsx(className, root$T), children });
 }
 function getActiveNavIds({
   items: items2,
@@ -684,15 +684,15 @@ function getItem(key) {
     return void 0;
   }
 }
-var root$T = "vocs_Kbd";
+var root$S = "vocs_Kbd";
 function Kbd(props) {
-  return /* @__PURE__ */ jsx("kbd", { ...props, className: clsx(props.className, root$T) });
+  return /* @__PURE__ */ jsx("kbd", { ...props, className: clsx(props.className, root$S) });
 }
 var kbdGroup = "vocs_KeyboardShortcut_kbdGroup";
-var root$S = "vocs_KeyboardShortcut";
+var root$R = "vocs_KeyboardShortcut";
 function KeyboardShortcut(props) {
   const { description: description2, keys } = props;
-  return /* @__PURE__ */ jsxs("span", { className: root$S, children: [
+  return /* @__PURE__ */ jsxs("span", { className: root$R, children: [
     description2,
     /* @__PURE__ */ jsx("span", { className: kbdGroup, children: keys.map((key) => /* @__PURE__ */ jsx(Kbd, { children: key }, key)) })
   ] });
@@ -704,7 +704,7 @@ var result = "vocs_SearchDialog_result";
 var resultIcon = "vocs_SearchDialog_resultIcon";
 var resultSelected = "vocs_SearchDialog_resultSelected";
 var results = "vocs_SearchDialog_results";
-var root$R = "vocs_SearchDialog";
+var root$Q = "vocs_SearchDialog";
 var searchBox = "vocs_SearchDialog_searchBox";
 var searchInput = "vocs_SearchDialog_searchInput";
 var searchInputIcon = "vocs_SearchDialog_searchInputIcon";
@@ -830,7 +830,7 @@ function SearchDialog(props) {
         onCloseAutoFocus: () => {
           setSelectedIndex(0);
         },
-        className: root$R,
+        className: root$Q,
         "aria-describedby": void 0,
         children: [
           /* @__PURE__ */ jsx(Dialog.Title, { className: visuallyHidden, children: "Search" }),
@@ -1028,17 +1028,17 @@ var icon$1 = "vocs_DesktopTopNav_icon";
 var item$4 = "vocs_DesktopTopNav_item";
 var logo$2 = "vocs_DesktopTopNav_logo";
 var logoWrapper$1 = "vocs_DesktopTopNav_logoWrapper";
-var root$Q = "vocs_DesktopTopNav";
+var root$P = "vocs_DesktopTopNav";
 var section$2 = "vocs_DesktopTopNav_section";
 var withLogo = "vocs_DesktopTopNav_withLogo";
-var root$P = "vocs_Icon";
+var root$O = "vocs_Icon";
 var sizeVar = "var(--vocs_Icon_size)";
 function Icon({ className, label, icon: Icon2, size, style }) {
   return /* @__PURE__ */ jsx(
     "div",
     {
       "aria-label": label,
-      className: clsx$1(root$P, className),
+      className: clsx$1(root$O, className),
       role: "img",
       style: {
         ...style,
@@ -1048,37 +1048,174 @@ function Icon({ className, label, icon: Icon2, size, style }) {
     }
   );
 }
-var logoDark = "vocs_Logo_logoDark";
-var logoLight = "vocs_Logo_logoLight";
-var root$O = "vocs_Logo";
 function Logo({ className }) {
-  const { logoUrl } = useConfig();
-  if (!logoUrl) return null;
-  return /* @__PURE__ */ jsx(Fragment$1, { children: typeof logoUrl === "string" ? /* @__PURE__ */ jsx("img", { alt: "Logo", className: clsx$1(className, root$O), src: logoUrl }) : /* @__PURE__ */ jsxs(Fragment$1, { children: [
-    /* @__PURE__ */ jsx(
-      "img",
+  useConfig();
+  return /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", gap: "1rem" }, children: [
+    /* @__PURE__ */ jsxs(
+      "svg",
       {
-        alt: "Logo",
-        className: clsx$1(className, root$O, logoDark),
-        src: logoUrl.dark
+        width: "15",
+        height: "15",
+        viewBox: "0 0 15 15",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        children: [
+          /* @__PURE__ */ jsx("title", { children: "create-ao-dapp" }),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M2.79034 1.28959C4.08923 0.260975 7.22683 2.05952 9.79836 5.30675C12.3699 8.55398 13.4016 12.0202 12.1027 13.0489C10.8038 14.0775 7.66619 12.2789 5.09466 9.03169C2.52312 5.78446 1.49145 2.3182 2.79034 1.28959Z",
+              fill: "#18DBD1"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              "fill-rule": "evenodd",
+              "clip-rule": "evenodd",
+              d: "M6.95302 2.45766C7.85437 3.14786 8.78849 4.05888 9.66291 5.13769C9.70823 5.19359 9.75338 5.24995 9.79836 5.30675C9.84334 5.36355 9.88785 5.42042 9.93189 5.47734C10.7816 6.57571 11.4543 7.69374 11.9196 8.72927C12.8087 10.708 12.9404 12.3854 12.1027 13.0489C11.2649 13.7123 9.6623 13.1996 7.93999 11.8808C7.03865 11.1906 6.10453 10.2796 5.23011 9.20076C5.18479 9.14485 5.13964 9.08849 5.09466 9.03169C5.04967 8.97489 5.00516 8.91802 4.96113 8.8611C4.11141 7.76273 3.4387 6.6447 2.97341 5.60917C2.08433 3.63047 1.95259 1.95301 2.79034 1.28959C3.62809 0.626162 5.23072 1.1388 6.95302 2.45766ZM5.82793 8.34657C5.67561 7.99043 5.55045 7.64721 5.4536 7.32183C5.25581 6.65729 5.18379 6.0926 5.22217 5.6562C5.26041 5.22125 5.40183 4.96167 5.58404 4.81737C5.76626 4.67307 6.05133 4.5949 6.48348 4.65735C6.91706 4.72 7.45022 4.91951 8.05175 5.26432C8.34628 5.43315 8.65168 5.63364 8.96344 5.86351C8.98045 5.88479 8.99744 5.90615 9.01441 5.92758C9.03138 5.949 9.04827 5.97043 9.06509 5.99187C9.2174 6.34801 9.34257 6.69123 9.43941 7.01661C9.6372 7.68115 9.70923 8.24584 9.67085 8.68224C9.63261 9.1172 9.49119 9.37678 9.30898 9.52107C9.12676 9.66537 8.84168 9.74354 8.40954 9.6811C7.97596 9.61844 7.4428 9.41893 6.84127 9.07412C6.54674 8.90529 6.24134 8.70481 5.92957 8.47493C5.91257 8.45365 5.89558 8.43229 5.87861 8.41087C5.86164 8.38944 5.84475 8.36801 5.82793 8.34657ZM7.96952 10.615C8.06985 10.638 8.16892 10.6567 8.26653 10.6708C8.86836 10.7578 9.46257 10.675 9.9298 10.305C10.397 9.93502 10.6137 9.37559 10.667 8.76984C10.6756 8.6716 10.6802 8.57088 10.6807 8.46794C11.0219 9.11983 11.2779 9.73862 11.4435 10.2951C11.6306 10.9236 11.6871 11.4218 11.6561 11.7742C11.6253 12.1238 11.5216 12.2335 11.4819 12.2649C11.4422 12.2963 11.3116 12.3722 10.9643 12.322C10.6142 12.2714 10.1422 12.1023 9.57322 11.7761C9.06954 11.4874 8.52589 11.0964 7.96952 10.615ZM6.9235 3.72347C6.36713 3.24201 5.82348 2.85102 5.3198 2.5623C4.75085 2.23616 4.27885 2.067 3.92868 2.0164C3.58138 1.96622 3.45087 2.0421 3.41116 2.07354C3.37146 2.10498 3.26769 2.21464 3.23695 2.56419C3.20596 2.91664 3.26246 3.41484 3.44954 4.04339C3.61515 4.59983 3.87116 5.21861 4.21231 5.8705C4.21286 5.76756 4.21737 5.66684 4.22601 5.5686C4.27928 4.96286 4.49599 4.40342 4.96322 4.03342C5.43045 3.66341 6.02466 3.58066 6.62649 3.66763C6.7241 3.68173 6.82316 3.70042 6.9235 3.72347Z",
+              fill: "white"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M0.951376 10.9192C0.122948 9.48434 2.35937 6.64221 5.94657 4.57114C9.53376 2.50008 13.1133 1.98434 13.9418 3.41922C14.7702 4.8541 12.5338 7.69623 8.94657 9.7673C5.35937 11.8384 1.7798 12.3541 0.951376 10.9192Z",
+              fill: "#757575"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              "fill-rule": "evenodd",
+              "clip-rule": "evenodd",
+              d: "M2.71338 6.9711C3.55282 6.15533 4.62957 5.33928 5.87139 4.61477C5.89638 4.60019 5.92144 4.58565 5.94657 4.57114C5.97169 4.55664 5.99681 4.54221 6.02194 4.52786C7.27028 3.81466 8.51538 3.29019 9.64158 2.97109C11.7287 2.37974 13.4074 2.49376 13.9418 3.41922C14.4761 4.34467 13.7354 5.85553 12.1798 7.36734C11.3403 8.18311 10.2636 8.99916 9.02174 9.72367C8.99675 9.73825 8.97169 9.75279 8.94657 9.7673C8.92144 9.7818 8.89632 9.79623 8.87119 9.81058C7.62285 10.5238 6.37775 11.0483 5.25155 11.3673C3.16444 11.9587 1.48569 11.8447 0.951376 10.9192C0.417064 9.99376 1.15769 8.48291 2.71338 6.9711ZM10.1856 7.75425C11.0806 7.08003 11.805 6.38337 12.3141 5.7363C12.7197 5.22093 12.9558 4.77861 13.0569 4.43954C13.1571 4.10326 13.1011 3.96308 13.0757 3.91922C13.0504 3.87536 12.957 3.75672 12.6157 3.67539C12.2715 3.59339 11.7704 3.57671 11.1213 3.67023C10.3063 3.78765 9.3408 4.06668 8.30942 4.50465C9.06622 4.66189 9.68072 5.03889 10.0446 5.66922C10.4086 6.29955 10.4278 7.02022 10.1856 7.75425ZM4.70755 6.58419C3.81258 7.25841 3.08816 7.95507 2.57898 8.60214C2.17345 9.11751 1.93733 9.55983 1.83626 9.8989C1.73602 10.2352 1.79208 10.3754 1.8174 10.4192C1.84272 10.4631 1.93609 10.5817 2.27744 10.663C2.62162 10.7451 3.12274 10.7617 3.77183 10.6682C4.5868 10.5508 5.55234 10.2718 6.58371 9.83379C5.82691 9.67655 5.21241 9.29955 4.84849 8.66922C4.48457 8.03889 4.46532 7.31822 4.70755 6.58419ZM8.40564 8.83039C8.18531 8.86966 7.97578 8.8957 7.77771 8.90913C6.63951 8.98634 5.99244 8.65059 5.71452 8.16922C5.43659 7.68785 5.46937 6.95959 6.10533 6.01248C6.216 5.84767 6.34331 5.67923 6.48749 5.50805C6.70783 5.46878 6.91735 5.44274 7.11542 5.42931C8.25362 5.3521 8.9007 5.68785 9.17862 6.16922C9.45654 6.65059 9.42377 7.37885 8.7878 8.32595C8.67713 8.49077 8.54982 8.65921 8.40564 8.83039Z",
+              fill: "white"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M0.0104452 6.19234C0.226252 4.5496 3.73046 3.65526 7.83731 4.19478C11.9442 4.73429 15.0985 6.50336 14.8827 8.1461C14.6669 9.78884 11.1626 10.6832 7.0558 10.1437C2.94895 9.60415 -0.205362 7.83508 0.0104452 6.19234Z",
+              fill: "#757575"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              "fill-rule": "evenodd",
+              "clip-rule": "evenodd",
+              d: "M3.81123 4.13166C4.93874 3.99928 6.24354 4.00253 7.62236 4.16778C7.69381 4.17634 7.76547 4.18534 7.83731 4.19478C7.90914 4.20421 7.98069 4.21403 8.05193 4.22421C9.42665 4.42069 10.688 4.75456 11.7431 5.17367C13.7591 5.97451 15.0219 7.08658 14.8827 8.1461C14.7435 9.20562 13.2363 9.95382 11.0819 10.2068C9.95437 10.3392 8.64956 10.3359 7.27075 10.1707C7.19929 10.1621 7.12764 10.1531 7.0558 10.1437C6.98396 10.1342 6.91242 10.1244 6.84117 10.1142C5.46646 9.91774 4.20509 9.58388 3.15003 9.16477C1.134 8.36393 -0.128744 7.25186 0.0104452 6.19234C0.149634 5.13282 1.65676 4.38462 3.81123 4.13166ZM7.10491 9.14134C6.74758 8.99182 6.41873 8.83268 6.12263 8.66662C5.5179 8.32746 5.07296 7.97237 4.79658 7.63246C4.52113 7.29369 4.44184 7.00892 4.47211 6.77847C4.50238 6.54802 4.65253 6.29339 5.00614 6.03725C5.36093 5.78026 5.8825 5.55214 6.55431 5.38068C6.88325 5.29673 7.24204 5.22792 7.62586 5.17578C7.65289 5.1792 7.67996 5.1827 7.70706 5.18626C7.73416 5.18982 7.7612 5.19343 7.7882 5.1971C8.14553 5.34662 8.47438 5.50576 8.77047 5.67182C9.3752 6.01098 9.82015 6.36607 10.0965 6.70598C10.372 7.04475 10.4513 7.32952 10.421 7.55997C10.3907 7.79042 10.2406 8.04505 9.88696 8.30118C9.53217 8.55817 9.01061 8.78629 8.3388 8.95775C8.00986 9.04171 7.65107 9.11051 7.26724 9.16266C7.24022 9.15924 7.21315 9.15574 7.18605 9.15218C7.15895 9.14862 7.1319 9.14501 7.10491 9.14134ZM10.2215 9.27781C10.3096 9.22448 10.3937 9.1689 10.4736 9.11105C10.966 8.75433 11.3348 8.28114 11.4125 7.69022C11.4901 7.0993 11.256 6.54691 10.8724 6.07511C10.8102 5.99859 10.7433 5.92317 10.672 5.84891C11.3708 6.07915 11.9855 6.34493 12.4918 6.62892C13.0638 6.94971 13.4513 7.2679 13.6745 7.54241C13.8959 7.81468 13.8978 7.96563 13.8912 8.01585C13.8846 8.06607 13.8438 8.21141 13.5596 8.41726C13.273 8.62481 12.8165 8.83211 12.1811 8.99429C11.6186 9.13785 10.9561 9.23586 10.2215 9.27781ZM4.67156 5.06063C3.937 5.10258 3.27456 5.20058 2.71203 5.34415C2.0766 5.50632 1.62007 5.71363 1.33353 5.92118C1.04935 6.12703 1.00852 6.27237 1.00193 6.32259C0.995329 6.3728 0.997228 6.52376 1.2186 6.79602C1.44181 7.07054 1.82931 7.38872 2.40129 7.70951C2.90765 7.9935 3.5223 8.25928 4.22111 8.48953C4.14981 8.41527 4.08291 8.33985 4.02069 8.26333C3.63707 7.79153 3.403 7.23913 3.48063 6.64822C3.55826 6.0573 3.92706 5.5841 4.41952 5.22739C4.49939 5.16954 4.5835 5.11396 4.67156 5.06063Z",
+              fill: "white"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M6.62544 13.5586C4.81944 13.3213 3.72208 10.3377 4.17442 6.89444C4.62676 3.45121 6.4575 0.852243 8.2635 1.0895C10.0695 1.32675 11.1669 4.31038 10.7145 7.75362C10.2622 11.1969 8.43144 13.7958 6.62544 13.5586Z",
+              fill: "#757575"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              "fill-rule": "evenodd",
+              "clip-rule": "evenodd",
+              d: "M4.15361 7.06181C4.01848 8.21334 4.05671 9.30881 4.23641 10.2615C4.58293 12.0986 5.45549 13.4049 6.62544 13.5586C7.7954 13.7123 8.97573 12.6757 9.78499 10.9904C10.2047 10.1165 10.5245 9.06804 10.6914 7.92068C10.6995 7.86522 10.7072 7.80953 10.7145 7.75362C10.7219 7.69771 10.7288 7.64191 10.7353 7.58625C10.8705 6.43472 10.8322 5.33926 10.6525 4.38655C10.306 2.54944 9.43346 1.24319 8.2635 1.0895C7.09355 0.935801 5.91322 1.97236 5.10396 3.65764C4.68429 4.5316 4.36442 5.58002 4.19754 6.72738C4.18948 6.78284 4.18177 6.83853 4.17442 6.89444C4.16708 6.95036 4.16014 7.00615 4.15361 7.06181ZM5.07619 8.69585C5.10096 9.61439 5.25207 10.4323 5.49159 11.0836C5.88713 12.159 6.40572 12.5211 6.75569 12.5671C7.10567 12.6131 7.70019 12.3972 8.36007 11.4604C8.75968 10.8931 9.11691 10.142 9.37808 9.26099C8.70354 9.77133 7.92247 10.0052 7.10634 9.89795C6.29021 9.79074 5.59604 9.3631 5.07619 8.69585ZM5.32355 7.04541C5.37564 7.19772 5.43355 7.34088 5.49669 7.47471C5.91048 8.35192 6.53543 8.81436 7.23659 8.90647C7.93775 8.99858 8.66093 8.71324 9.28725 7.97268C9.38281 7.85969 9.47574 7.73635 9.5654 7.60266C9.51331 7.45034 9.45539 7.30718 9.39226 7.17335C8.97847 6.29615 8.35352 5.83371 7.65236 5.74159C6.9512 5.64948 6.22802 5.93482 5.60169 6.67538C5.50614 6.78837 5.41321 6.91171 5.32355 7.04541ZM9.81276 5.95221C9.29291 5.28496 8.59874 4.85733 7.78261 4.75011C6.96648 4.6429 6.18541 4.87673 5.51086 5.38707C5.77204 4.5061 6.12927 3.75495 6.52887 3.18767C7.18876 2.25088 7.78328 2.035 8.13325 2.08098C8.48323 2.12695 9.00182 2.48906 9.39736 3.5645C9.63688 4.21575 9.78799 5.03368 9.81276 5.95221Z",
+              fill: "white"
+            }
+          )
+        ]
       }
     ),
-    /* @__PURE__ */ jsx(
-      "img",
-      {
-        alt: "Logo",
-        className: clsx$1(className, root$O, logoLight),
-        src: logoUrl.light
-      }
-    )
-  ] }) });
+    "Create AO dApp"
+  ] });
 }
 var logoImage = "vocs_NavLogo_logoImage";
 var title$3 = "vocs_NavLogo_title";
 function NavLogo() {
   const config2 = useConfig();
   if (config2.logoUrl) return /* @__PURE__ */ jsx(Logo, { className: logoImage });
-  return /* @__PURE__ */ jsx("div", { className: title$3, children: config2.title });
+  return /* @__PURE__ */ jsxs("div", { className: title$3, style: { display: "flex", alignItems: "center", gap: "1rem" }, children: [
+    /* @__PURE__ */ jsxs(
+      "svg",
+      {
+        width: "32",
+        height: "32",
+        viewBox: "0 0 15 15",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        children: [
+          /* @__PURE__ */ jsx("title", { children: "create-ao-dapp" }),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M2.79034 1.28959C4.08923 0.260975 7.22683 2.05952 9.79836 5.30675C12.3699 8.55398 13.4016 12.0202 12.1027 13.0489C10.8038 14.0775 7.66619 12.2789 5.09466 9.03169C2.52312 5.78446 1.49145 2.3182 2.79034 1.28959Z",
+              fill: "#18DBD1"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              fillRule: "evenodd",
+              clipRule: "evenodd",
+              d: "M6.95302 2.45766C7.85437 3.14786 8.78849 4.05888 9.66291 5.13769C9.70823 5.19359 9.75338 5.24995 9.79836 5.30675C9.84334 5.36355 9.88785 5.42042 9.93189 5.47734C10.7816 6.57571 11.4543 7.69374 11.9196 8.72927C12.8087 10.708 12.9404 12.3854 12.1027 13.0489C11.2649 13.7123 9.6623 13.1996 7.93999 11.8808C7.03865 11.1906 6.10453 10.2796 5.23011 9.20076C5.18479 9.14485 5.13964 9.08849 5.09466 9.03169C5.04967 8.97489 5.00516 8.91802 4.96113 8.8611C4.11141 7.76273 3.4387 6.6447 2.97341 5.60917C2.08433 3.63047 1.95259 1.95301 2.79034 1.28959C3.62809 0.626162 5.23072 1.1388 6.95302 2.45766ZM5.82793 8.34657C5.67561 7.99043 5.55045 7.64721 5.4536 7.32183C5.25581 6.65729 5.18379 6.0926 5.22217 5.6562C5.26041 5.22125 5.40183 4.96167 5.58404 4.81737C5.76626 4.67307 6.05133 4.5949 6.48348 4.65735C6.91706 4.72 7.45022 4.91951 8.05175 5.26432C8.34628 5.43315 8.65168 5.63364 8.96344 5.86351C8.98045 5.88479 8.99744 5.90615 9.01441 5.92758C9.03138 5.949 9.04827 5.97043 9.06509 5.99187C9.2174 6.34801 9.34257 6.69123 9.43941 7.01661C9.6372 7.68115 9.70923 8.24584 9.67085 8.68224C9.63261 9.1172 9.49119 9.37678 9.30898 9.52107C9.12676 9.66537 8.84168 9.74354 8.40954 9.6811C7.97596 9.61844 7.4428 9.41893 6.84127 9.07412C6.54674 8.90529 6.24134 8.70481 5.92957 8.47493C5.91257 8.45365 5.89558 8.43229 5.87861 8.41087C5.86164 8.38944 5.84475 8.36801 5.82793 8.34657ZM7.96952 10.615C8.06985 10.638 8.16892 10.6567 8.26653 10.6708C8.86836 10.7578 9.46257 10.675 9.9298 10.305C10.397 9.93502 10.6137 9.37559 10.667 8.76984C10.6756 8.6716 10.6802 8.57088 10.6807 8.46794C11.0219 9.11983 11.2779 9.73862 11.4435 10.2951C11.6306 10.9236 11.6871 11.4218 11.6561 11.7742C11.6253 12.1238 11.5216 12.2335 11.4819 12.2649C11.4422 12.2963 11.3116 12.3722 10.9643 12.322C10.6142 12.2714 10.1422 12.1023 9.57322 11.7761C9.06954 11.4874 8.52589 11.0964 7.96952 10.615ZM6.9235 3.72347C6.36713 3.24201 5.82348 2.85102 5.3198 2.5623C4.75085 2.23616 4.27885 2.067 3.92868 2.0164C3.58138 1.96622 3.45087 2.0421 3.41116 2.07354C3.37146 2.10498 3.26769 2.21464 3.23695 2.56419C3.20596 2.91664 3.26246 3.41484 3.44954 4.04339C3.61515 4.59983 3.87116 5.21861 4.21231 5.8705C4.21286 5.76756 4.21737 5.66684 4.22601 5.5686C4.27928 4.96286 4.49599 4.40342 4.96322 4.03342C5.43045 3.66341 6.02466 3.58066 6.62649 3.66763C6.7241 3.68173 6.82316 3.70042 6.9235 3.72347Z",
+              fill: "white"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M0.951376 10.9192C0.122948 9.48434 2.35937 6.64221 5.94657 4.57114C9.53376 2.50008 13.1133 1.98434 13.9418 3.41922C14.7702 4.8541 12.5338 7.69623 8.94657 9.7673C5.35937 11.8384 1.7798 12.3541 0.951376 10.9192Z",
+              fill: "#757575"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              fillRule: "evenodd",
+              clipRule: "evenodd",
+              d: "M2.71338 6.9711C3.55282 6.15533 4.62957 5.33928 5.87139 4.61477C5.89638 4.60019 5.92144 4.58565 5.94657 4.57114C5.97169 4.55664 5.99681 4.54221 6.02194 4.52786C7.27028 3.81466 8.51538 3.29019 9.64158 2.97109C11.7287 2.37974 13.4074 2.49376 13.9418 3.41922C14.4761 4.34467 13.7354 5.85553 12.1798 7.36734C11.3403 8.18311 10.2636 8.99916 9.02174 9.72367C8.99675 9.73825 8.97169 9.75279 8.94657 9.7673C8.92144 9.7818 8.89632 9.79623 8.87119 9.81058C7.62285 10.5238 6.37775 11.0483 5.25155 11.3673C3.16444 11.9587 1.48569 11.8447 0.951376 10.9192C0.417064 9.99376 1.15769 8.48291 2.71338 6.9711ZM10.1856 7.75425C11.0806 7.08003 11.805 6.38337 12.3141 5.7363C12.7197 5.22093 12.9558 4.77861 13.0569 4.43954C13.1571 4.10326 13.1011 3.96308 13.0757 3.91922C13.0504 3.87536 12.957 3.75672 12.6157 3.67539C12.2715 3.59339 11.7704 3.57671 11.1213 3.67023C10.3063 3.78765 9.3408 4.06668 8.30942 4.50465C9.06622 4.66189 9.68072 5.03889 10.0446 5.66922C10.4086 6.29955 10.4278 7.02022 10.1856 7.75425ZM4.70755 6.58419C3.81258 7.25841 3.08816 7.95507 2.57898 8.60214C2.17345 9.11751 1.93733 9.55983 1.83626 9.8989C1.73602 10.2352 1.79208 10.3754 1.8174 10.4192C1.84272 10.4631 1.93609 10.5817 2.27744 10.663C2.62162 10.7451 3.12274 10.7617 3.77183 10.6682C4.5868 10.5508 5.55234 10.2718 6.58371 9.83379C5.82691 9.67655 5.21241 9.29955 4.84849 8.66922C4.48457 8.03889 4.46532 7.31822 4.70755 6.58419ZM8.40564 8.83039C8.18531 8.86966 7.97578 8.8957 7.77771 8.90913C6.63951 8.98634 5.99244 8.65059 5.71452 8.16922C5.43659 7.68785 5.46937 6.95959 6.10533 6.01248C6.216 5.84767 6.34331 5.67923 6.48749 5.50805C6.70783 5.46878 6.91735 5.44274 7.11542 5.42931C8.25362 5.3521 8.9007 5.68785 9.17862 6.16922C9.45654 6.65059 9.42377 7.37885 8.7878 8.32595C8.67713 8.49077 8.54982 8.65921 8.40564 8.83039Z",
+              fill: "white"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M0.0104452 6.19234C0.226252 4.5496 3.73046 3.65526 7.83731 4.19478C11.9442 4.73429 15.0985 6.50336 14.8827 8.1461C14.6669 9.78884 11.1626 10.6832 7.0558 10.1437C2.94895 9.60415 -0.205362 7.83508 0.0104452 6.19234Z",
+              fill: "#757575"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              fillRule: "evenodd",
+              clipRule: "evenodd",
+              d: "M3.81123 4.13166C4.93874 3.99928 6.24354 4.00253 7.62236 4.16778C7.69381 4.17634 7.76547 4.18534 7.83731 4.19478C7.90914 4.20421 7.98069 4.21403 8.05193 4.22421C9.42665 4.42069 10.688 4.75456 11.7431 5.17367C13.7591 5.97451 15.0219 7.08658 14.8827 8.1461C14.7435 9.20562 13.2363 9.95382 11.0819 10.2068C9.95437 10.3392 8.64956 10.3359 7.27075 10.1707C7.19929 10.1621 7.12764 10.1531 7.0558 10.1437C6.98396 10.1342 6.91242 10.1244 6.84117 10.1142C5.46646 9.91774 4.20509 9.58388 3.15003 9.16477C1.134 8.36393 -0.128744 7.25186 0.0104452 6.19234C0.149634 5.13282 1.65676 4.38462 3.81123 4.13166ZM7.10491 9.14134C6.74758 8.99182 6.41873 8.83268 6.12263 8.66662C5.5179 8.32746 5.07296 7.97237 4.79658 7.63246C4.52113 7.29369 4.44184 7.00892 4.47211 6.77847C4.50238 6.54802 4.65253 6.29339 5.00614 6.03725C5.36093 5.78026 5.8825 5.55214 6.55431 5.38068C6.88325 5.29673 7.24204 5.22792 7.62586 5.17578C7.65289 5.1792 7.67996 5.1827 7.70706 5.18626C7.73416 5.18982 7.7612 5.19343 7.7882 5.1971C8.14553 5.34662 8.47438 5.50576 8.77047 5.67182C9.3752 6.01098 9.82015 6.36607 10.0965 6.70598C10.372 7.04475 10.4513 7.32952 10.421 7.55997C10.3907 7.79042 10.2406 8.04505 9.88696 8.30118C9.53217 8.55817 9.01061 8.78629 8.3388 8.95775C8.00986 9.04171 7.65107 9.11051 7.26724 9.16266C7.24022 9.15924 7.21315 9.15574 7.18605 9.15218C7.15895 9.14862 7.1319 9.14501 7.10491 9.14134ZM10.2215 9.27781C10.3096 9.22448 10.3937 9.1689 10.4736 9.11105C10.966 8.75433 11.3348 8.28114 11.4125 7.69022C11.4901 7.0993 11.256 6.54691 10.8724 6.07511C10.8102 5.99859 10.7433 5.92317 10.672 5.84891C11.3708 6.07915 11.9855 6.34493 12.4918 6.62892C13.0638 6.94971 13.4513 7.2679 13.6745 7.54241C13.8959 7.81468 13.8978 7.96563 13.8912 8.01585C13.8846 8.06607 13.8438 8.21141 13.5596 8.41726C13.273 8.62481 12.8165 8.83211 12.1811 8.99429C11.6186 9.13785 10.9561 9.23586 10.2215 9.27781ZM4.67156 5.06063C3.937 5.10258 3.27456 5.20058 2.71203 5.34415C2.0766 5.50632 1.62007 5.71363 1.33353 5.92118C1.04935 6.12703 1.00852 6.27237 1.00193 6.32259C0.995329 6.3728 0.997228 6.52376 1.2186 6.79602C1.44181 7.07054 1.82931 7.38872 2.40129 7.70951C2.90765 7.9935 3.5223 8.25928 4.22111 8.48953C4.14981 8.41527 4.08291 8.33985 4.02069 8.26333C3.63707 7.79153 3.403 7.23913 3.48063 6.64822C3.55826 6.0573 3.92706 5.5841 4.41952 5.22739C4.49939 5.16954 4.5835 5.11396 4.67156 5.06063Z",
+              fill: "white"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              d: "M6.62544 13.5586C4.81944 13.3213 3.72208 10.3377 4.17442 6.89444C4.62676 3.45121 6.4575 0.852243 8.2635 1.0895C10.0695 1.32675 11.1669 4.31038 10.7145 7.75362C10.2622 11.1969 8.43144 13.7958 6.62544 13.5586Z",
+              fill: "#757575"
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "path",
+            {
+              fillRule: "evenodd",
+              clipRule: "evenodd",
+              d: "M4.15361 7.06181C4.01848 8.21334 4.05671 9.30881 4.23641 10.2615C4.58293 12.0986 5.45549 13.4049 6.62544 13.5586C7.7954 13.7123 8.97573 12.6757 9.78499 10.9904C10.2047 10.1165 10.5245 9.06804 10.6914 7.92068C10.6995 7.86522 10.7072 7.80953 10.7145 7.75362C10.7219 7.69771 10.7288 7.64191 10.7353 7.58625C10.8705 6.43472 10.8322 5.33926 10.6525 4.38655C10.306 2.54944 9.43346 1.24319 8.2635 1.0895C7.09355 0.935801 5.91322 1.97236 5.10396 3.65764C4.68429 4.5316 4.36442 5.58002 4.19754 6.72738C4.18948 6.78284 4.18177 6.83853 4.17442 6.89444C4.16708 6.95036 4.16014 7.00615 4.15361 7.06181ZM5.07619 8.69585C5.10096 9.61439 5.25207 10.4323 5.49159 11.0836C5.88713 12.159 6.40572 12.5211 6.75569 12.5671C7.10567 12.6131 7.70019 12.3972 8.36007 11.4604C8.75968 10.8931 9.11691 10.142 9.37808 9.26099C8.70354 9.77133 7.92247 10.0052 7.10634 9.89795C6.29021 9.79074 5.59604 9.3631 5.07619 8.69585ZM5.32355 7.04541C5.37564 7.19772 5.43355 7.34088 5.49669 7.47471C5.91048 8.35192 6.53543 8.81436 7.23659 8.90647C7.93775 8.99858 8.66093 8.71324 9.28725 7.97268C9.38281 7.85969 9.47574 7.73635 9.5654 7.60266C9.51331 7.45034 9.45539 7.30718 9.39226 7.17335C8.97847 6.29615 8.35352 5.83371 7.65236 5.74159C6.9512 5.64948 6.22802 5.93482 5.60169 6.67538C5.50614 6.78837 5.41321 6.91171 5.32355 7.04541ZM9.81276 5.95221C9.29291 5.28496 8.59874 4.85733 7.78261 4.75011C6.96648 4.6429 6.18541 4.87673 5.51086 5.38707C5.77204 4.5061 6.12927 3.75495 6.52887 3.18767C7.18876 2.25088 7.78328 2.035 8.13325 2.08098C8.48323 2.12695 9.00182 2.48906 9.39736 3.5645C9.63688 4.21575 9.78799 5.03368 9.81276 5.95221Z",
+              fill: "white"
+            }
+          )
+        ]
+      }
+    ),
+    config2.title
+  ] });
 }
 var chevronDownIcon$1 = "var(--vocs_NavigationMenu_chevronDownIcon)";
 var content$4 = "vocs_NavigationMenu_content";
@@ -1262,7 +1399,7 @@ function DesktopTopNav() {
   var _a, _b, _c, _d, _e, _f;
   const config2 = useConfig();
   const { showLogo, showSidebar } = useLayout();
-  return /* @__PURE__ */ jsxs("div", { className: clsx$1(root$Q, showLogo && !showSidebar && withLogo), children: [
+  return /* @__PURE__ */ jsxs("div", { className: clsx$1(root$P, showLogo && !showSidebar && withLogo), children: [
     /* @__PURE__ */ jsx(DesktopSearch, {}),
     showLogo && /* @__PURE__ */ jsx("div", { className: logoWrapper$1, children: /* @__PURE__ */ jsx("div", { className: logo$2, children: /* @__PURE__ */ jsx(
       RouterLink,
@@ -1382,9 +1519,9 @@ function SocialButton$1({ icon: icon2, label, link: link2 }) {
   ) });
 }
 function Footer$1() {
-  return /* @__PURE__ */ jsxs("div", { children: [
+  return /* @__PURE__ */ jsxs("div", { className: "footer", children: [
     /* @__PURE__ */ jsx("div", { children: "Released under the MIT License." }),
-    /* @__PURE__ */ jsx("div", { children: "Copyright © 2022-present weth, LLC." })
+    /* @__PURE__ */ jsx("div", { children: "Copyright © 2024-present Autonomous Research." })
   ] });
 }
 const Layout = ({ children }) => children;
@@ -1678,7 +1815,7 @@ function Outline({
   const [headingElements, setHeadingElements] = useState([]);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const elements = Array.from(document.querySelectorAll(`.${root$X}`));
+    const elements = Array.from(document.querySelectorAll(`.${root$W}`));
     setHeadingElements(elements);
   }, [pathname]);
   const items2 = useMemo(() => {

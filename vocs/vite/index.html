@@ -7,7 +7,11 @@
     <!--head-->
   </head>
   <body>
-    <div id="app"><!--body--></div>
+    <div id="root"><!--body--></div>
     <script type="module" defer src="../app/index.client.tsx"></script>
+
+    <script>
+      document.getElementById('root').innerHTML = '';
+    </script>
   </body>
 </html>

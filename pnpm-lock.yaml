@@ -157,6 +157,9 @@ importers:
       '@shikijs/twoslash':
         specifier: ^1.10.3
         version: 1.17.7(typescript@5.6.2)
+      '@types/mdx':
+        specifier: ^2.0.13
+        version: 2.0.13
       '@vanilla-extract/css':
         specifier: ^1.14.0
         version: 1.15.5

@@ -47,6 +47,10 @@ export async function init() {
               label: "Lua + SQLite template (Books Manager)",
             },
             {
+              value: "lua-0rbit",
+              label: "Lua + 0rbit template",
+            },
+            {
               value: "teal",
               label: "Teal Typed Lua template (Counter)",
             },

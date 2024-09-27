@@ -13,7 +13,8 @@
     "format": "biome format . --write",
     "lint": "biome lint . --apply-unsafe",
     "preconstruct": "bun run scripts/preconstruct.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.3.1",

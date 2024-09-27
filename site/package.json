@@ -1,0 +1,19 @@
+{
+    "name": "site",
+    "version": "0.1.10",
+    "type": "module",
+    "private": true,
+    "scripts": {
+      "dev": "vocs dev",
+      "build": "vocs build",
+      "start": "vocs preview"
+    },
+    "dependencies": {
+      "@mdx-js/react": "^3.0.1",
+      "@types/react": "latest",
+      "react": "latest",
+      "react-dom": "latest",
+      "typescript": "latest",
+      "vocs": "workspace:*"
+    }
+  }

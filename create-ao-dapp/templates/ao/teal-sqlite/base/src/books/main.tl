@@ -1,11 +1,20 @@
-require "factory.globals"
+require "books.globals"
+
+local sqlite3 = require('lsqlite3')
 local dbUtils = require "books.db-utils"
+local json = require "json"
 
 -- Initialize global variables
 Variant = "0.0.3"
 Counter = 0
 DB            = DB or sqlite3.open_memory()
 Configured    = Configured or false
+
+global record Book
+    Id: number
+    Author: string
+    Title: string
+end
 
 if not Configured then
   DB:exec([[
@@ -34,16 +43,14 @@ local function getBooks(msg: Message)
 
   ao.send({
     Target = msg.From,
-    Tags = {
-        ["Response-For"] = msg.Action,
-        Action = "Get-Books"
-    },
+    ["Response-For"] = msg.Tags.Action,
+    Action = "Get-Books",
     Data = json.encode(books)
   })
 end
 
 local function addBook(msg:Message)
-  local book = json.decode(msg.Data)
+  local book = json.decode(msg.Data) as Book
 
   local stmt = DB:prepare([[
     INSERT INTO Books (Author, Title)
@@ -69,16 +76,14 @@ local function addBook(msg:Message)
 
   ao.send({
       Target = msg.From,
-      Tags = {
-          ["Response-For"] = msg.Action,
-          Action = "Add-Book"
-      },
+      ["Response-For"] = msg.Tags.Action,
+      Action = "Add-Book",
       Data = json.encode(book)
   })
 end
 
 local function updateBook(msg:Message)
-  local book = json.decode(msg.Data)
+  local book = json.decode(msg.Data) as Book
 
   local stmt = DB:prepare([[
       UPDATE Books
@@ -104,10 +109,8 @@ local function updateBook(msg:Message)
 
   ao.send({
       Target = msg.From,
-      Tags = {
-          ["Response-For"] = msg.Action,
-          Action = "Update-Book"
-      },
+      ["Response-For"] = msg.Tags.Action,
+      Action = "Update-Book",
       Data = json.encode(book)
   })
 end
@@ -116,7 +119,7 @@ local function deleteBook(msg: Message)
   -- Check is msg.From is process owner
   assert(msg.From == Owner, "Only the process owner can delete a book")
 
-  local book = json.decode(msg.Data)
+  local book = json.decode(msg.Data) as Book
 
   local stmt = DB:prepare([[
       DELETE FROM Books
@@ -128,7 +131,7 @@ local function deleteBook(msg: Message)
   end
 
   stmt:bind_names({
-      Id = id
+      Id = book.Id
   })
 
   local _, err = stmt:step()
@@ -137,12 +140,10 @@ local function deleteBook(msg: Message)
   end
   stmt:reset()
 
-  mod.sendMessage({
+  ao.send({
       Target = msg.From,
-      Tags = {
-          ["Response-For"] = msg.Action,
-          Action = "Delete-Book"
-      },
+      ["Response-For"] = msg.Tags.Action,
+      Action = "Delete-Book",
       Data = json.encode(book)
   })
 end

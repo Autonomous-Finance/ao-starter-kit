@@ -1,14 +1,7 @@
 {
+  "extends": "./tsconfig.base.json",
+  "include": ["scripts", "src", "vocs.config.ts"],
   "compilerOptions": {
-    "noEmit": true,
-    "module": "ESNext",
-    "target": "ESNext",
-    "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-     // JSON
-     "resolveJsonModule": true
-  },
+    "types": ["bun-types"]
+  }
 }

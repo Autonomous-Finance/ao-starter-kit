@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { defineConfig } from "./vocs/index.js";
-import { version } from "./docs/package.json";
+import { defineConfig } from "./src/index.js";
+import { version } from "./create-ao-dapp/package.json";
 
 const REPO_URL = "https://github.com/Autonomous-Finance/ao-starter-kit";
 
@@ -12,9 +12,10 @@ export default defineConfig({
       dark: "white",
     },
   },
-  rootDir: "docs",
+  rootDir: "site",
   basePath: "/",
   title: "Create AO dApp",
+  logoUrl: "Create AO dApp",
   ogImageUrl: "https://create-ao-dapp.ar.io/og.png",
   sidebar: [
     {

@@ -1,44 +1,45 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
     "files": {
-        "ignore": [
-            "_lib",
-            "dist",
-            "**/node_modules",
-            "tsconfig.json",
-            "tsconfig.*.json",
-            ".vercel",
-            ".vocs"
-        ]
+      "ignore": [
+        "_lib",
+        "dist",
+        "**/node_modules",
+        "tsconfig.json",
+        "tsconfig.*.json",
+        ".vercel",
+        ".vocs"
+      ]
     },
     "formatter": {
-        "enabled": true,
-        "formatWithErrors": false,
-        "indentStyle": "space",
-        "indentWidth": 2,
-        "lineWidth": 100
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100
     },
     "linter": {
-        "enabled": true,
-        "rules": {
-            "style": {
-                "noNonNullAssertion": "off"
-            },
-            "suspicious": {
-                "noAssignInExpressions": "off",
-                "noExplicitAny": "off",
-                "noArrayIndexKey": "off"
-            }
+      "enabled": true,
+      "rules": {
+        "style": {
+          "noNonNullAssertion": "off"
+        },
+        "suspicious": {
+          "noAssignInExpressions": "off",
+          "noExplicitAny": "off",
+          "noArrayIndexKey": "off"
         }
+      }
     },
     "javascript": {
-        "formatter": {
-            "quoteStyle": "double",
-            "trailingCommas": "all",
-            "semicolons": "always"
-        }
+      "formatter": {
+        "quoteStyle": "single",
+        "trailingComma": "all",
+        "semicolons": "asNeeded"
+      }
     },
     "organizeImports": {
-        "enabled": true
+      "enabled": true
     }
-}
+  }
+  

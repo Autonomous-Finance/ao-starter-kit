@@ -1,5 +1,11 @@
 # create-ao-dapp
 
+## 0.1.10
+
+### Patch Changes
+
+- 5b09abe: fix teal-sqlite types in template
+
 ## 0.1.9
 
 ### Patch Changes

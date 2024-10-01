@@ -19,7 +19,13 @@ npm install
 
 ### Build the Lua process
 
+:::warning
+You need to make the `./ao/process-name/scripts/build.sh` executable before running the build command.
+:::
+
 ```bash
+chmod +x ./ao/process-name/scripts/build.sh
+
 npm run process-name:build
 ```
 
@@ -42,6 +48,16 @@ npm run process-name:inject
 ```
 
 ### Run the frontend app
+Before running the frontend app you need edit app src and replace the proces in the import statements and it's usage across the components.
+
+eg:
+```typescript [./frontend/src/App.tsx]
+// Replace
+import { COUNTER } from "./constants/counter_process";
+
+// with
+import { MYPROCESS } from "./constants/myprocess_process";
+```
 
 ```bash
 npm run frontend:dev

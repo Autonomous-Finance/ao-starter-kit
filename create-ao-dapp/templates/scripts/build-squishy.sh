@@ -19,3 +19,5 @@ output_file=$(echo "$output_line" | awk -F "'" '{print $2}')
 
 # Prepend reset_modules.lua to the squished file
 cat ./src/reset_modules.lua | cat - ./$output_file > temp && mv temp ./build/process.lua
+
+echo "Build finished."

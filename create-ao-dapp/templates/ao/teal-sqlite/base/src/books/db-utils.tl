@@ -1,4 +1,4 @@
-require "factory.globals"
+require "books.globals"
 
 local sqlite3 = require('lsqlite3')
 local dbUtils = {}

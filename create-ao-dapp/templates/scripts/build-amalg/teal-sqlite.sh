@@ -17,3 +17,5 @@ amalg.lua -s books/main.lua -o ../build/process.lua \
     books.globals books.utils.tl-utils books.db-utils
 
 # FINAL RESULT is build/main.lua
+
+echo "Build finished."

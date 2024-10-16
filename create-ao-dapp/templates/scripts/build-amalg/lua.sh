@@ -10,3 +10,5 @@ luacheck src/process.lua \
 cd src
 amalg.lua -s process.lua -o ../build/process.lua \
     lib.process_lib
+
+echo "Build finished."

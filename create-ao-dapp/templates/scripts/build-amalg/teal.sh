@@ -17,3 +17,5 @@ amalg.lua -s counter/main.lua -o ../build/process.lua \
     counter.utils.tl-utils
 
 # FINAL RESULT is build/main.lua
+
+echo "Build finished."

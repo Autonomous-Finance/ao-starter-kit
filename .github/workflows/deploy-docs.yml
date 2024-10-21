@@ -28,4 +28,4 @@ jobs:
       - run: pnpm dlx permaweb-deploy --ant-process ${{ env.ANT_PROCESS }} --deploy-folder ./site/dist
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          ANT_PROCESS: "4eMZpmmAGu05o2eW1yPHqIrVYAUbqEpLoAJ0V3F10-o"
+          ANT_PROCESS: "ymWaQ4Sc9myT0gx-Pc6BGSjJpl7AjGt7hEqMXCL9Q2k"

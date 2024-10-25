@@ -43,6 +43,9 @@ export function generateScripts({
   scripts["frontend:dev"] = `cd ./apps/frontend && ${packageManager} run dev`;
   scripts["frontend:build"] = `cd ./apps/frontend && ${packageManager} run build`;
   scripts["frontend:deploy"] = `cd ./apps/frontend && ${packageManager} run deploy`;
+  
+  // Generate postinstall script to chmod scripts
+  scripts.postinstall = `chmod +x ./ao/${processName}/scripts/* && chmod +x ./apps/frontend/scripts/*`
 
   return scripts;
 }

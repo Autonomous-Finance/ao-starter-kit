@@ -1,6 +1,0 @@
-Main "src/process.lua"
-
-Module "process_lib" "./src/lib/process_lib.lua"
-
-Option "minify-level" "none"
-Output 'build/process.lua'

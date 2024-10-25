@@ -2,7 +2,7 @@ import { useState } from "react";
 import DeleteBook from "./delete-book";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createDataItemSigner, message, result } from "@permaweb/aoconnect";
-import { BOOKS } from "../constants/books_process";
+import BOOKS from "../constants/books_process";
 
 type Book = {
   Id: number;

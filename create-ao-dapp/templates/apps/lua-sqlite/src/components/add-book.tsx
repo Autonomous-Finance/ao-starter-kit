@@ -1,7 +1,7 @@
 import { createDataItemSigner, message, result } from "@permaweb/aoconnect";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { BOOKS } from "../constants/books_process";
+import BOOKS from "../constants/books_process";
 
 export default function AddBook() {
   const queryClient = useQueryClient();

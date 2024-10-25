@@ -1,7 +1,7 @@
 import { ConnectButton } from "arweave-wallet-kit";
 import "./App.css";
 import Counter from "./components/counter";
-import { COUNTER } from "./constants/counter_process";
+import COUNTER from "./constants/counter_process";
 import aoLogo from "/ao.svg";
 import reactLogo from "/react.svg";
 import viteLogo from "/vite.svg";

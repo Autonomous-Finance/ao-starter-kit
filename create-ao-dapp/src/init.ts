@@ -30,14 +30,9 @@ export async function init() {
           message: "Enter the name of your project",
           placeholder: "sparkling-solid",
         }),
-      processName: () =>
-        p.text({
-          message: "What should we name the backend process?",
-          placeholder: "my-process",
-        }),
       type: ({ results }) =>
         p.select({
-          message: `Pick a starter template within "${results.processName}"`,
+          message: `Pick a starter template within "${results.projectName}"`,
           initialValue: "lua",
           maxItems: 5,
           options: [
@@ -80,7 +75,6 @@ export async function init() {
           initialValue: "amalg.lua",
           options: [
             { value: "amalg.lua", label: "amalg.lua", hint: "recommended" },
-            { value: "squishy", label: "squishy" },
           ],
         }),
     },
@@ -94,7 +88,9 @@ export async function init() {
 
   // Change projectName and processName to kebab-case
   const projectName = kebabcase(project.projectName);
-  const processName = kebabcase(project.processName);
+  const processName = ["lua", "teal"].includes(project.type as string)
+    ? "counter"
+    : "books";
 
   const templatesDir = resolve(__dirname, "..", "templates");
   const destDir = resolve(process.cwd(), projectName);
@@ -116,38 +112,37 @@ export async function init() {
   // Copy process template contents
   fs.copySync(processTemplateBase, resolve(destDir, "ao", processName));
 
-  // Copy frontend template contents
-  const frontendTemplate = ["lua", "teal"].includes(project.type as string)
-    ? "lua"
-    : "lua-sqlite";
-
-  fs.copySync(
-    resolve(templatesDir, "apps", frontendTemplate),
-    resolve(destDir, "apps", "frontend")
-  );
-
   // Inject build script into the process dir
   const buildSpinner = p.spinner();
   buildSpinner.start("Adding build script...");
 
-  if (project.amalgamation === "squishy") {
-    fs.copySync(
-      resolve(templatesDir, "scripts", "build-squishy.sh"),
-      resolve(destDir, "ao", processName, "scripts", "build.sh")
-    );
-  } else {
-    const buildScriptPath = resolve(
-      templatesDir,
-      "scripts",
-      "build-amalg",
-      `${project.type}.sh`
-    );
+  const baseType = ["teal", "teal-sqlite"].includes(project.type as string)
+    ? "teal"
+    : "lua";
 
-    fs.copySync(
-      buildScriptPath,
-      resolve(destDir, "ao", processName, "scripts", "build.sh")
-    );
-  }
+  // Copy the build-lua script
+  fs.copySync(
+    resolve(templatesDir, "scripts", `build-${baseType}.sh`),
+    resolve(destDir, "ao", processName, "scripts", "build-lua.sh")
+  );
+
+  // Copy the build script
+  fs.copySync(
+    resolve(templatesDir, "scripts", "build.sh"),
+    resolve(destDir, "ao", processName, "scripts", "build.sh")
+  );
+
+  // Copy the check_deps script
+  fs.copySync(
+    resolve(templatesDir, "scripts", `check_deps-${baseType}.sh`),
+    resolve(destDir, "ao", processName, "scripts", "check_deps.sh")
+  );
+
+  // Copy the install_deps script
+  fs.copySync(
+    resolve(templatesDir, "scripts", `install_deps-${baseType}.sh`),
+    resolve(destDir, "ao", processName, "scripts", "install_deps.sh")
+  );
 
   buildSpinner.stop("Added build script.");
 
@@ -180,6 +175,7 @@ export async function init() {
     projectPath: `./${projectName}`,
     processName: processName,
     packageManager: detectPackageManager(),
+    processType: project.type as string,
   });
 
   spinner.message("Generating aoform.yaml...");
@@ -191,6 +187,16 @@ export async function init() {
   await aoFormGenerator.addDeployScript();
 
   spinner.stop("Added aoform.");
+
+  // Copy frontend template contents
+  const frontendTemplate = ["lua", "teal"].includes(project.type as string)
+    ? "lua"
+    : "lua-sqlite";
+
+  fs.copySync(
+    resolve(templatesDir, "apps", frontendTemplate),
+    resolve(destDir, "apps", "frontend")
+  );
 
   // Replace dotfiles
   for (const file of fs.readdirSync(destDir)) {

@@ -1,4 +1,4 @@
-require "books.globals"
+require "types"
 
 local sqlite3 = require('lsqlite3')
 local dbUtils = {}

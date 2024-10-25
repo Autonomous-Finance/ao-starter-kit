@@ -1,12 +1,26 @@
-local process = require "lib.process_lib"
+local process = require "lib.counter"
 
+--- @type string
 Version       = "0.0.1"
+
+--- @type number
 Counter       = Counter or 0
+
+--- Handler to get Info
+--- @param msg Message
+--- @return nil
+local function infoHandler(msg)
+    ao.send({
+        Target = msg.From,
+        Version = Version,
+        Counter = tostring(Counter)
+    })
+end
 
 -- Handler to get Info
 Handlers.add("info",
     Handlers.utils.hasMatchingTag("Action", "Info"),
-    process.getInfo
+    infoHandler
 )
 
 -- Handler to increase Counter

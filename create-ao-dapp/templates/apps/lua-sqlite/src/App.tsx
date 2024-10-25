@@ -1,6 +1,6 @@
 import { ConnectButton } from "arweave-wallet-kit";
 import "./App.css";
-import { BOOKS } from "./constants/books_process";
+import BOOKS from "./constants/books_process";
 import aoLogo from "/ao.svg";
 import reactLogo from "/react.svg";
 import viteLogo from "/vite.svg";

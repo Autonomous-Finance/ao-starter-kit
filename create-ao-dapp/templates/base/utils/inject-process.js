@@ -1,6 +1,6 @@
 var __commonJS = (cb, mod) => () => (mod || cb((mod = { exports: {} }).exports, mod), mod.exports);
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/identity.js
+// ../../../node_modules/yaml/dist/nodes/identity.js
 var require_identity = __commonJS((exports) => {
   var isCollection = function(node) {
     if (node && typeof node === "object")
@@ -54,7 +54,7 @@ var require_identity = __commonJS((exports) => {
   exports.isSeq = isSeq;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/visit.js
+// ../../../node_modules/yaml/dist/visit.js
 var require_visit = __commonJS((exports) => {
   var visit = function(node, visitor) {
     const visitor_ = initVisitor(visitor);
@@ -209,7 +209,7 @@ var require_visit = __commonJS((exports) => {
   exports.visitAsync = visitAsync;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/doc/directives.js
+// ../../../node_modules/yaml/dist/doc/directives.js
 var require_directives = __commonJS((exports) => {
   var identity = require_identity();
   var visit = require_visit();
@@ -360,7 +360,7 @@ var require_directives = __commonJS((exports) => {
   exports.Directives = Directives;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/doc/anchors.js
+// ../../../node_modules/yaml/dist/doc/anchors.js
 var require_anchors = __commonJS((exports) => {
   var anchorIsValid = function(anchor) {
     if (/[\x00-\x19\s,[\]{}]/.test(anchor)) {
@@ -423,7 +423,7 @@ var require_anchors = __commonJS((exports) => {
   exports.findNewAnchor = findNewAnchor;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/doc/applyReviver.js
+// ../../../node_modules/yaml/dist/doc/applyReviver.js
 var require_applyReviver = __commonJS((exports) => {
   var applyReviver = function(reviver, obj, key, val) {
     if (val && typeof val === "object") {
@@ -470,7 +470,7 @@ var require_applyReviver = __commonJS((exports) => {
   exports.applyReviver = applyReviver;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/toJS.js
+// ../../../node_modules/yaml/dist/nodes/toJS.js
 var require_toJS = __commonJS((exports) => {
   var toJS = function(value, arg, ctx) {
     if (Array.isArray(value))
@@ -497,7 +497,7 @@ var require_toJS = __commonJS((exports) => {
   exports.toJS = toJS;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/Node.js
+// ../../../node_modules/yaml/dist/nodes/Node.js
 var require_Node = __commonJS((exports) => {
   var applyReviver = require_applyReviver();
   var identity = require_identity();
@@ -534,7 +534,7 @@ var require_Node = __commonJS((exports) => {
   exports.NodeBase = NodeBase;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/Alias.js
+// ../../../node_modules/yaml/dist/nodes/Alias.js
 var require_Alias = __commonJS((exports) => {
   var getAliasCount = function(doc, node, anchors2) {
     if (identity.isAlias(node)) {
@@ -630,7 +630,7 @@ var require_Alias = __commonJS((exports) => {
   exports.Alias = Alias;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/Scalar.js
+// ../../../node_modules/yaml/dist/nodes/Scalar.js
 var require_Scalar = __commonJS((exports) => {
   var identity = require_identity();
   var Node = require_Node();
@@ -658,7 +658,7 @@ var require_Scalar = __commonJS((exports) => {
   exports.isScalarValue = isScalarValue;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/doc/createNode.js
+// ../../../node_modules/yaml/dist/doc/createNode.js
 var require_createNode = __commonJS((exports) => {
   var findTagObject = function(value, tagName, tags) {
     if (tagName) {
@@ -731,7 +731,7 @@ var require_createNode = __commonJS((exports) => {
   exports.createNode = createNode;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/Collection.js
+// ../../../node_modules/yaml/dist/nodes/Collection.js
 var require_Collection = __commonJS((exports) => {
   var collectionFromPath = function(schema, path, value) {
     let v = value;
@@ -846,7 +846,7 @@ var require_Collection = __commonJS((exports) => {
   exports.isEmptyPath = isEmptyPath;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringifyComment.js
+// ../../../node_modules/yaml/dist/stringify/stringifyComment.js
 var require_stringifyComment = __commonJS((exports) => {
   var indentComment = function(comment, indent) {
     if (/^\n+$/.test(comment))
@@ -860,7 +860,7 @@ var require_stringifyComment = __commonJS((exports) => {
   exports.stringifyComment = stringifyComment;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/foldFlowLines.js
+// ../../../node_modules/yaml/dist/stringify/foldFlowLines.js
 var require_foldFlowLines = __commonJS((exports) => {
   var foldFlowLines = function(text, indent, mode = "flow", { indentAtStart, lineWidth = 80, minContentWidth = 20, onFold, onOverflow } = {}) {
     if (!lineWidth || lineWidth < 0)
@@ -991,7 +991,7 @@ var require_foldFlowLines = __commonJS((exports) => {
   exports.foldFlowLines = foldFlowLines;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringifyString.js
+// ../../../node_modules/yaml/dist/stringify/stringifyString.js
 var require_stringifyString = __commonJS((exports) => {
   var lineLengthOverLimit = function(str, lineWidth, indentLength) {
     if (!lineWidth || lineWidth < 0)
@@ -1259,7 +1259,7 @@ var require_stringifyString = __commonJS((exports) => {
   exports.stringifyString = stringifyString;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringify.js
+// ../../../node_modules/yaml/dist/stringify/stringify.js
 var require_stringify = __commonJS((exports) => {
   var createStringifyContext = function(doc, options) {
     const opt = Object.assign({
@@ -1312,7 +1312,12 @@ var require_stringify = __commonJS((exports) => {
     let obj;
     if (identity.isScalar(item)) {
       obj = item.value;
-      const match = tags.filter((t) => t.identify?.(obj));
+      let match = tags.filter((t) => t.identify?.(obj));
+      if (match.length > 1) {
+        const testMatch = match.filter((t) => t.test);
+        if (testMatch.length > 0)
+          match = testMatch;
+      }
       tagObj = match.find((t) => t.format === item.format) ?? match.find((t) => !t.format);
     } else {
       obj = item;
@@ -1374,7 +1379,7 @@ var require_stringify = __commonJS((exports) => {
   exports.stringify = stringify;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringifyPair.js
+// ../../../node_modules/yaml/dist/stringify/stringifyPair.js
 var require_stringifyPair = __commonJS((exports) => {
   var stringifyPair = function({ key, value }, ctx, onComment, onChompKeep) {
     const { allNullValues, doc, indent, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;
@@ -1500,7 +1505,7 @@ var require_stringifyPair = __commonJS((exports) => {
   exports.stringifyPair = stringifyPair;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/log.js
+// ../../../node_modules/yaml/dist/log.js
 var require_log = __commonJS((exports) => {
   var debug = function(logLevel, ...messages) {
     if (logLevel === "debug")
@@ -1518,42 +1523,20 @@ var require_log = __commonJS((exports) => {
   exports.warn = warn;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/addPairToJSMap.js
-var require_addPairToJSMap = __commonJS((exports) => {
-  var addPairToJSMap = function(ctx, map, { key, value }) {
-    if (ctx?.doc.schema.merge && isMergeKey(key)) {
-      value = identity.isAlias(value) ? value.resolve(ctx.doc) : value;
-      if (identity.isSeq(value))
-        for (const it of value.items)
-          mergeToJSMap(ctx, map, it);
-      else if (Array.isArray(value))
-        for (const it of value)
-          mergeToJSMap(ctx, map, it);
-      else
-        mergeToJSMap(ctx, map, value);
-    } else {
-      const jsKey = toJS.toJS(key, "", ctx);
-      if (map instanceof Map) {
-        map.set(jsKey, toJS.toJS(value, jsKey, ctx));
-      } else if (map instanceof Set) {
-        map.add(jsKey);
-      } else {
-        const stringKey = stringifyKey(key, jsKey, ctx);
-        const jsValue = toJS.toJS(value, stringKey, ctx);
-        if (stringKey in map)
-          Object.defineProperty(map, stringKey, {
-            value: jsValue,
-            writable: true,
-            enumerable: true,
-            configurable: true
-          });
-        else
-          map[stringKey] = jsValue;
-      }
-    }
-    return map;
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/merge.js
+var require_merge = __commonJS((exports) => {
+  var addMergeToJSMap = function(ctx, map, value) {
+    value = ctx && identity.isAlias(value) ? value.resolve(ctx.doc) : value;
+    if (identity.isSeq(value))
+      for (const it of value.items)
+        mergeValue(ctx, map, it);
+    else if (Array.isArray(value))
+      for (const it of value)
+        mergeValue(ctx, map, it);
+    else
+      mergeValue(ctx, map, value);
   };
-  var mergeToJSMap = function(ctx, map, value) {
+  var mergeValue = function(ctx, map, value) {
     const source = ctx && identity.isAlias(value) ? value.resolve(ctx.doc) : value;
     if (!identity.isMap(source))
       throw new Error("Merge sources must be maps or map aliases");
@@ -1571,6 +1554,54 @@ var require_addPairToJSMap = __commonJS((exports) => {
           enumerable: true,
           configurable: true
         });
+      }
+    }
+    return map;
+  };
+  var identity = require_identity();
+  var Scalar = require_Scalar();
+  var MERGE_KEY = "<<";
+  var merge = {
+    identify: (value) => value === MERGE_KEY || typeof value === "symbol" && value.description === MERGE_KEY,
+    default: "key",
+    tag: "tag:yaml.org,2002:merge",
+    test: /^<<$/,
+    resolve: () => Object.assign(new Scalar.Scalar(Symbol(MERGE_KEY)), {
+      addToJSMap: addMergeToJSMap
+    }),
+    stringify: () => MERGE_KEY
+  };
+  var isMergeKey = (ctx, key) => (merge.identify(key) || identity.isScalar(key) && (!key.type || key.type === Scalar.Scalar.PLAIN) && merge.identify(key.value)) && ctx?.doc.schema.tags.some((tag) => tag.tag === merge.tag && tag.default);
+  exports.addMergeToJSMap = addMergeToJSMap;
+  exports.isMergeKey = isMergeKey;
+  exports.merge = merge;
+});
+
+// ../../../node_modules/yaml/dist/nodes/addPairToJSMap.js
+var require_addPairToJSMap = __commonJS((exports) => {
+  var addPairToJSMap = function(ctx, map, { key, value }) {
+    if (identity.isNode(key) && key.addToJSMap)
+      key.addToJSMap(ctx, map, value);
+    else if (merge.isMergeKey(ctx, key))
+      merge.addMergeToJSMap(ctx, map, value);
+    else {
+      const jsKey = toJS.toJS(key, "", ctx);
+      if (map instanceof Map) {
+        map.set(jsKey, toJS.toJS(value, jsKey, ctx));
+      } else if (map instanceof Set) {
+        map.add(jsKey);
+      } else {
+        const stringKey = stringifyKey(key, jsKey, ctx);
+        const jsValue = toJS.toJS(value, stringKey, ctx);
+        if (stringKey in map)
+          Object.defineProperty(map, stringKey, {
+            value: jsValue,
+            writable: true,
+            enumerable: true,
+            configurable: true
+          });
+        else
+          map[stringKey] = jsValue;
       }
     }
     return map;
@@ -1600,16 +1631,14 @@ var require_addPairToJSMap = __commonJS((exports) => {
     return JSON.stringify(jsKey);
   };
   var log = require_log();
+  var merge = require_merge();
   var stringify = require_stringify();
   var identity = require_identity();
-  var Scalar = require_Scalar();
   var toJS = require_toJS();
-  var MERGE_KEY = "<<";
-  var isMergeKey = (key) => key === MERGE_KEY || identity.isScalar(key) && key.value === MERGE_KEY && (!key.type || key.type === Scalar.Scalar.PLAIN);
   exports.addPairToJSMap = addPairToJSMap;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/Pair.js
+// ../../../node_modules/yaml/dist/nodes/Pair.js
 var require_Pair = __commonJS((exports) => {
   var createPair = function(key, value, ctx) {
     const k = createNode.createNode(key, undefined, ctx);
@@ -1647,7 +1676,7 @@ var require_Pair = __commonJS((exports) => {
   exports.createPair = createPair;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringifyCollection.js
+// ../../../node_modules/yaml/dist/stringify/stringifyCollection.js
 var require_stringifyCollection = __commonJS((exports) => {
   var stringifyCollection = function(collection, ctx, options) {
     const flow = ctx.inFlow ?? collection.flow;
@@ -1785,7 +1814,7 @@ var require_stringifyCollection = __commonJS((exports) => {
   exports.stringifyCollection = stringifyCollection;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/YAMLMap.js
+// ../../../node_modules/yaml/dist/nodes/YAMLMap.js
 var require_YAMLMap = __commonJS((exports) => {
   var findPair = function(items, key) {
     const k = identity.isScalar(key) ? key.value : key;
@@ -1912,7 +1941,7 @@ var require_YAMLMap = __commonJS((exports) => {
   exports.findPair = findPair;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/common/map.js
+// ../../../node_modules/yaml/dist/schema/common/map.js
 var require_map = __commonJS((exports) => {
   var identity = require_identity();
   var YAMLMap = require_YAMLMap();
@@ -1931,7 +1960,7 @@ var require_map = __commonJS((exports) => {
   exports.map = map;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/nodes/YAMLSeq.js
+// ../../../node_modules/yaml/dist/nodes/YAMLSeq.js
 var require_YAMLSeq = __commonJS((exports) => {
   var asItemIndex = function(key) {
     let idx = identity.isScalar(key) ? key.value : key;
@@ -2024,7 +2053,7 @@ var require_YAMLSeq = __commonJS((exports) => {
   exports.YAMLSeq = YAMLSeq;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/common/seq.js
+// ../../../node_modules/yaml/dist/schema/common/seq.js
 var require_seq = __commonJS((exports) => {
   var identity = require_identity();
   var YAMLSeq = require_YAMLSeq();
@@ -2043,7 +2072,7 @@ var require_seq = __commonJS((exports) => {
   exports.seq = seq;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/common/string.js
+// ../../../node_modules/yaml/dist/schema/common/string.js
 var require_string = __commonJS((exports) => {
   var stringifyString = require_stringifyString();
   var string = {
@@ -2059,7 +2088,7 @@ var require_string = __commonJS((exports) => {
   exports.string = string;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/common/null.js
+// ../../../node_modules/yaml/dist/schema/common/null.js
 var require_null = __commonJS((exports) => {
   var Scalar = require_Scalar();
   var nullTag = {
@@ -2074,7 +2103,7 @@ var require_null = __commonJS((exports) => {
   exports.nullTag = nullTag;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/core/bool.js
+// ../../../node_modules/yaml/dist/schema/core/bool.js
 var require_bool = __commonJS((exports) => {
   var Scalar = require_Scalar();
   var boolTag = {
@@ -2095,7 +2124,7 @@ var require_bool = __commonJS((exports) => {
   exports.boolTag = boolTag;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringifyNumber.js
+// ../../../node_modules/yaml/dist/stringify/stringifyNumber.js
 var require_stringifyNumber = __commonJS((exports) => {
   var stringifyNumber = function({ format, minFractionDigits, tag, value }) {
     if (typeof value === "bigint")
@@ -2119,7 +2148,7 @@ var require_stringifyNumber = __commonJS((exports) => {
   exports.stringifyNumber = stringifyNumber;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/core/float.js
+// ../../../node_modules/yaml/dist/schema/core/float.js
 var require_float = __commonJS((exports) => {
   var Scalar = require_Scalar();
   var stringifyNumber = require_stringifyNumber();
@@ -2162,7 +2191,7 @@ var require_float = __commonJS((exports) => {
   exports.floatNaN = floatNaN;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/core/int.js
+// ../../../node_modules/yaml/dist/schema/core/int.js
 var require_int = __commonJS((exports) => {
   var intStringify = function(node, radix, prefix) {
     const { value } = node;
@@ -2204,7 +2233,7 @@ var require_int = __commonJS((exports) => {
   exports.intOct = intOct;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/core/schema.js
+// ../../../node_modules/yaml/dist/schema/core/schema.js
 var require_schema = __commonJS((exports) => {
   var map = require_map();
   var _null = require_null();
@@ -2229,7 +2258,7 @@ var require_schema = __commonJS((exports) => {
   exports.schema = schema;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/json/schema.js
+// ../../../node_modules/yaml/dist/schema/json/schema.js
 var require_schema2 = __commonJS((exports) => {
   var intIdentify = function(value) {
     return typeof value === "bigint" || Number.isInteger(value);
@@ -2293,7 +2322,7 @@ var require_schema2 = __commonJS((exports) => {
   exports.schema = schema;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/binary.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/binary.js
 var require_binary = __commonJS((exports) => {
   var Scalar = require_Scalar();
   var stringifyString = require_stringifyString();
@@ -2345,7 +2374,7 @@ var require_binary = __commonJS((exports) => {
   exports.binary = binary;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/pairs.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/pairs.js
 var require_pairs = __commonJS((exports) => {
   var resolvePairs = function(seq, onError) {
     if (identity.isSeq(seq)) {
@@ -2418,7 +2447,7 @@ var require_pairs = __commonJS((exports) => {
   exports.resolvePairs = resolvePairs;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/omap.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/omap.js
 var require_omap = __commonJS((exports) => {
   var identity = require_identity();
   var toJS = require_toJS();
@@ -2490,7 +2519,7 @@ var require_omap = __commonJS((exports) => {
   exports.omap = omap;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/bool.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/bool.js
 var require_bool2 = __commonJS((exports) => {
   var boolStringify = function({ value, source }, ctx) {
     const boolObj = value ? trueTag : falseTag;
@@ -2519,7 +2548,7 @@ var require_bool2 = __commonJS((exports) => {
   exports.trueTag = trueTag;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/float.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/float.js
 var require_float2 = __commonJS((exports) => {
   var Scalar = require_Scalar();
   var stringifyNumber = require_stringifyNumber();
@@ -2565,7 +2594,7 @@ var require_float2 = __commonJS((exports) => {
   exports.floatNaN = floatNaN;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/int.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/int.js
 var require_int2 = __commonJS((exports) => {
   var intResolve = function(str, offset, radix, { intAsBigInt }) {
     const sign = str[0];
@@ -2641,7 +2670,7 @@ var require_int2 = __commonJS((exports) => {
   exports.intOct = intOct;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/set.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/set.js
 var require_set = __commonJS((exports) => {
   var identity = require_identity();
   var Pair = require_Pair();
@@ -2724,7 +2753,7 @@ var require_set = __commonJS((exports) => {
   exports.set = set;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/timestamp.js
 var require_timestamp = __commonJS((exports) => {
   var parseSexagesimal = function(str, asBigInt) {
     const sign = str[0];
@@ -2806,7 +2835,7 @@ var require_timestamp = __commonJS((exports) => {
   exports.timestamp = timestamp;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/yaml-1.1/schema.js
+// ../../../node_modules/yaml/dist/schema/yaml-1.1/schema.js
 var require_schema3 = __commonJS((exports) => {
   var map = require_map();
   var _null = require_null();
@@ -2816,6 +2845,7 @@ var require_schema3 = __commonJS((exports) => {
   var bool = require_bool2();
   var float = require_float2();
   var int = require_int2();
+  var merge = require_merge();
   var omap = require_omap();
   var pairs = require_pairs();
   var set = require_set();
@@ -2835,6 +2865,7 @@ var require_schema3 = __commonJS((exports) => {
     float.floatExp,
     float.float,
     binary.binary,
+    merge.merge,
     omap.omap,
     pairs.pairs,
     set.set,
@@ -2845,10 +2876,14 @@ var require_schema3 = __commonJS((exports) => {
   exports.schema = schema;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/tags.js
+// ../../../node_modules/yaml/dist/schema/tags.js
 var require_tags = __commonJS((exports) => {
-  var getTags = function(customTags, schemaName) {
-    let tags = schemas.get(schemaName);
+  var getTags = function(customTags, schemaName, addMergeTag) {
+    const schemaTags = schemas.get(schemaName);
+    if (schemaTags && !customTags) {
+      return addMergeTag && !schemaTags.includes(merge.merge) ? schemaTags.concat(merge.merge) : schemaTags.slice();
+    }
+    let tags = schemaTags;
     if (!tags) {
       if (Array.isArray(customTags))
         tags = [];
@@ -2863,15 +2898,19 @@ var require_tags = __commonJS((exports) => {
     } else if (typeof customTags === "function") {
       tags = customTags(tags.slice());
     }
-    return tags.map((tag) => {
-      if (typeof tag !== "string")
-        return tag;
-      const tagObj = tagsByName[tag];
-      if (tagObj)
-        return tagObj;
-      const keys = Object.keys(tagsByName).map((key) => JSON.stringify(key)).join(", ");
-      throw new Error(`Unknown custom tag "${tag}"; use one of ${keys}`);
-    });
+    if (addMergeTag)
+      tags = tags.concat(merge.merge);
+    return tags.reduce((tags2, tag) => {
+      const tagObj = typeof tag === "string" ? tagsByName[tag] : tag;
+      if (!tagObj) {
+        const tagName = JSON.stringify(tag);
+        const keys = Object.keys(tagsByName).map((key) => JSON.stringify(key)).join(", ");
+        throw new Error(`Unknown custom tag ${tagName}; use one of ${keys}`);
+      }
+      if (!tags2.includes(tagObj))
+        tags2.push(tagObj);
+      return tags2;
+    }, []);
   };
   var map = require_map();
   var _null = require_null();
@@ -2883,6 +2922,7 @@ var require_tags = __commonJS((exports) => {
   var schema = require_schema();
   var schema$1 = require_schema2();
   var binary = require_binary();
+  var merge = require_merge();
   var omap = require_omap();
   var pairs = require_pairs();
   var schema$2 = require_schema3();
@@ -2907,6 +2947,7 @@ var require_tags = __commonJS((exports) => {
     intOct: int.intOct,
     intTime: timestamp.intTime,
     map: map.map,
+    merge: merge.merge,
     null: _null.nullTag,
     omap: omap.omap,
     pairs: pairs.pairs,
@@ -2916,6 +2957,7 @@ var require_tags = __commonJS((exports) => {
   };
   var coreKnownTags = {
     "tag:yaml.org,2002:binary": binary.binary,
+    "tag:yaml.org,2002:merge": merge.merge,
     "tag:yaml.org,2002:omap": omap.omap,
     "tag:yaml.org,2002:pairs": pairs.pairs,
     "tag:yaml.org,2002:set": set.set,
@@ -2925,7 +2967,7 @@ var require_tags = __commonJS((exports) => {
   exports.getTags = getTags;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/schema/Schema.js
+// ../../../node_modules/yaml/dist/schema/Schema.js
 var require_Schema = __commonJS((exports) => {
   var identity = require_identity();
   var map = require_map();
@@ -2937,10 +2979,9 @@ var require_Schema = __commonJS((exports) => {
   class Schema {
     constructor({ compat, customTags, merge, resolveKnownTags, schema, sortMapEntries, toStringDefaults }) {
       this.compat = Array.isArray(compat) ? tags.getTags(compat, "compat") : compat ? tags.getTags(null, compat) : null;
-      this.merge = !!merge;
       this.name = typeof schema === "string" && schema || "core";
       this.knownTags = resolveKnownTags ? tags.coreKnownTags : {};
-      this.tags = tags.getTags(customTags, this.name);
+      this.tags = tags.getTags(customTags, this.name, merge);
       this.toStringOptions = toStringDefaults ?? null;
       Object.defineProperty(this, identity.MAP, { value: map.map });
       Object.defineProperty(this, identity.SCALAR, { value: string.string });
@@ -2956,7 +2997,7 @@ var require_Schema = __commonJS((exports) => {
   exports.Schema = Schema;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/stringify/stringifyDocument.js
+// ../../../node_modules/yaml/dist/stringify/stringifyDocument.js
 var require_stringifyDocument = __commonJS((exports) => {
   var stringifyDocument = function(doc, options) {
     const lines = [];
@@ -3033,7 +3074,7 @@ var require_stringifyDocument = __commonJS((exports) => {
   exports.stringifyDocument = stringifyDocument;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/doc/Document.js
+// ../../../node_modules/yaml/dist/doc/Document.js
 var require_Document = __commonJS((exports) => {
   var assertCollection = function(contents) {
     if (identity.isCollection(contents))
@@ -3072,6 +3113,7 @@ var require_Document = __commonJS((exports) => {
         logLevel: "warn",
         prettyErrors: true,
         strict: true,
+        stringKeys: false,
         uniqueKeys: true,
         version: "1.2"
       }, options);
@@ -3209,7 +3251,7 @@ var require_Document = __commonJS((exports) => {
             this.directives.yaml.version = "1.1";
           else
             this.directives = new directives.Directives({ version: "1.1" });
-          opt = { merge: true, resolveKnownTags: false, schema: "yaml-1.1" };
+          opt = { resolveKnownTags: false, schema: "yaml-1.1" };
           break;
         case "1.2":
         case "next":
@@ -3217,7 +3259,7 @@ var require_Document = __commonJS((exports) => {
             this.directives.yaml.version = version;
           else
             this.directives = new directives.Directives({ version });
-          opt = { merge: false, resolveKnownTags: true, schema: "core" };
+          opt = { resolveKnownTags: true, schema: "core" };
           break;
         case null:
           if (this.directives)
@@ -3267,7 +3309,7 @@ var require_Document = __commonJS((exports) => {
   exports.Document = Document;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/errors.js
+// ../../../node_modules/yaml/dist/errors.js
 var require_errors = __commonJS((exports) => {
   class YAMLError extends Error {
     constructor(name, pos, code, message) {
@@ -3328,7 +3370,7 @@ var require_errors = __commonJS((exports) => {
   exports.prettifyError = prettifyError;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-props.js
+// ../../../node_modules/yaml/dist/compose/resolve-props.js
 var require_resolve_props = __commonJS((exports) => {
   var resolveProps = function(tokens, { flow, indicator, next, offset, onError, parentIndent, startOnNewline }) {
     let spaceBefore = false;
@@ -3460,7 +3502,7 @@ var require_resolve_props = __commonJS((exports) => {
   exports.resolveProps = resolveProps;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/util-contains-newline.js
+// ../../../node_modules/yaml/dist/compose/util-contains-newline.js
 var require_util_contains_newline = __commonJS((exports) => {
   var containsNewline = function(key) {
     if (!key)
@@ -3499,7 +3541,7 @@ var require_util_contains_newline = __commonJS((exports) => {
   exports.containsNewline = containsNewline;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/util-flow-indent-check.js
+// ../../../node_modules/yaml/dist/compose/util-flow-indent-check.js
 var require_util_flow_indent_check = __commonJS((exports) => {
   var flowIndentCheck = function(indent, fc, onError) {
     if (fc?.type === "flow-collection") {
@@ -3514,20 +3556,20 @@ var require_util_flow_indent_check = __commonJS((exports) => {
   exports.flowIndentCheck = flowIndentCheck;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/util-map-includes.js
+// ../../../node_modules/yaml/dist/compose/util-map-includes.js
 var require_util_map_includes = __commonJS((exports) => {
   var mapIncludes = function(ctx, items, search) {
     const { uniqueKeys } = ctx.options;
     if (uniqueKeys === false)
       return false;
-    const isEqual = typeof uniqueKeys === "function" ? uniqueKeys : (a, b) => a === b || identity.isScalar(a) && identity.isScalar(b) && a.value === b.value && !(a.value === "<<" && ctx.schema.merge);
+    const isEqual = typeof uniqueKeys === "function" ? uniqueKeys : (a, b) => a === b || identity.isScalar(a) && identity.isScalar(b) && a.value === b.value;
     return items.some((pair) => isEqual(pair.key, search));
   };
   var identity = require_identity();
   exports.mapIncludes = mapIncludes;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-block-map.js
+// ../../../node_modules/yaml/dist/compose/resolve-block-map.js
 var require_resolve_block_map = __commonJS((exports) => {
   var resolveBlockMap = function({ composeNode, composeEmptyNode }, ctx, bm, onError, tag) {
     const NodeClass = tag?.nodeClass ?? YAMLMap.YAMLMap;
@@ -3570,10 +3612,12 @@ var require_resolve_block_map = __commonJS((exports) => {
       } else if (keyProps.found?.indent !== bm.indent) {
         onError(offset, "BAD_INDENT", startColMsg);
       }
+      ctx.atKey = true;
       const keyStart = keyProps.end;
       const keyNode = key ? composeNode(ctx, key, keyProps, onError) : composeEmptyNode(ctx, keyStart, start, null, keyProps, onError);
       if (ctx.schema.compat)
         utilFlowIndentCheck.flowIndentCheck(bm.indent, key, onError);
+      ctx.atKey = false;
       if (utilMapIncludes.mapIncludes(ctx, map.items, keyNode))
         onError(keyStart, "DUPLICATE_KEY", "Map keys must be unique");
       const valueProps = resolveProps.resolveProps(sep ?? [], {
@@ -3630,13 +3674,15 @@ var require_resolve_block_map = __commonJS((exports) => {
   exports.resolveBlockMap = resolveBlockMap;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-block-seq.js
+// ../../../node_modules/yaml/dist/compose/resolve-block-seq.js
 var require_resolve_block_seq = __commonJS((exports) => {
   var resolveBlockSeq = function({ composeNode, composeEmptyNode }, ctx, bs, onError, tag) {
     const NodeClass = tag?.nodeClass ?? YAMLSeq.YAMLSeq;
     const seq = new NodeClass(ctx.schema);
     if (ctx.atRoot)
       ctx.atRoot = false;
+    if (ctx.atKey)
+      ctx.atKey = false;
     let offset = bs.offset;
     let commentEnd = null;
     for (const { start, value } of bs.items) {
@@ -3676,7 +3722,7 @@ var require_resolve_block_seq = __commonJS((exports) => {
   exports.resolveBlockSeq = resolveBlockSeq;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-end.js
+// ../../../node_modules/yaml/dist/compose/resolve-end.js
 var require_resolve_end = __commonJS((exports) => {
   var resolveEnd = function(end, offset, reqSpace, onError) {
     let comment = "";
@@ -3716,7 +3762,7 @@ var require_resolve_end = __commonJS((exports) => {
   exports.resolveEnd = resolveEnd;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-flow-collection.js
+// ../../../node_modules/yaml/dist/compose/resolve-flow-collection.js
 var require_resolve_flow_collection = __commonJS((exports) => {
   var resolveFlowCollection = function({ composeNode, composeEmptyNode }, ctx, fc, onError, tag) {
     const isMap = fc.start.source === "{";
@@ -3727,6 +3773,8 @@ var require_resolve_flow_collection = __commonJS((exports) => {
     const atRoot = ctx.atRoot;
     if (atRoot)
       ctx.atRoot = false;
+    if (ctx.atKey)
+      ctx.atKey = false;
     let offset = fc.offset + fc.start.source.length;
     for (let i = 0;i < fc.items.length; ++i) {
       const collItem = fc.items[i];
@@ -3798,10 +3846,12 @@ var require_resolve_flow_collection = __commonJS((exports) => {
         if (isBlock(value))
           onError(valueNode.range, "BLOCK_IN_FLOW", blockMsg);
       } else {
+        ctx.atKey = true;
         const keyStart = props.end;
         const keyNode = key ? composeNode(ctx, key, props, onError) : composeEmptyNode(ctx, keyStart, start, null, props, onError);
         if (isBlock(key))
           onError(keyNode.range, "BLOCK_IN_FLOW", blockMsg);
+        ctx.atKey = false;
         const valueProps = resolveProps.resolveProps(sep ?? [], {
           flow: fcName,
           indicator: "map-value-ind",
@@ -3853,6 +3903,8 @@ var require_resolve_flow_collection = __commonJS((exports) => {
           const map = new YAMLMap.YAMLMap(ctx.schema);
           map.flow = true;
           map.items.push(pair);
+          const endRange = (valueNode ?? keyNode).range;
+          map.range = [keyNode.range[0], endRange[1], endRange[2]];
           coll.items.push(map);
         }
         offset = valueNode ? valueNode.range[2] : valueProps.end;
@@ -3897,7 +3949,7 @@ var require_resolve_flow_collection = __commonJS((exports) => {
   exports.resolveFlowCollection = resolveFlowCollection;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/compose-collection.js
+// ../../../node_modules/yaml/dist/compose/compose-collection.js
 var require_compose_collection = __commonJS((exports) => {
   var resolveCollection = function(CN, ctx, token, onError, tagName, tag) {
     const coll = token.type === "block-map" ? resolveBlockMap.resolveBlockMap(CN, ctx, token, onError, tag) : token.type === "block-seq" ? resolveBlockSeq.resolveBlockSeq(CN, ctx, token, onError, tag) : resolveFlowCollection.resolveFlowCollection(CN, ctx, token, onError, tag);
@@ -3959,7 +4011,7 @@ var require_compose_collection = __commonJS((exports) => {
   exports.composeCollection = composeCollection;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-block-scalar.js
+// ../../../node_modules/yaml/dist/compose/resolve-block-scalar.js
 var require_resolve_block_scalar = __commonJS((exports) => {
   var resolveBlockScalar = function(ctx, scalar, onError) {
     const start = scalar.offset;
@@ -4137,7 +4189,7 @@ var require_resolve_block_scalar = __commonJS((exports) => {
   exports.resolveBlockScalar = resolveBlockScalar;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/resolve-flow-scalar.js
+// ../../../node_modules/yaml/dist/compose/resolve-flow-scalar.js
 var require_resolve_flow_scalar = __commonJS((exports) => {
   var resolveFlowScalar = function(scalar, strict, onError) {
     const { offset, type, source, end } = scalar;
@@ -4212,7 +4264,7 @@ var require_resolve_flow_scalar = __commonJS((exports) => {
     try {
       first = new RegExp("(.*?)(?<![ \t])[ \t]*\r?\n", "sy");
       line = new RegExp("[ \t]*(.*?)(?:(?<![ \t])[ \t]*)?\r?\n", "sy");
-    } catch (_) {
+    } catch {
       first = /(.*?)[ \t]*\r?\n/sy;
       line = /[ \t]*(.*?)[ \t]*\r?\n/sy;
     }
@@ -4338,12 +4390,20 @@ var require_resolve_flow_scalar = __commonJS((exports) => {
   exports.resolveFlowScalar = resolveFlowScalar;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/compose-scalar.js
+// ../../../node_modules/yaml/dist/compose/compose-scalar.js
 var require_compose_scalar = __commonJS((exports) => {
   var composeScalar = function(ctx, token, tagToken, onError) {
     const { value, type, comment, range } = token.type === "block-scalar" ? resolveBlockScalar.resolveBlockScalar(ctx, token, onError) : resolveFlowScalar.resolveFlowScalar(token, ctx.options.strict, onError);
     const tagName = tagToken ? ctx.directives.tagName(tagToken.source, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg)) : null;
-    const tag = tagToken && tagName ? findScalarTagByName(ctx.schema, value, tagName, tagToken, onError) : token.type === "scalar" ? findScalarTagByTest(ctx, value, token, onError) : ctx.schema[identity.SCALAR];
+    let tag;
+    if (ctx.options.stringKeys && ctx.atKey) {
+      tag = ctx.schema[identity.SCALAR];
+    } else if (tagName)
+      tag = findScalarTagByName(ctx.schema, value, tagName, tagToken, onError);
+    else if (token.type === "scalar")
+      tag = findScalarTagByTest(ctx, value, token, onError);
+    else
+      tag = ctx.schema[identity.SCALAR];
     let scalar;
     try {
       const res = tag.resolve(value, (msg) => onError(tagToken ?? token, "TAG_RESOLVE_FAILED", msg), ctx.options);
@@ -4388,8 +4448,8 @@ var require_compose_scalar = __commonJS((exports) => {
     onError(tagToken, "TAG_RESOLVE_FAILED", `Unresolved tag: ${tagName}`, tagName !== "tag:yaml.org,2002:str");
     return schema[identity.SCALAR];
   };
-  var findScalarTagByTest = function({ directives, schema }, value, token, onError) {
-    const tag = schema.tags.find((tag2) => tag2.default && tag2.test?.test(value)) || schema[identity.SCALAR];
+  var findScalarTagByTest = function({ atKey, directives, schema }, value, token, onError) {
+    const tag = schema.tags.find((tag2) => (tag2.default === true || atKey && tag2.default === "key") && tag2.test?.test(value)) || schema[identity.SCALAR];
     if (schema.compat) {
       const compat = schema.compat.find((tag2) => tag2.default && tag2.test?.test(value)) ?? schema[identity.SCALAR];
       if (tag.tag !== compat.tag) {
@@ -4408,7 +4468,7 @@ var require_compose_scalar = __commonJS((exports) => {
   exports.composeScalar = composeScalar;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/util-empty-scalar-position.js
+// ../../../node_modules/yaml/dist/compose/util-empty-scalar-position.js
 var require_util_empty_scalar_position = __commonJS((exports) => {
   var emptyScalarPosition = function(offset, before, pos) {
     if (before) {
@@ -4436,9 +4496,10 @@ var require_util_empty_scalar_position = __commonJS((exports) => {
   exports.emptyScalarPosition = emptyScalarPosition;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/compose-node.js
+// ../../../node_modules/yaml/dist/compose/compose-node.js
 var require_compose_node = __commonJS((exports) => {
   var composeNode = function(ctx, token, props, onError) {
+    const atKey = ctx.atKey;
     const { spaceBefore, comment, anchor, tag } = props;
     let node;
     let isSrcToken = true;
@@ -4472,6 +4533,10 @@ var require_compose_node = __commonJS((exports) => {
     }
     if (anchor && node.anchor === "")
       onError(anchor, "BAD_ALIAS", "Anchor cannot be an empty string");
+    if (atKey && ctx.options.stringKeys && (!identity.isScalar(node) || typeof node.value !== "string" || node.tag && node.tag !== "tag:yaml.org,2002:str")) {
+      const msg = "With stringKeys, all keys must be strings";
+      onError(tag ?? token, "NON_STRING_KEY", msg);
+    }
     if (spaceBefore)
       node.spaceBefore = true;
     if (comment) {
@@ -4519,6 +4584,7 @@ var require_compose_node = __commonJS((exports) => {
     return alias;
   };
   var Alias = require_Alias();
+  var identity = require_identity();
   var composeCollection = require_compose_collection();
   var composeScalar = require_compose_scalar();
   var resolveEnd = require_resolve_end();
@@ -4528,12 +4594,13 @@ var require_compose_node = __commonJS((exports) => {
   exports.composeNode = composeNode;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/compose-doc.js
+// ../../../node_modules/yaml/dist/compose/compose-doc.js
 var require_compose_doc = __commonJS((exports) => {
   var composeDoc = function(options, directives, { offset, start, value, end }, onError) {
     const opts = Object.assign({ _directives: directives }, options);
     const doc = new Document.Document(undefined, opts);
     const ctx = {
+      atKey: false,
       atRoot: true,
       directives: doc.directives,
       options: doc.options,
@@ -4567,7 +4634,7 @@ var require_compose_doc = __commonJS((exports) => {
   exports.composeDoc = composeDoc;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/compose/composer.js
+// ../../../node_modules/yaml/dist/compose/composer.js
 var require_composer = __commonJS((exports) => {
   var getErrorPos = function(src) {
     if (typeof src === "number")
@@ -4748,7 +4815,7 @@ var require_composer = __commonJS((exports) => {
   exports.Composer = Composer;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/cst-scalar.js
+// ../../../node_modules/yaml/dist/parse/cst-scalar.js
 var require_cst_scalar = __commonJS((exports) => {
   var resolveAsScalar = function(token, strict = true, onError) {
     if (token) {
@@ -4930,7 +4997,7 @@ var require_cst_scalar = __commonJS((exports) => {
   exports.setScalarValue = setScalarValue;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/cst-stringify.js
+// ../../../node_modules/yaml/dist/parse/cst-stringify.js
 var require_cst_stringify = __commonJS((exports) => {
   var stringifyToken = function(token) {
     switch (token.type) {
@@ -4988,7 +5055,7 @@ var require_cst_stringify = __commonJS((exports) => {
   exports.stringify = stringify;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/cst-visit.js
+// ../../../node_modules/yaml/dist/parse/cst-visit.js
 var require_cst_visit = __commonJS((exports) => {
   var visit = function(cst, visitor) {
     if ("type" in cst && cst.type === "document")
@@ -5047,7 +5114,7 @@ var require_cst_visit = __commonJS((exports) => {
   exports.visit = visit;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/cst.js
+// ../../../node_modules/yaml/dist/parse/cst.js
 var require_cst = __commonJS((exports) => {
   var prettyToken = function(token) {
     switch (token) {
@@ -5146,7 +5213,7 @@ var require_cst = __commonJS((exports) => {
   exports.tokenType = tokenType;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/lexer.js
+// ../../../node_modules/yaml/dist/parse/lexer.js
 var require_lexer = __commonJS((exports) => {
   var isEmpty = function(ch) {
     switch (ch) {
@@ -5713,7 +5780,7 @@ var require_lexer = __commonJS((exports) => {
   exports.Lexer = Lexer;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/line-counter.js
+// ../../../node_modules/yaml/dist/parse/line-counter.js
 var require_line_counter = __commonJS((exports) => {
   class LineCounter {
     constructor() {
@@ -5741,7 +5808,7 @@ var require_line_counter = __commonJS((exports) => {
   exports.LineCounter = LineCounter;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/parse/parser.js
+// ../../../node_modules/yaml/dist/parse/parser.js
 var require_parser = __commonJS((exports) => {
   var includesToken = function(list, type) {
     for (let i = 0;i < list.length; ++i)
@@ -6253,7 +6320,8 @@ var require_parser = __commonJS((exports) => {
                 const key = it.key;
                 const sep = it.sep;
                 sep.push(this.sourceToken);
-                delete it.key, delete it.sep;
+                delete it.key;
+                delete it.sep;
                 this.stack.push({
                   type: "block-map",
                   offset: this.offset,
@@ -6575,7 +6643,7 @@ var require_parser = __commonJS((exports) => {
   exports.Parser = Parser;
 });
 
-// ../../../node_modules/.pnpm/yaml@2.5.0/node_modules/yaml/dist/public-api.js
+// ../../../node_modules/yaml/dist/public-api.js
 var require_public_api = __commonJS((exports) => {
   var parseOptions = function(options) {
     const prettyErrors = options.prettyErrors !== false;
@@ -6652,12 +6720,15 @@ var require_public_api = __commonJS((exports) => {
       if (!keepUndefined)
         return;
     }
+    if (identity.isDocument(value) && !_replacer)
+      return value.toString(options);
     return new Document.Document(value, _replacer, options).toString(options);
   };
   var composer = require_composer();
   var Document = require_Document();
   var errors = require_errors();
   var log = require_log();
+  var identity = require_identity();
   var lineCounter = require_line_counter();
   var parser = require_parser();
   exports.parse = parse;
@@ -6669,7 +6740,7 @@ var require_public_api = __commonJS((exports) => {
 // inject-process.ts
 import {readFile, writeFile} from "node:fs/promises";
 
-// /Users/ovi/dev/ao/ao-starter-kit/create-ao-dapp/node_modules/yaml/dist/index.js
+// ../../../node_modules/yaml/dist/index.js
 var composer = require_composer();
 var Document = require_Document();
 var Schema = require_Schema();
@@ -6726,7 +6797,10 @@ try {
   const parsedStateFile = $parse(stateFileContents);
   for (const process2 in parsedStateFile) {
     const processId = parsedStateFile[process2].processId;
-    const formatted = `export const ${process2.toUpperCase()} = "${processId}";`;
+    const formatted = `
+    // This file was auto-generated using inject-process.ts
+    const ${process2.toUpperCase()} = "${processId}";
+    export default ${process2.toUpperCase()};`;
     await writeFile(`./apps/frontend/src/constants/${process2}_process.ts`, formatted);
     console.log(`Process injected successfully into ./apps/frontend/src/constants/${process2}_process.ts`);
   }

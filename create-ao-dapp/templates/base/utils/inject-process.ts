@@ -18,15 +18,23 @@ try {
     const processId = parsedStateFile[process].processId;
 
     // write process id to process.ts
-    const formatted = `export const ${process.toUpperCase()} = "${processId}";`;
+    const formatted = `
+    // This file was auto-generated using inject-process.ts
+    const ${process.toUpperCase()} = "${processId}";
+    export default ${process.toUpperCase()};`;
 
-    await writeFile(`./apps/frontend/src/constants/${process}_process.ts`, formatted);
+    await writeFile(
+      `./apps/frontend/src/constants/${process}_process.ts`,
+      formatted
+    );
 
     console.log(
-      `Process injected successfully into ./apps/frontend/src/constants/${process}_process.ts`,
+      `Process injected successfully into ./apps/frontend/src/constants/${process}_process.ts`
     );
   }
 } catch (error) {
-  console.error("Error reading state file. Maybe you need to deploy the process first?");
+  console.error(
+    "Error reading state file. Maybe you need to deploy the process first?"
+  );
   process.exit(1);
 }

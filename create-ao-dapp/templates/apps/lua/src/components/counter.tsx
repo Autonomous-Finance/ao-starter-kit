@@ -5,7 +5,7 @@ import {
     result,
 } from "@permaweb/aoconnect";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { COUNTER } from "../constants/counter_process";
+import COUNTER from "../constants/counter_process";
 
 export default function Counter() {
 	const queryClient = useQueryClient();

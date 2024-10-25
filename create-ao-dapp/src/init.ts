@@ -30,14 +30,9 @@ export async function init() {
           message: "Enter the name of your project",
           placeholder: "sparkling-solid",
         }),
-      processName: () =>
-        p.text({
-          message: "What should we name the backend process?",
-          placeholder: "my-process",
-        }),
       type: ({ results }) =>
         p.select({
-          message: `Pick a starter template within "${results.processName}"`,
+          message: `Pick a starter template within "${results.projectName}"`,
           initialValue: "lua",
           maxItems: 5,
           options: [
@@ -94,7 +89,9 @@ export async function init() {
 
   // Change projectName and processName to kebab-case
   const projectName = kebabcase(project.projectName);
-  const processName = kebabcase(project.processName);
+  const processName = ["lua", "teal"].includes(project.type as string)
+    ? "counter"
+    : "books";
 
   const templatesDir = resolve(__dirname, "..", "templates");
   const destDir = resolve(process.cwd(), projectName);

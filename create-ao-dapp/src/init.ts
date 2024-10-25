@@ -177,6 +177,7 @@ export async function init() {
     projectPath: `./${projectName}`,
     processName: processName,
     packageManager: detectPackageManager(),
+    processType: project.type as string,
   });
 
   spinner.message("Generating aoform.yaml...");

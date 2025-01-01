@@ -10,15 +10,11 @@ NC='\033[0m'        # No Color (reset to default)
 
 # Function to compare version strings
 version_greater_equal() {
-    if [ "$(printf '%s\n' "$2" "$1" | sort -V | head -n1)" = "$2" ]; then
-        return 0
-    else
-        return 1
-    fi
+    [ "$(printf '%s\n%s' "$1" "$2" | sort -V | head -n1)" = "$2" ]
 }
 
 # Check if Lua is installed and version is >= 5.4.6
-INSTALLED_VERSION=$(lua -v 2>&1 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+INSTALLED_VERSION="$(lua -v 2>&1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
 if ! version_greater_equal "$INSTALLED_VERSION" "$LUA_VERSION"; then
     echo -e "${RED}Lua version must be $LUA_VERSION or higher. Found version: $INSTALLED_VERSION${NC}"
     exit 1

@@ -2,7 +2,7 @@
   "name": "create-ao-dapp",
   "description": "The ao-starter-kit provides a comprehensive boilerplate for setting up an AO process, including testing, modules, and amalgamation alongside a React application.",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "bin": {
     "ao-dapp": "_lib/bin.js"
   },

@@ -1,5 +1,11 @@
 # create-ao-dapp
 
+## 0.2.1
+
+### Patch Changes
+
+- 84bea57: fix lua sqlite template by removing ao dependency
+
 ## 0.2.0
 
 - Update process deployments with aoform.
@@ -7,6 +13,7 @@
 - Enhances DX experience with advanced build scripts.
 
 ### Dependencies update:
+
 - tl 0.15.3-1 - Teal, a typed dialect of Lua
 - cyan 0.3.1-2 - A build system for the Teal language
 - amalg 0.8-1 - Amalgamation for Lua modules/scripts.

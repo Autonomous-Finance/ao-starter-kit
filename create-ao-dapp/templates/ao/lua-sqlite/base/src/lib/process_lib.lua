@@ -1,4 +1,3 @@
-local ao   = require "ao"
 local db   = require "lib.db"
 local json = require "json"
 local mod  = {}

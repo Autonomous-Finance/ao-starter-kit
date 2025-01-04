@@ -37,6 +37,7 @@ export async function init() {
           maxItems: 5,
           options: [
             { value: "lua", label: "Basic Lua template (Counter)" },
+            { value: "lua-coin-with-bonding-curve", label: "Basic Lua template (Bonding Curve)" },
             {
               value: "lua-sqlite",
               label: "Lua + SQLite template (Books Manager)",
@@ -51,6 +52,108 @@ export async function init() {
             },
           ],
         }),
+      // Bonding curve specific parameters
+      targetMarketCap: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the target market cap in qAR",
+            placeholder: "1000000",
+            validate: (value) => {
+              if (isNaN(Number(value)) || Number(value) <= 0) {
+                return "Please enter a valid positive number";
+              }
+            }
+          })
+          : Promise.resolve(),
+      targetSupply: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the target supply",
+            placeholder: "1000000",
+            validate: (value) => {
+              if (isNaN(Number(value)) || Number(value) <= 0) {
+                return "Please enter a valid positive number";
+              }
+            }
+          })
+          : Promise.resolve(),
+      reserveRatio: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the reserve ratio (0-100)",
+            placeholder: "50",
+            validate: (value) => {
+              const num = Number(value);
+              if (isNaN(num) || num < 0 || num > 100) {
+                return "Please enter a number between 0 and 100";
+              }
+            }
+          })
+          : Promise.resolve(),
+      transactionFees: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the transaction fees percentage (0-100)",
+            placeholder: "0.3",
+            validate: (value) => {
+              const num = Number(value);
+              if (isNaN(num) || num < 0 || num > 100) {
+                return "Please enter a number between 0 and 100";
+              }
+            }
+          })
+          : Promise.resolve(),
+      curveTokenProcess: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the curve token process name",
+            placeholder: "my-token-process"
+          })
+          : Promise.resolve(),
+      curveTokenTicker: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the curve token ticker",
+            placeholder: "TKN"
+          })
+          : Promise.resolve(),
+      curveTokenDenomination: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the curve token denomination",
+            placeholder: "credits",
+            validate: (value) => {
+              if (!value.trim()) {
+                return "Denomination cannot be empty";
+              }
+            }
+          })
+          : Promise.resolve(),
+      developerAccount: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the developer account address",
+            placeholder: "0x...",
+            validate: (value) => {
+              if (!value.trim()) {
+                return "Developer account cannot be empty";
+              }
+            }
+          })
+          : Promise.resolve(),
+      lpTokensBurnRatio: ({ results }) =>
+        results.type === "lua-coin-with-bonding-curve"
+          ? p.text({
+            message: "Enter the LP tokens burn ratio (0-100)",
+            placeholder: "0",
+            validate: (value) => {
+              const num = Number(value);
+              if (isNaN(num) || num < 0 || num > 100) {
+                return "Please enter a number between 0 and 100";
+              }
+            }
+          })
+          : Promise.resolve(),
       tools: () =>
         p.multiselect({
           message: "Select the features you want to include",

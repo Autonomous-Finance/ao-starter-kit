@@ -11,6 +11,7 @@ import {
   kebabcase,
   pkgManagerInstallCommand,
 } from "./utils/utils.js";
+import { calculate_curve_m } from "./utils/curve.js";
 
 export type InitParameters = { name: string };
 
@@ -37,7 +38,7 @@ export async function init() {
           maxItems: 5,
           options: [
             { value: "lua", label: "Basic Lua template (Counter)" },
-            { value: "lua-coin", label: "Basic Lua template (Bonding Curve)" },
+            { value: "lua-coin", label: "Bonding Curve Lua template" },
             {
               value: "lua-sqlite",
               label: "Lua + SQLite template (Books Manager)",
@@ -57,7 +58,8 @@ export async function init() {
         results.type === "lua-coin"
           ? p.text({
             message: "Enter the target market cap in qAR",
-            placeholder: "1000000",
+            initialValue: "100000",
+            placeholder: "100000",
             validate: (value) => {
               if (isNaN(Number(value)) || Number(value) <= 0) {
                 return "Please enter a valid positive number";
@@ -69,6 +71,7 @@ export async function init() {
         results.type === "lua-coin"
           ? p.text({
             message: "Enter the target supply",
+            initialValue: "1000000",
             placeholder: "1000000",
             validate: (value) => {
               if (isNaN(Number(value)) || Number(value) <= 0) {
@@ -81,6 +84,7 @@ export async function init() {
         results.type === "lua-coin"
           ? p.text({
             message: "Enter the reserve ratio (0-100)",
+            initialValue: "0.3",
             placeholder: "0.3",
             validate: (value) => {
               const num = Number(value);
@@ -94,6 +98,7 @@ export async function init() {
         results.type === "lua-coin"
           ? p.text({
             message: "Enter the transaction fees percentage (0-100)",
+            initialValue: "0.3",
             placeholder: "0.3",
             validate: (value) => {
               const num = Number(value);
@@ -132,22 +137,25 @@ export async function init() {
       quoteTokenProcess: ({ results }) =>
         results.type === "lua-coin"
           ? p.text({
-            message: "Enter the quote token process id",
-            placeholder: "NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8"
+            message: "Enter the quote token process id. Default is of qAR",
+            defaultValue: "NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8",
+            placeholder: "NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8",
           })
           : Promise.resolve(),
       quoteTokenTicker: ({ results }) =>
         results.type === "lua-coin"
           ? p.text({
             message: "Enter the quote token ticker",
+            defaultValue: "qAR",
             placeholder: "qAR"
           })
           : Promise.resolve(),
       quoteTokenDenomination: ({ results }) =>
         results.type === "lua-coin"
           ? p.text({
-            message: "Enter the quote token denomination",
-            placeholder: "18",
+            message: "Enter the quote token denomination. Default is of qAR",
+            defaultValue: "12",
+            placeholder: "12",
             validate: (value) => {
               if (isNaN(Number(value)) || Number(value) <= 0) {
                 return "Please enter a valid positive number";
@@ -171,6 +179,7 @@ export async function init() {
         results.type === "lua-coin"
           ? p.text({
             message: "Enter the LP tokens burn ratio (0-100)",
+            initialValue: "50",
             placeholder: "50",
             validate: (value) => {
               const num = Number(value);
@@ -242,7 +251,9 @@ export async function init() {
 
   // Then edit the main.lua with Bonding Curve Values if using lua-coin template
   if (project.type === "lua-coin") {
-    const curve_m = 0;
+    const curve_m = calculate_curve_m(Number(project.targetMarketCap), Number(project.targetSupply), Number(project.reserveRatio));
+    console.log(curve_m)
+
 
     const mainLuaPath = resolve(destDir, "ao", processName, "src", "main.lua");
     let mainLuaContent = fs.readFileSync(mainLuaPath, 'utf8');
@@ -251,7 +262,7 @@ export async function init() {
     const replacements = {
       "INITIAL_TARGET_MARKET_CAP = 10000": `INITIAL_TARGET_MARKET_CAP = ${project.targetMarketCap}`,
       "INITIAL_TARGET_SUPPLY     = 1000000": `INITIAL_TARGET_SUPPLY     = ${project.targetSupply}`,
-      "INITIAL_CURVE_RR          = 0.5": `INITIAL_CURVE_RR          = ${Number(project.reserveRatio) / 100}`,
+      "INITIAL_CURVE_RR          = 0.5": `INITIAL_CURVE_RR          = ${Number(project.reserveRatio)}`,
       "INITIAL_CURVE_FEE         = 100": `INITIAL_CURVE_FEE         = ${Number(project.transactionFees) * 100}`,
       'ISSUED_TOKEN_PROCESS      = ISSUED_TOKEN_PROCESS or\n    "41lN_XQGZmmL_cNrn4_-80YiTrCjzW6H67cWBzFGOQ0"': `ISSUED_TOKEN_PROCESS      = ISSUED_TOKEN_PROCESS or\n    "${project.curveTokenProcess}"`,
       'ISSUED_TOKEN_TICKER       = ISSUED_TOKEN_TICKER or "LTK"': `ISSUED_TOKEN_TICKER       = ISSUED_TOKEN_TICKER or "${project.curveTokenTicker}"`,

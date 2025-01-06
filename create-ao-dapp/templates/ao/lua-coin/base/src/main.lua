@@ -49,47 +49,55 @@ Curve  = require("lib.curve")
 -- qAR by default
 QUOTE_TOKEN_PROCESS       = QUOTE_TOKEN_PROCESS or
     'NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8' -- LT
+QUOTE_TOKEN_TICKER        =
+"qAR"                                             -- TODO adjust according to your custom quote token if necessary
+QUOTE_TOKEN_DENOMINATION  = 12                    -- TODO adjust according to your custom quote token if necessary
 ISSUED_TOKEN_PROCESS      = ISSUED_TOKEN_PROCESS or
     "41lN_XQGZmmL_cNrn4_-80YiTrCjzW6H67cWBzFGOQ0" -- LTK
 ISSUED_TOKEN_DENOMINATION = ISSUED_TOKEN_DENOMINATION or
     18
-QUOTE_TOKEN_DENOMINATION  = 12 -- TODO adjust according to your custom quote token if necessary
 ISSUED_TOKEN_TICKER       = ISSUED_TOKEN_TICKER or "LTK"
-QUOTE_TOKEN_TICKER        =
-"qAR" -- TODO adjust according to your custom quote token if necessary
+
+INITIAL_CURVE_RR          = 0.5;
+INITIAL_CURVE_M           = 1e-8;
+INITIAL_CURVE_FEE         = 100;
+INITIAL_LP_TOKENS_TO_BURN = 100;
+INITIAL_TARGET_SUPPLY     = 1000000
+INITIAL_TARGET_MARKET_CAP = 10000
+INITIAL_DEV_ACCOUNT       = "Pw6aamwaKdmlkgKMNLX1ekzvyBPO8r-S4QhIpL34QVw";
+
 
 -- configure bonding curve
 
-TargetMarketCap           = TargetMarketCap or bint("10000") * bint.ipow(10, QUOTE_TOKEN_DENOMINATION)
-TargetSupply              = TargetSupply or bint("1000000") * bint.ipow(10, ISSUED_TOKEN_DENOMINATION)
-CurveRR                   = CurveRR or 0.5
-local derivedCfg          = Calc.curveDerivedConfig()
-CurveN                    = CurveN or derivedCfg.n
-TargetLiquidity           = TargetLiquidity or derivedCfg.targetLiquidity
-TargetPrice               = TargetPrice or derivedCfg.targetPrice
-CurveM                    = CurveM or Calc.scaleCurveM(1e-8)
+TargetMarketCap        = TargetMarketCap or bint(INITIAL_TARGET_MARKET_CAP) * bint.ipow(10, QUOTE_TOKEN_DENOMINATION)
+TargetSupply           = TargetSupply or bint(INITIAL_TARGET_SUPPLY) * bint.ipow(10, ISSUED_TOKEN_DENOMINATION)
+CurveRR                = CurveRR or INITIAL_CURVE_RR
+local derivedCfg       = Calc.curveDerivedConfig()
+CurveN                 = CurveN or derivedCfg.n
+TargetLiquidity        = TargetLiquidity or derivedCfg.targetLiquidity
+TargetPrice            = TargetPrice or derivedCfg.targetPrice
+CurveM                 = CurveM or Calc.scaleCurveM(INITIAL_CURVE_M)
 
-IsInitialized             = IsInitialized or false
-AvailableForSupply        = AvailableForSupply or bint(0)
+IsInitialized          = IsInitialized or false
+AvailableForSupply     = AvailableForSupply or bint(0)
 
-CurveReserve              = CurveReserve or bint(0) -- quote token: how much taken in via buys
-CurveSupply               = CurveSupply or bint(0)  -- issued token: how much given out via sells
+CurveReserve           = CurveReserve or bint(0)       -- quote token: how much taken in via buys
+CurveSupply            = CurveSupply or bint(0)        -- issued token: how much given out via sells
 
-CurveFee                  = CurveFee or 100         -- bps - represents a % of the qAR, on buys and sells
-FeesCollected             = FeesCollected or bint(0)
+CurveFee               = CurveFee or INITIAL_CURVE_FEE -- bps - represents a % of the qAR, on buys and sells
+FeesCollected          = FeesCollected or bint(0)
 
-LP_TOKENS_TO_BURN         = LP_TOKENS_TO_BURN or
-    10000 -- bps - representa a % of the lp tokens obtained on botega migration
+LP_TOKENS_TO_BURN      = LP_TOKENS_TO_BURN or
+    INITIAL_LP_TOKENS_TO_BURN -- bps - representa a % of the lp tokens obtained on botega migration
 
-IsMigrating               = false
-HasMigrated               = false
-BotegaAmmProcess          = BotegaAmmProcess or nil
-MigrationSupply           = MigrationSupply or nil
+IsMigrating            = false
+HasMigrated            = false
+BotegaAmmProcess       = BotegaAmmProcess or nil
+MigrationSupply        = MigrationSupply or nil
 
-BOTEGA_FACTORY_PROCESS    = "3XBGLrygs11K63F_7mldWz4veNx6Llg6hI2yZs8LKHo"
-BURNER_PROCESS            = 'tPaIyq3VcpUdrYorOyH90aUbRo4x1Cv2S9DW-chowog'
-DEV_ACCOUNT               = "Pw6aamwaKdmlkgKMNLX1ekzvyBPO8r-S4QhIpL34QVw"
-
+BOTEGA_FACTORY_PROCESS = "3XBGLrygs11K63F_7mldWz4veNx6Llg6hI2yZs8LKHo"
+BURNER_PROCESS         = 'tPaIyq3VcpUdrYorOyH90aUbRo4x1Cv2S9DW-chowog'
+DEV_ACCOUNT            = INITIAL_DEV_ACCOUNT
 
 -- HANDLERS
 Handlers.add('info',

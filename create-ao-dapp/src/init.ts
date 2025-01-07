@@ -11,7 +11,7 @@ import {
   kebabcase,
   pkgManagerInstallCommand,
 } from "./utils/utils.js";
-import { calculate_curve_m } from "./utils/curve.js";
+import { getCurveDerived } from "./utils/curve.js";
 
 export type InitParameters = { name: string };
 
@@ -251,8 +251,13 @@ export async function init() {
 
   // Then edit the main.lua with Bonding Curve Values if using lua-coin template
   if (project.type === "lua-coin") {
-    const curve_m = calculate_curve_m(Number(project.targetMarketCap), Number(project.targetSupply), Number(project.reserveRatio));
-    console.log(curve_m)
+    const curve_derived = getCurveDerived({
+      targetMCap: Number(project.targetMarketCap),
+      targetSupply: Number(project.targetSupply),
+      curveRR: Number(project.reserveRatio), // Convert percentage to decimal
+      curveFee: Number(project.transactionFees) * 100
+    });
+    console.log(curve_derived.curveM)
 
 
     const mainLuaPath = resolve(destDir, "ao", processName, "src", "main.lua");
@@ -272,7 +277,7 @@ export async function init() {
       "QUOTE_TOKEN_DENOMINATION  = 12": `QUOTE_TOKEN_DENOMINATION  = ${project.quoteTokenDenomination}`,
       'INITIAL_DEV_ACCOUNT       = "Pw6aamwaKdmlkgKMNLX1ekzvyBPO8r-S4QhIpL34QVw"': `INITIAL_DEV_ACCOUNT       = "${project.developerAccount}"`,
       "INITIAL_LP_TOKENS_TO_BURN = 100": `INITIAL_LP_TOKENS_TO_BURN = ${project.lpTokensBurnRatio}`,
-      "INITIAL_CURVE_M           = 1e-8": `INITIAL_CURVE_M           = ${curve_m}`,
+      "INITIAL_CURVE_M           = 1e-8": `INITIAL_CURVE_M           = ${curve_derived.curveM}`,
     };
 
     for (const [placeholder, replacement] of Object.entries(replacements)) {

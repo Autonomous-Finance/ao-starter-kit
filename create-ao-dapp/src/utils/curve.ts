@@ -1,39 +1,58 @@
-function calculateTargetPrice(targetMarketCap: number, targetSupply: number) {
-    if (targetSupply <= 0) {
-        throw new Error("Target supply must be greater than 0");
-    }
-    return targetMarketCap / targetSupply;
+import { BondingCurve, BondingCurveDerived } from "../types";
+
+export const calcCurveN = (curve: BondingCurve): number | undefined => {
+    if (curve.curveRR === undefined) return undefined;
+    return 1 / curve.curveRR - 1;
 }
 
-function calculate_curve_n(curve_rr: number) {
-    if (curve_rr <= 0 || curve_rr >= 1) {
-        throw new Error("Curve reserve ratio must be between 0 and 1");
-    }
-    return ((1 / curve_rr) - 1);
+export const calcPrice = (curve: BondingCurve, curveDerived: BondingCurveDerived, supply: number | undefined): number | undefined => {
+    const n = calcCurveN(curve);
+    const m = curveDerived.curveM;
+    if (n === undefined || m === undefined || supply === undefined) return undefined;
+    return m * Math.pow(supply, n);
 }
 
-export function calculate_curve_m(targetMarketCap: number, targetSupply: number, curve_rr: number) {
-    if (targetMarketCap < 0) {
-        throw new Error("Target market cap must be non-negative");
-    }
+export const calcCost = (curveDerived: BondingCurveDerived, supply: number): number | undefined => {
+    const n = curveDerived.curveN;
+    const m = curveDerived.curveM;
+    if (n === undefined || m === undefined) return undefined;
+    return (m / (n + 1)) * Math.pow(supply, n + 1);
+}
 
-    const normalizedRR = curve_rr > 1 ? curve_rr / 100 : curve_rr;
+export const calcSupplyForCost = (curveDerived: BondingCurveDerived, cost: number): number | undefined => {
+    const n = curveDerived.curveN;
+    const m = curveDerived.curveM;
+    if (n === undefined || m === undefined) return undefined;
+    return Math.pow(((n + 1) * cost) / m, 1 / (n + 1));
+}
 
-    const targetPrice = calculateTargetPrice(targetMarketCap, targetSupply);
-    const curve_n = calculate_curve_n(normalizedRR);
+export const calcLiquidity = (curveDerived: BondingCurveDerived, supply: number): number | undefined => {
+    return calcCost(curveDerived, supply);
+}
 
-    // Check for potential overflow before power operation
-    if (targetSupply > Number.MAX_SAFE_INTEGER ** (1 / curve_n)) {
-        throw new Error("Supply value too large for safe calculation");
-    }
+export const calcTotalFee = (curve: BondingCurve, targetLiquidity: number | undefined): number | undefined => {
+    if (curve.curveFee === undefined || targetLiquidity === undefined) return undefined;
+    return targetLiquidity * curve.curveFee / 10000;
+}
 
-    // Calculate m using the formula: m = P / (S^n)
-    const curve_m = targetPrice / (Math.pow(targetSupply, curve_n));
+export const getCurveDerived = (curve: BondingCurve): BondingCurveDerived => {
+    const curveN = calcCurveN(curve);
+    const targetPrice = curve.targetMCap !== undefined && curve.targetSupply !== undefined && curve.targetSupply !== 0
+        ? curve.targetMCap / curve.targetSupply
+        : undefined;
+    const curveM = targetPrice !== undefined && curve.targetSupply !== undefined && curveN !== undefined
+        ? targetPrice / Math.pow(curve.targetSupply, curveN)
+        : undefined;
+    const targetLiquidity = curve.targetMCap !== undefined && curve.curveRR !== undefined
+        ? curve.targetMCap * curve.curveRR
+        : undefined;
+    const minFees = calcTotalFee(curve, targetLiquidity);
 
-    // Check for valid result
-    if (!Number.isFinite(curve_m)) {
-        throw new Error("Calculation resulted in an invalid number");
-    }
-
-    return curve_m;
+    return {
+        curveN,
+        curveM,
+        targetPrice,
+        targetLiquidity,
+        minFees
+    };
 }

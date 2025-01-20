@@ -1,4 +1,4 @@
-import { BondingCurve, BondingCurveDerived } from "../types";
+import type { BondingCurve, BondingCurveDerived } from "../types";
 
 export const calcCurveN = (curve: BondingCurve): number | undefined => {
     if (curve.curveRR === undefined) return undefined;

@@ -48,10 +48,9 @@ Curve  = require("lib.curve")
 
 -- qAR by default
 QUOTE_TOKEN_PROCESS       = QUOTE_TOKEN_PROCESS or
-    'NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8' -- LT
-QUOTE_TOKEN_TICKER        =
-"qAR"                                             -- TODO adjust according to your custom quote token if necessary
-QUOTE_TOKEN_DENOMINATION  = 12                    -- TODO adjust according to your custom quote token if necessary
+    'NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8'
+QUOTE_TOKEN_TICKER        = "qAR"
+QUOTE_TOKEN_DENOMINATION  = 12
 ISSUED_TOKEN_PROCESS      = ISSUED_TOKEN_PROCESS or
     "41lN_XQGZmmL_cNrn4_-80YiTrCjzW6H67cWBzFGOQ0" -- LTK
 ISSUED_TOKEN_DENOMINATION = ISSUED_TOKEN_DENOMINATION or

@@ -12,3 +12,5 @@ export interface BondingCurveDerived {
     targetLiquidity?: number;
     minFees?: number;
 }
+
+export type PackageManager = "npm" | "yarn" | "pnpm" | "bun";

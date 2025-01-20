@@ -367,9 +367,11 @@ export async function init() {
   spinner.stop("Added aoform.");
 
   // Copy frontend template contents
-  const frontendTemplate = ["lua", "lua-coin", "teal"].includes(project.type as string)
-    ? "lua"
-    : "lua-sqlite";
+  const frontendTemplate = project.type as string === "lua-coin"
+    ? "lua-coin"
+    : ["lua", "teal"].includes(project.type as string)
+      ? "lua"
+      : "lua-sqlite";
 
   fs.copySync(
     resolve(templatesDir, "apps", frontendTemplate),

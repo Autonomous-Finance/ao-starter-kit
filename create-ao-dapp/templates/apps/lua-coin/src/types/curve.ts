@@ -1,0 +1,33 @@
+export interface CurveInfo {
+    "Data-Protocol": string;
+    "Variant": string;
+    "Type": string;
+    "Reference": string;
+    "Action": string;
+    "Reserve-Token-Process": string;
+    "Reserve-Token-Denomination": string;
+    "Issued-Token-Process": string;
+    "Issued-Token-Denomination": string;
+    "Target-Curve-Supply": string;
+    "Target-Curve-Reserve": string;
+    "Target-Curve-Price": string;
+    "Target-Curve-Market-Cap": string;
+    "Curve-M": string;
+    "Curve-RR": string;
+    "Curve-N": string;
+    "Curve-Fee": string;
+    "Botega-Factory-Process": string;
+    "Burner-Process": string;
+    "Developer-Account": string;
+    "Is-Initialized": string;
+    "Curve-Supply": string;
+    "Available-For-Supply": string;
+    "Curve-Reserve": string;
+    "Curve-Price": string;
+    "Fees-Collected": string;
+    "LP-Tokens-Burn-Ratio": string;
+    "Is-Migrating": string;
+    "Has-Migrated": string;
+    "Botega-AMM-Process": string | null;
+    "Migration-Supply": string | null;
+} 

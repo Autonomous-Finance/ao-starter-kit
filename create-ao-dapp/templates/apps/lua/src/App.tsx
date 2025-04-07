@@ -1,4 +1,4 @@
-import { ConnectButton } from "arweave-wallet-kit";
+import { ConnectButton } from "@arweave-wallet-kit/react";
 import "./App.css";
 import Counter from "./components/counter";
 import COUNTER from "./constants/counter_process";

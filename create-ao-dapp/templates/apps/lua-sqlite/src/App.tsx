@@ -1,4 +1,4 @@
-import { ConnectButton } from "arweave-wallet-kit";
+import { ConnectButton } from "@arweave-wallet-kit/react";
 import "./App.css";
 import BOOKS from "./constants/books_process";
 import aoLogo from "/ao.svg";

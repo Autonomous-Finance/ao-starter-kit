@@ -16,6 +16,22 @@ This template demonstrates how to create a Lua process that interacts with SQLit
 ```bash
 npm install
 ```
+:::warning
+You will have to authenticate yourself to your aos process using a keyfile.
+If you dont have the aos package alredy installed, you can run the below commands
+:::
+```
+npm i -g https://get_ao.g8way.io
+```
+After installation, simply run:
+```
+aos
+```
+This will setup a new keyfile for you, and then you can export it as an environment variable
+```
+export WALLET_JSON="$(cat ~/.aos.json)"
+```
+More information can be found [here](https://cookbook_ao.g8way.io/welcome/getting-started.html#installing-aos)
 
 ### Build the Lua process
 

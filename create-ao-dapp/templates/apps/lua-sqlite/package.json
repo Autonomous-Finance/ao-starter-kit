@@ -11,9 +11,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@permaweb/aoconnect": "^0.0.56",
+    "@arweave-wallet-kit/browser-wallet-strategy": "^0.1.1",
+    "@arweave-wallet-kit/core": "^0.1.1",
+    "@arweave-wallet-kit/othent-strategy": "^0.1.1",
+    "@arweave-wallet-kit/react": "^0.3.2",
+    "@arweave-wallet-kit/styles": "^0.1.1",
+    "@arweave-wallet-kit/wander-strategy": "^0.1.2",
+    "@arweave-wallet-kit/webwallet-strategy": "0.0.1-beta.4",
+    "@permaweb/aoconnect": "^0.0.78",
     "@tanstack/react-query": "^5.51.9",
-    "arweave-wallet-kit": "^1.0.4",
+    "@vela-ventures/aosync-strategy": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

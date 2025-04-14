@@ -11,6 +11,7 @@ import {
   kebabcase,
   pkgManagerInstallCommand,
 } from "./utils/utils.js";
+import { getCurveDerived } from "./utils/curve.js";
 
 export type InitParameters = { name: string };
 
@@ -37,6 +38,7 @@ export async function init() {
           maxItems: 5,
           options: [
             { value: "lua", label: "Basic Lua template (Counter)" },
+            { value: "lua-coin", label: "Bonding Curve Lua template" },
             {
               value: "lua-sqlite",
               label: "Lua + SQLite template (Books Manager)",
@@ -51,6 +53,142 @@ export async function init() {
             },
           ],
         }),
+      // Bonding curve specific parameters
+      targetMarketCap: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the target market cap in qAR",
+            initialValue: "100000",
+            placeholder: "100000",
+            validate: (value) => {
+              if (isNaN(Number(value)) || Number(value) <= 0) {
+                return "Please enter a valid positive number";
+              }
+            }
+          })
+          : Promise.resolve(),
+      targetSupply: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the target supply",
+            initialValue: "1000000",
+            placeholder: "1000000",
+            validate: (value) => {
+              if (isNaN(Number(value)) || Number(value) <= 0) {
+                return "Please enter a valid positive number";
+              }
+            }
+          })
+          : Promise.resolve(),
+      reserveRatio: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the reserve ratio (0-100)",
+            initialValue: "0.3",
+            placeholder: "0.3",
+            validate: (value) => {
+              const num = Number(value);
+              if (isNaN(num) || num < 0 || num > 100) {
+                return "Please enter a number between 0 and 100";
+              }
+            }
+          })
+          : Promise.resolve(),
+      transactionFees: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the transaction fees percentage (0-100)",
+            initialValue: "0.3",
+            placeholder: "0.3",
+            validate: (value) => {
+              const num = Number(value);
+              if (isNaN(num) || num < 0 || num > 100) {
+                return "Please enter a number between 0 and 100";
+              }
+            }
+          })
+          : Promise.resolve(),
+      curveTokenProcess: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the curve token process id",
+            placeholder: "curve-token-process-id"
+          })
+          : Promise.resolve(),
+      curveTokenTicker: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the curve token ticker",
+            placeholder: "TKN"
+          })
+          : Promise.resolve(),
+      curveTokenDenomination: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the curve token denomination",
+            placeholder: "18",
+            validate: (value) => {
+              if (isNaN(Number(value)) || Number(value) <= 0) {
+                return "Please enter a valid positive number";
+              }
+            }
+          })
+          : Promise.resolve(),
+      quoteTokenProcess: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the quote token process id. Default is of qAR",
+            defaultValue: "NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8",
+            placeholder: "NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8",
+          })
+          : Promise.resolve(),
+      quoteTokenTicker: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the quote token ticker",
+            defaultValue: "qAR",
+            placeholder: "qAR"
+          })
+          : Promise.resolve(),
+      quoteTokenDenomination: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the quote token denomination. Default is of qAR",
+            defaultValue: "12",
+            placeholder: "12",
+            validate: (value) => {
+              if (isNaN(Number(value)) || Number(value) <= 0) {
+                return "Please enter a valid positive number";
+              }
+            }
+          })
+          : Promise.resolve(),
+      developerAccount: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the developer account address",
+            placeholder: "Pw6aamwaKdmlkgKMNLX1ekzvyBPO8r-S4QhIpL34QVw",
+            validate: (value) => {
+              if (!value.trim()) {
+                return "Developer account cannot be empty";
+              }
+            }
+          })
+          : Promise.resolve(),
+      lpTokensBurnRatio: ({ results }) =>
+        results.type === "lua-coin"
+          ? p.text({
+            message: "Enter the LP tokens burn ratio (0-100)",
+            initialValue: "50",
+            placeholder: "50",
+            validate: (value) => {
+              const num = Number(value);
+              if (isNaN(num) || num < 0 || num > 100) {
+                return "Please enter a number between 0 and 100";
+              }
+            }
+          })
+          : Promise.resolve(),
       tools: () =>
         p.multiselect({
           message: "Select the features you want to include",
@@ -88,18 +226,17 @@ export async function init() {
 
   // Change projectName and processName to kebab-case
   const projectName = kebabcase(project.projectName);
-  const processName = ["lua", "teal"].includes(project.type as string)
-    ? "counter"
-    : "books";
+  const processName = project.type === "lua-coin"
+    ? "coin"
+    : ["lua", "teal"].includes(project.type as string)
+      ? "counter"
+      : "books";
 
   const templatesDir = resolve(__dirname, "..", "templates");
   const destDir = resolve(process.cwd(), projectName);
 
   // Copy base template contents
   fs.copySync(resolve(templatesDir, "base"), destDir);
-
-  // Remove utils/inject-process.ts from the project
-  fs.removeSync(resolve(destDir, "utils", "inject-process.ts"));
 
   // Process template base /templates/ao/{type}/{squishy/basic}
   const processTemplateBase = resolve(
@@ -109,10 +246,51 @@ export async function init() {
     "base"
   );
 
-  // Copy process template contents
+  // Copy process template contents first
   fs.copySync(processTemplateBase, resolve(destDir, "ao", processName));
 
-  // Inject build script into the process dir
+  // Then edit the main.lua with Bonding Curve Values if using lua-coin template
+  if (project.type === "lua-coin") {
+    const curve_derived = getCurveDerived({
+      targetMCap: Number(project.targetMarketCap),
+      targetSupply: Number(project.targetSupply),
+      curveRR: Number(project.reserveRatio), // Convert percentage to decimal
+      curveFee: Number(project.transactionFees) * 100
+    });
+    console.log(curve_derived.curveM)
+
+
+    const mainLuaPath = resolve(destDir, "ao", processName, "src", "main.lua");
+    let mainLuaContent = fs.readFileSync(mainLuaPath, 'utf8');
+
+    // Update replacements to match the exact template values
+    const replacements = {
+      "INITIAL_TARGET_MARKET_CAP = 10000": `INITIAL_TARGET_MARKET_CAP = ${project.targetMarketCap}`,
+      "INITIAL_TARGET_SUPPLY     = 1000000": `INITIAL_TARGET_SUPPLY     = ${project.targetSupply}`,
+      "INITIAL_CURVE_RR          = 0.5": `INITIAL_CURVE_RR          = ${Number(project.reserveRatio)}`,
+      "INITIAL_CURVE_FEE         = 100": `INITIAL_CURVE_FEE         = ${Number(project.transactionFees) * 100}`,
+      'ISSUED_TOKEN_PROCESS      = ISSUED_TOKEN_PROCESS or\n    "41lN_XQGZmmL_cNrn4_-80YiTrCjzW6H67cWBzFGOQ0"': `ISSUED_TOKEN_PROCESS      = ISSUED_TOKEN_PROCESS or\n    "${project.curveTokenProcess}"`,
+      'ISSUED_TOKEN_TICKER       = ISSUED_TOKEN_TICKER or "LTK"': `ISSUED_TOKEN_TICKER       = ISSUED_TOKEN_TICKER or "${project.curveTokenTicker}"`,
+      "ISSUED_TOKEN_DENOMINATION = ISSUED_TOKEN_DENOMINATION or\n    18": `ISSUED_TOKEN_DENOMINATION = ISSUED_TOKEN_DENOMINATION or\n    ${project.curveTokenDenomination}`,
+      'QUOTE_TOKEN_PROCESS       = QUOTE_TOKEN_PROCESS or\n    \'NG-0lVX882MG5nhARrSzyprEK6ejonHpdUmaaMPsHE8\'': `QUOTE_TOKEN_PROCESS       = QUOTE_TOKEN_PROCESS or\n    '${project.quoteTokenProcess}'`,
+      'QUOTE_TOKEN_TICKER        =\n"qAR"': `QUOTE_TOKEN_TICKER        =\n"${project.quoteTokenTicker}"`,
+      "QUOTE_TOKEN_DENOMINATION  = 12": `QUOTE_TOKEN_DENOMINATION  = ${project.quoteTokenDenomination}`,
+      'INITIAL_DEV_ACCOUNT       = "Pw6aamwaKdmlkgKMNLX1ekzvyBPO8r-S4QhIpL34QVw"': `INITIAL_DEV_ACCOUNT       = "${project.developerAccount}"`,
+      "INITIAL_LP_TOKENS_TO_BURN = 100": `INITIAL_LP_TOKENS_TO_BURN = ${project.lpTokensBurnRatio}`,
+      "INITIAL_CURVE_M           = 1e-8": `INITIAL_CURVE_M           = ${curve_derived.curveM}`,
+    };
+
+    for (const [placeholder, replacement] of Object.entries(replacements)) {
+      mainLuaContent = mainLuaContent.replace(placeholder, replacement);
+    }
+
+    fs.writeFileSync(mainLuaPath, mainLuaContent);
+  }
+
+  // Remove utils/inject-process.ts from the project
+  fs.removeSync(resolve(destDir, "utils", "inject-process.ts"));
+
+  // Inject build script into the project
   const buildSpinner = p.spinner();
   buildSpinner.start("Adding build script...");
 
@@ -189,9 +367,11 @@ export async function init() {
   spinner.stop("Added aoform.");
 
   // Copy frontend template contents
-  const frontendTemplate = ["lua", "teal"].includes(project.type as string)
-    ? "lua"
-    : "lua-sqlite";
+  const frontendTemplate = project.type as string === "lua-coin"
+    ? "lua-coin"
+    : ["lua", "teal"].includes(project.type as string)
+      ? "lua"
+      : "lua-sqlite";
 
   fs.copySync(
     resolve(templatesDir, "apps", frontendTemplate),

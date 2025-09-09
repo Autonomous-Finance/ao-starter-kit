@@ -80,7 +80,7 @@ Configuration file for the counter process is present at `./ao/counter/aoform.ya
 
 ### Deploying
 1. Make sure you set your wallet in the ENV `export WALLET_JSON="$(cat ~/.aos.json)"`
-2. Run `con
+2. Run `bun run counter:deploy`
 ## Additional Information
 - Documentation: Detailed documentation and further examples can be found in the relevant directories.
 - Contribution: Contributions are welcome! Please fork the repository and submit pull requests.
